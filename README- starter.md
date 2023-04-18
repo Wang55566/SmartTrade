@@ -1,4 +1,4 @@
-# Flask React Project
+# Flask React Project PENNY SARAH SENG DONGLIANG
 
 This is the starter for the Flask React project.
 

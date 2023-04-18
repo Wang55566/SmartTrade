@@ -1,0 +1,35 @@
+.left-panel {
+  margin: 20px;
+}
+ul.list-name {
+  padding-left: 0px;
+}
+
+.list-create {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: no wrap;
+  font-weight: bold;
+}
+
+.one-list {
+  display: flex;
+  flex-wrap: no wrap;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.one-list a {
+  margin-right: 15px
+}
+
+.list-button {
+  display: flex;
+  flex-wrap: no wrap;
+}
+
+@media screen and (max-width: 950px) {
+  .one-list {
+    display: block;
+  }
+}
