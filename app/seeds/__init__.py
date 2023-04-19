@@ -2,7 +2,7 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 
 # Import all seed files here
-from .assets import seed_assets, undo_assets
+# from .assets import seed_assets, undo_assets
 # from .watchlists import seed_watchlists, undo_watchlists
 # from .liststocks import seed_liststocks, undo_liststocks
 
