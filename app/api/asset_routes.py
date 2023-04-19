@@ -3,7 +3,7 @@ from app.models import db, User, Asset
 from flask_login import current_user, login_required
 from .auth_routes import validation_errors_to_error_messages
 
-from .forms import BuyForm, UpdateForm
+from app.forms import BuyForm, UpdateForm
 
 asset_routes = Blueprint('assets', __name__)
 

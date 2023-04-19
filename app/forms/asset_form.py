@@ -8,6 +8,6 @@ class BuyForm(FlaskForm):
     shares = IntegerField('shares', validators=[DataRequired()])
     user_id = IntegerField('user_id', validators=[DataRequired()])
 
-class UpdatdForm(FlaskForm):
+class UpdateForm(FlaskForm):
     average_cost = FloatField('average_cost', validators=[DataRequired()])
     shares = IntegerField('shares', validators=[DataRequired()])
