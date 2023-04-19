@@ -4,9 +4,7 @@ from wtforms.validators import DataRequired
 
 class BuyForm(FlaskForm):
     symbol = StringField('symbol', validators=[DataRequired()])
-    average_cost = FloatField('average_cost', validators=[DataRequired()])
     shares = IntegerField('shares', validators=[DataRequired()])
-    user_id = IntegerField('user_id', validators=[DataRequired()])
 
 class UpdateForm(FlaskForm):
     average_cost = FloatField('average_cost', validators=[DataRequired()])

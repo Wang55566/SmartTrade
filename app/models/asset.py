@@ -19,3 +19,12 @@ class Asset(db.Model):
       user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
 
       user = db.relationship('User', back_populates='assets')
+
+      def to_dict(self):
+            return {
+                  'id': self.id,
+                  'symbol': self.symbol,
+                  'average_cost': self.average_cost,
+                  'shares': self.shares,
+                  'user_id': self.user_id
+            }
