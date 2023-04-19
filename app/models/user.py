@@ -23,7 +23,7 @@ class User(db.Model, UserMixin):
 
     # Relationships
     assets = db.relationship('Asset', back_populates='user', cascade='all, delete-orphan')
-    watchlists = db.relationship('Watchlist', back_populates='user', cascade='all, delete-orphan')
+    # watchlists = db.relationship('Watchlist', back_populates='user', cascade='all, delete-orphan')
 
     @property
     def password(self):
