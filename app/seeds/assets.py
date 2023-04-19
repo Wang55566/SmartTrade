@@ -8,9 +8,11 @@ def seed_assets():
   asset4 = Asset(symbol='MSFT', average_cost=133.00, shares=20, user_id=2)
   asset5 = Asset(symbol='TSLA', average_cost=190.00, shares=7, user_id=2)
 
-  seed_assets = [asset1, asset2, asset3, asset4, asset5]
-
-  [db.session.add(asset) for asset in seed_assets]
+  db.session.add(asset1)
+  db.session.add(asset2)
+  db.session.add(asset3)
+  db.session.add(asset4)
+  db.session.add(asset5)
 
   db.session.commit()
 

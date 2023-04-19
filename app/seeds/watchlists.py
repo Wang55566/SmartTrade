@@ -8,11 +8,12 @@ def seed_watchlists():
   watchlist4 = Watchlist(name='Tech', number_of_stocks=3, user_id=3)
   watchlist5 = Watchlist(name='Business', number_of_stocks=2, user_id=3)
 
-  seed_watchlists = [watchlist1, watchlist2, watchlist3, watchlist4, watchlist5]
-
-  [db.session.add(watchlist) for watchlist in seed_watchlists]
-
-  db.session.commit()
+  db.session.add(watchlist1)
+  db.session.add(watchlist2)
+  db.session.add(watchlist3)
+  db.session.add(watchlist4)
+  db.session.add(watchlist5)
+  db.session.commit
 
 def undo_watchlists():
     if environment == "production":

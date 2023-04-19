@@ -19,9 +19,17 @@ def seed_liststocks():
   liststock10 = ListStock(watchlist_id=5, symbol='GOOG')
   liststock11 = ListStock(watchlist_id=5, symbol='TCEHY')
 
-  seed_liststocks = [liststock1, liststock2, liststock3, liststock4, liststock5, liststock6, liststock7, liststock8, liststock9, liststock10, liststock11]
-
-  [db.session.add(liststock) for liststock in seed_liststocks]
+  db.session.add(liststock1)
+  db.session.add(liststock2)
+  db.session.add(liststock3)
+  db.session.add(liststock4)
+  db.session.add(liststock5)
+  db.session.add(liststock6)
+  db.session.add(liststock7)
+  db.session.add(liststock8)
+  db.session.add(liststock9)
+  db.session.add(liststock10)
+  db.session.add(liststock11)
 
   db.session.commit()
 
