@@ -23,10 +23,10 @@ def seed():
         # Make sure to add all your other model's undo functions below
         # undo_watchlists()
         # undo_liststocks()
-        undo_assets()
+        # undo_assets()
         undo_users()
     seed_users()
-    seed_assets()
+    # seed_assets()
     # seed_watchlists()
     # seed_liststocks()
     # Add other seed functions here
@@ -37,6 +37,6 @@ def seed():
 def undo():
     # undo_liststocks()
     # undo_watchlists()
-    undo_assets()
+    # undo_assets()
     undo_users()
     # Add other undo functions here
