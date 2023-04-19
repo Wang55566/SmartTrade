@@ -3,6 +3,7 @@ from app.models import db, User, Asset
 from flask_login import current_user, login_required
 from .auth_routes import validation_errors_to_error_messages
 
+from .forms import BuyForm, UpdateForm
 
 asset_routes = Blueprint('assets', __name__)
 
@@ -24,7 +25,7 @@ def one_asset(id):
 @asset_routes.route('', methods=['POST'])
 @login_required
 def create_asset():
-  form = AssetForm()
+  form = BuyForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
     new_asset = Asset(
@@ -36,3 +37,25 @@ def create_asset():
     db.session.add(asset)
     db.session.commit()
     return asset.to_dict()
+
+# Update an asset
+@asset_routes.route('/<int:id>', methods=['PUT'])
+@login_required
+def update_asset(id):
+  asset = Asset.query.get(id)
+  form = UpdatdForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+  if form.validate_on_submit():
+    asset.average_cost = form.data['average_cost']
+    asset.shares = form.data['shares']
+    db.session.commit()
+    return asset.to_dict()
+
+# Delete an asset
+@asset_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_asset(id):
+  asset = Asset.query.get(id)
+  db.session.delete(asset)
+  db.session.commit()
+  return 'deleted'
