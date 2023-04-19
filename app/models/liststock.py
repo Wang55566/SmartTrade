@@ -14,6 +14,6 @@ class ListStock(db.Model):
       created_at = db.Column(db.DateTime, default=datetime.now())
       updated_at = db.Column(db.DateTime, default=datetime.now())
 
-      watchlist_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('watchlists.id')), nullable=False)
+      watchlist_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('watchlists.id')))
 
       watchlist = db.relationship('Watchlist', back_populates='liststocks')

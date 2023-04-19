@@ -2,7 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 
 class Asset(db.Model):
-      
+
       __tablename__ = 'assets'
 
       if environment == "production":
@@ -16,6 +16,6 @@ class Asset(db.Model):
       created_at = db.Column(db.DateTime, default=datetime.now())
       updated_at = db.Column(db.DateTime, default=datetime.now())
 
-      user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+      user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
 
       user = db.relationship('User', back_populates='assets')
