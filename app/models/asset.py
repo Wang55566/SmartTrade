@@ -16,6 +16,6 @@ class Asset(db.Model):
       created_at = db.Column(db.DateTime, default=datetime.now())
       updated_at = db.Column(db.DateTime, default=datetime.now())
 
-      user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+      # user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
 
-      user = db.relationship('User', back_populates='assets')
+      # user = db.relationship('User', back_populates='assets')

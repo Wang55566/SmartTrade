@@ -22,8 +22,8 @@ class User(db.Model, UserMixin):
     # available_cash = db.Column(db.Float, default=10000.00)
 
     # Relationships
-    assets = db.relationship('Asset', back_populates='user', cascade='all, delete-orphan')
-    watchlists = db.relationship('Watchlist', back_populates='user', cascade='all, delete-orphan')
+    # assets = db.relationship('Asset', back_populates='user', cascade='all, delete-orphan')
+    # watchlists = db.relationship('Watchlist', back_populates='user', cascade='all, delete-orphan')
 
     @property
     def password(self):
