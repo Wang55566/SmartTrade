@@ -6,3 +6,4 @@ class AssetForm(FlaskForm):
     symbol = StringField('symbol', validators=[DataRequired()])
     average_cost = FloatField('average_cost', validators=[DataRequired()])
     shares = IntegerField('shares', validators=[DataRequired()])
+    user_id = IntegerField('user_id', validators=[DataRequired()])

@@ -28,7 +28,7 @@ def create_asset():
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
     new_asset = Asset(
-      # user_id=current_user.id,
+      user_id=current_user.id,
       symbol=form.data['symbol'],
       average_cost=form.data['average_cost'],
       shares=form.data['shares']
