@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 
 import Assets from "./components/Assets";
 import SingleAsset from "./components/SingleAsset";
+import Home from "./components/Home";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
           <Route path="/main">
             <Assets />
           </Route>
