@@ -16,7 +16,6 @@ api_key = os.environ.get('API_KEY')
 @asset_routes.route('')
 @login_required
 def all_assets():
-
   assets = Asset.query.filter(Asset.user_id == current_user.id).all()
 
   asset_list = {}
