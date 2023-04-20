@@ -9,6 +9,8 @@ import Navigation from "./components/Navigation";
 import Assets from "./components/Assets";
 import SingleAsset from "./components/SingleAsset";
 import Home from "./components/Home";
+import Login from "./components/LoginPage";
+import Signup from "./components/SignupPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,14 +31,14 @@ function App() {
             <Assets />
           </Route>
           <Route path="/login" >
-            <LoginFormPage />
+            <Login />
           </Route>
           <Route path="/signup">
-            <SignupFormPage />
+            <Signup />
           </Route>
-          {/* <Route path="/assets/:id">
-            <SingleAsset id={id}/>
-          </Route> */}
+          <Route path="/assets/:id">
+            <SingleAsset/>
+          </Route>
         </Switch>
       )}
     </>

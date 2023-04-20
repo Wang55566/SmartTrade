@@ -19,12 +19,10 @@ function Assets() {
       <h1>Assets</h1>
       <div>
         {Object.values(assets).map(asset => (
-          <NavLink to={`/assets/${asset.id}`} key={asset.id}>
+          <NavLink to={`/assets/${asset.id}`} key={asset.id} onClick={()=> dispatch(assetActions.getOne(asset.id))}>
           <ul>
-            <li>{asset.symbol}</li>
-            <li>{asset.market_price}</li>
-            <li>{asset.average_cost}</li>
-            <li>{asset.shares}</li>
+            <li>Symbol: {asset.symbol}</li>
+            <li>Market_price: {asset.market_price}</li>
           </ul>
           </NavLink>
         ))}

@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLinkm, useParams } from 'react-router-dom';
 
 import * as assetActions from '../../store/asset';
 
-function SingleAsset({id}) {
+function SingleAsset() {
 
   const dispatch = useDispatch();
+  const { id } = useParams();
 
-  const asset = useSelector(state => state.asset.single);
+  const asset = useSelector(state => state.asset.singleAsset);
 
   useEffect(() => {
     dispatch(assetActions.getOne(id));
@@ -16,7 +17,11 @@ function SingleAsset({id}) {
 
   return (
     <>
-      <h1>Assets</h1>
+      <h1>Asset</h1>
+      <div>Symbol: {asset.symbol}</div>
+      <div>Average Cost: {asset.average_cost}</div>
+      <div>Market Price: {asset.market_price}</div>
+      <div>Shares: {asset.shares}</div>
     </>
   )
 }
