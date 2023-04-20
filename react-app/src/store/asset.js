@@ -56,6 +56,7 @@ export const getOne = (id) => async (dispatch) => {
 }
 
 export const create = (asset) => async (dispatch) => {
+  console.log('----------------------')
   const response = await fetch('/api/assets', {
     method: 'POST',
     headers: {
@@ -107,7 +108,20 @@ const assetReducer = (state = initialState, action) => {
       const state2 = { allAssets: {...state.allAssets}};
       state2.singleAsset = action.payload;
       return state2
-
+    case CREATEASSET:
+      const state3 = { allAssets: {...state.allAssets}, singleAsset: {...state.singleAsset}};
+      state3.allAssets[action.payload.id] = action.payload;
+      state3.singleAsset = action.payload;
+      return state3
+    case UPDATEASSET:
+      const state4 = { allAssets: {...state.allAssets}, singleAsset: {...state.singleAsset}};
+      state4.allAssets[action.payload.id] = action.payload;
+      state4.singleAsset = action.payload;
+      return state4
+    case DELETEASSET:
+      const state5 = { allAssets: {...state.allAssets}, singleAsset: {...state.singleAsset}}
+      delete state5.allAssets[action.payload.id]
+      return state5
     default:
       return state;
   }
