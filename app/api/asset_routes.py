@@ -16,20 +16,22 @@ api_key = os.environ.get('API_KEY')
 @asset_routes.route('')
 @login_required
 def all_assets():
-  print('--------------------------------------')
+
   assets = Asset.query.filter(Asset.user_id == current_user.id).all()
 
-  asset_list = {}
-  asset_list['assets'] = [asset.to_dict() for asset in assets]
+  asset_dict = {}
+  for asset in assets:
+    asset_data = asset.to_dict()
 
-  for asset in asset_list['assets']:
-
-    url = url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={asset["symbol"]}&apikey={api_key}'
+    url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={asset_data["symbol"]}&apikey={api_key}'
     r = requests.get(url)
     data = r.json()
-    asset['market_price'] = data['Global Quote']['05. price']
 
-  return asset_list
+    asset_data['market_price'] = data['Global Quote']['05. price']
+
+    asset_dict[asset.id] = asset_data
+
+  return asset_dict
 
 # Get one asset
 @asset_routes.route('/<int:id>')

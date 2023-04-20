@@ -100,11 +100,14 @@ const initialState = {
 const assetReducer = (state = initialState, action) => {
   switch (action.type) {
     case GETALLASSETS:
-      let state1 = {};
-      action.payload.forEach(asset => {
-        state1[asset.id] = asset;
-      })
+      const state1 = { singleAsset: {...state.singleAsset}};
+      state1.allAssets = action.payload;
       return state1
+    case GETONEASSET:
+      const state2 = { allAssets: {...state.allAssets}};
+      state2.singleAsset = action.payload;
+      return state2
+
     default:
       return state;
   }

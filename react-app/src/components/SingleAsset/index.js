@@ -1,23 +1,23 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 import * as assetActions from '../../store/asset';
 
-function Assets() {
+function SingleAsset({id}) {
 
   const dispatch = useDispatch();
 
-  const assets = useSelector(state => state.asset.allAssets);
+  const asset = useSelector(state => state.asset.single);
 
   useEffect(() => {
-    dispatch(assetActions.getAll());
+    dispatch(assetActions.getOne(id));
   }, [dispatch]);
 
   return (
-    <div>
+    <>
       <h1>Assets</h1>
-    </div>
-  );
+    </>
+  )
 }
-
-export default Assets;
+export default SingleAsset

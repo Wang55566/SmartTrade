@@ -6,7 +6,8 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 
-import Assets from "./components/asset";
+import Assets from "./components/Assets";
+import SingleAsset from "./components/SingleAsset";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/assets">
+          <Route path="/main">
             <Assets />
           </Route>
           <Route path="/login" >
@@ -29,6 +30,9 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          {/* <Route path="/assets/:id">
+            <SingleAsset id={id}/>
+          </Route> */}
         </Switch>
       )}
     </>
