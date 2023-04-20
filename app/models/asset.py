@@ -9,7 +9,7 @@ class Asset(db.Model):
             __table_args__ = {'schema': SCHEMA}
 
       id = db.Column(db.Integer, primary_key=True)
-      symbol = db.Column(db.String(15), nullable=False, unique=True)
+      symbol = db.Column(db.String(15), nullable=False)
       market_price = db.Column(db.Float)
       average_cost = db.Column(db.Float, nullable=False)
       shares = db.Column(db.Integer, nullable=False)
