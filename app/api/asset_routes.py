@@ -27,7 +27,8 @@ def all_assets():
     r = requests.get(url)
     data = r.json()
 
-    rounded_market_price = round(float(data["Time Series (1min)"][list(data["Time Series (1min)"].keys())[5]]["4. close"]), 2)
+    market_price = data["Time Series (1min)"][list(data["Time Series (1min)"].keys())[5]]["4. close"]
+    rounded_market_price = round(float(market_price), 2)
 
     asset_data['market_price'] = rounded_market_price
     asset_dict[asset.id] = asset_data
@@ -47,7 +48,8 @@ def one_asset(id):
     r = requests.get(url)
     data = r.json()
 
-    rounded_market_price = round(float(data["Time Series (1min)"][list(data["Time Series (1min)"].keys())[5]]["4. close"]), 2)
+    market_price = data["Time Series (1min)"][list(data["Time Series (1min)"].keys())[5]]["4. close"]
+    rounded_market_price = round(float(market_price), 2)
 
     assetDict['market_price'] = rounded_market_price
 
@@ -66,7 +68,8 @@ def create_asset():
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={form.data["symbol"]}&interval=1min&apikey={api_key}'
     r = requests.get(url)
     data = r.json()
-    rounded_cost = round(float(data["Time Series (1min)"][list(data["Time Series (1min)"].keys())[5]]["4. close"]), 2)
+    cost = data["Time Series (1min)"][list(data["Time Series (1min)"].keys())[5]]["4. close"]
+    rounded_cost = round(float(cost), 2)
 
     new_asset = Asset(
       user_id=current_user.id,
@@ -97,8 +100,8 @@ def update_asset(id):
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={assetDict["symbol"]}&interval=1min&apikey={api_key}'
     r = requests.get(url)
     data = r.json()
-
-    rounded_market_price = round(float(data["Time Series (1min)"][list(data["Time Series (1min)"].keys())[5]]["4. close"]), 2)
+    market_price = data["Time Series (1min)"][list(data["Time Series (1min)"].keys())[5]]["4. close"]
+    rounded_market_price = round(float(market_price), 2)
 
     assetDict['market_price'] = rounded_market_price
 
