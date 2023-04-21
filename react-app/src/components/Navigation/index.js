@@ -28,12 +28,39 @@ function Navigation({ isLoaded }){
 			<ul>
 				{sessionUser ?
 				<div>
-					<li>
-						<NavLink exact to="/">Home</NavLink>
-					</li>
-					<li>
-						<ProfileButton user={sessionUser} />
-					</li>
+
+					<div>
+						<li>
+							<NavLink exact to="/">Home</NavLink>
+						</li>
+						<li>
+							<ProfileButton user={sessionUser} />
+						</li>
+					</div>
+
+					<div>
+						<form onSubmit={handleSearch} className='bg-blue-0cc pad8p borderR-5p'>
+						<i className="fas fa-search mrg-r-8p"></i>
+						<input
+							value={query}
+							onChange={(e) => setQuery(e.target.value)}
+							className='bg-blue-0cc border-0 color-white mrg-r-8p'/>
+							<button disabled={!query} type='submit'>Search</button>
+						</form>
+					</div>
+
+					<div>
+						{Object.values(searchResult)[0]?.map( (result) => {
+							return (
+								<div key={result['1. symbol']}>
+									<NavLink to={`/search/${result['1. symbol']}`} className='search-results'>
+									<div>{result['1. symbol']}</div>
+									<div>{result['2. name']}</div>
+									</NavLink>
+								</div>
+							)})}
+					</div>
+
 				</div>
 				:
 				<div>
@@ -45,29 +72,6 @@ function Navigation({ isLoaded }){
 					</li>
 				</div>}
 			</ul>
-			<div>
-				<form onSubmit={handleSearch} className='bg-blue-0cc pad8p borderR-5p'>
-					<i className="fas fa-search mrg-r-8p"></i>
-					<input
-						value={query}
-						onChange={(e) => setQuery(e.target.value)}
-						className='bg-blue-0cc border-0 color-white mrg-r-8p'/>
-						<button disabled={!query} type='submit'>Search</button>
-					</form>
-			</div>
-			<div>
-				{Object.values(searchResult)[0]?.map( (result) =>{
-					return (
-						<div key={result['1. symbol']}>
-							<NavLink to={`/search/${result['1. symbol']}`} className='search-results'>
-							<div>{result['1. symbol']}</div>
-							<div>{result['2. name']}</div>
-							</NavLink>
-						</div>
-					)
-				})}
-
-			</div>
 		</>
 	)
 }
