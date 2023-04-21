@@ -13,6 +13,7 @@ function SingleAsset() {
   const [transaction_buy, setTransactionBuy] = useState(true);
 
   const asset = useSelector(state => state.asset.singleAsset);
+  const user = useSelector(state => state.session.user)
 
   useEffect(() => {
     dispatch(assetActions.getOne(id));
@@ -59,6 +60,9 @@ function SingleAsset() {
           />
           <button type="submit">{transaction_buy === true ? "Buy" : "Sell"}</button>
         </form>
+      </div>
+      <div>
+        Buying Power: {user?.available_cash}
       </div>
     </>
   )

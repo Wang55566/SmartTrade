@@ -1,15 +1,15 @@
 
 .all-asset {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 0 auto;
-  max-width: 1200px;
-  padding: 0 20px;
+  display: block;
+  text-align: right;
+}
+
+.asset-link {
+  text-decoration: none;
 }
 
 .one-asset {
-  width: 300px;
-  margin-bottom: 20px;
-  text-decoration: none;
+  border: 1px solid #000;
+  max-width: fit-content;
+  margin: 10px;
 }

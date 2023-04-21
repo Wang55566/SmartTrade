@@ -11,6 +11,7 @@ import SingleAsset from "./components/SingleAsset";
 import Home from "./components/Home";
 import Login from "./components/LoginPage";
 import Signup from "./components/SignupPage";
+import SearchResult from "./components/SearchResult";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,10 @@ function App() {
           <Route path="/assets/:id">
             <Navigation isLoaded={isLoaded} />
             <SingleAsset/>
+          </Route>
+          <Route path="/search/:symbol">
+            <Navigation isLoaded={isLoaded} />
+            <SearchResult/>
           </Route>
         </Switch>
       )}

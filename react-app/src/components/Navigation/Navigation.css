@@ -1,3 +1,14 @@
+.nav {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  min-height: 64px;
+}
+
+.profile-button {
+  margin-right:100px;
+}
+
 .profile-dropdown {
   position: absolute;
 }

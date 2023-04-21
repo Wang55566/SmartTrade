@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import { NavLink} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
@@ -15,7 +15,6 @@ function Navigation({ isLoaded }){
 
 	const [query, setQuery] = useState('');
 
-	const history = useHistory();
 	const dispatch = useDispatch();
 
 	const handleSearch = async (e) => {
@@ -25,17 +24,11 @@ function Navigation({ isLoaded }){
 
 	return (
 		<>
-			<ul>
 				{sessionUser ?
-				<div>
+				<div className='nav'>
 
 					<div>
-						<li>
-							<NavLink exact to="/">Home</NavLink>
-						</li>
-						<li>
-							<ProfileButton user={sessionUser} />
-						</li>
+						<NavLink exact to="/">Home</NavLink>
 					</div>
 
 					<div>
@@ -53,7 +46,10 @@ function Navigation({ isLoaded }){
 						{Object.values(searchResult)[0]?.map( (result) => {
 							return (
 								<div key={result['1. symbol']}>
-									<NavLink to={`/search/${result['1. symbol']}`} className='search-results'>
+									<NavLink
+									to={`/search/${result['1. symbol']}`}
+									className='search-results'
+									>
 									<div>{result['1. symbol']}</div>
 									<div>{result['2. name']}</div>
 									</NavLink>
@@ -61,17 +57,20 @@ function Navigation({ isLoaded }){
 							)})}
 					</div>
 
+					<div className='profile-button'>
+						<ProfileButton user={sessionUser} />
+					</div>
+
 				</div>
 				:
 				<div>
-					<li>
+					<div>
 						<NavLink className='login-button' to="/login">Log in</NavLink>
-					</li>
-					<li>
+					</div>
+					<div>
 						<NavLink className='signup-button'to="/signup">Sign up</NavLink>
-					</li>
+					</div>
 				</div>}
-			</ul>
 		</>
 	)
 }

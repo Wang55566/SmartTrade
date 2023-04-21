@@ -10,6 +10,7 @@ function Assets() {
 
   const dispatch = useDispatch();
 
+  const user = useSelector(state => state.session.user);
   const assets = useSelector(state => state.asset.allAssets);
 
   useEffect(() => {
@@ -23,16 +24,18 @@ function Assets() {
           <NavLink
             to={`/assets/${asset.id}`}
             key={asset.id}
-            className="one-asset"
+            className="asset-link"
           >
-          <div>
+          <div className="one-asset">
             <div>Symbol: {asset.symbol}</div>
             <div>Market_price: {asset.market_price}</div>
           </div>
           </NavLink>
         ))}
       </div>
-
+      <div>
+        Buying Power: {user?.available_cash}
+      </div>
     </>
   )
 }
