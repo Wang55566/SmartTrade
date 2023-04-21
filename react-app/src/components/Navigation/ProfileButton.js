@@ -5,10 +5,14 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 
+import { useHistory } from 'react-router-dom';
+
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+
+  const history = useHistory();
 
   const openMenu = () => {
     if (showMenu) return;
@@ -29,9 +33,10 @@ function ProfileButton({ user }) {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
-  const handleLogout = (e) => {
+  const handleLogout = async (e) => {
     e.preventDefault();
-    dispatch(logout());
+    await dispatch(logout());
+    await history.push('/');
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -51,21 +56,7 @@ function ProfileButton({ user }) {
               <button onClick={handleLogout}>Log Out</button>
             </li>
           </>
-        ) : (
-          <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-          </>
-        )}
+        ) : null}
       </ul>
     </>
   );

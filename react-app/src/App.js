@@ -21,13 +21,14 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
           <Route exact path="/">
+            <Navigation isLoaded={isLoaded} />
             <Home />
           </Route>
           <Route path="/main">
+            <Navigation isLoaded={isLoaded} />
             <Assets />
           </Route>
           <Route path="/login" >
@@ -37,6 +38,7 @@ function App() {
             <Signup />
           </Route>
           <Route path="/assets/:id">
+            <Navigation isLoaded={isLoaded} />
             <SingleAsset/>
           </Route>
         </Switch>

@@ -1,20 +1,23 @@
+import { useSelector } from 'react-redux';
+import { NavLink, Redirect } from 'react-router-dom';
+
+
 import image from '../../Home Page.png'
-import { NavLink } from 'react-router-dom';
 
 function Home(){
 
+    const user = useSelector(state => state.session.user);
+
+    if (user) {
+        return <Redirect to="/main" />;
+    }
+
 	return (
-    <>
-     <div>
-      <NavLink to="/login">Login</NavLink>
-     </div>
-     <div>
-      <NavLink to="/signup">Sign Up</NavLink>
-     </div>
-     <div>
-      <img src={image} alt="logo" />
-     </div>
-    </>
+        <>
+            <div>
+                <img src={image} alt="logo" />
+            </div>
+        </>
 	)
 }
 

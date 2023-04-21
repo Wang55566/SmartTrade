@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 
 import * as assetActions from '../../store/asset';
 
+import './Assets.css';
+
 function Assets() {
 
   const dispatch = useDispatch();
@@ -16,14 +18,17 @@ function Assets() {
 
   return (
     <>
-      <h1>Assets</h1>
-      <div>
+      <div className="all-asset">
         {Object.values(assets).map(asset => (
-          <NavLink to={`/assets/${asset.id}`} key={asset.id} onClick={()=> dispatch(assetActions.getOne(asset.id))}>
-          <ul>
-            <li>Symbol: {asset.symbol}</li>
-            <li>Market_price: {asset.market_price}</li>
-          </ul>
+          <NavLink
+            to={`/assets/${asset.id}`}
+            key={asset.id}
+            className="one-asset"
+          >
+          <div>
+            <div>Symbol: {asset.symbol}</div>
+            <div>Market_price: {asset.market_price}</div>
+          </div>
           </NavLink>
         ))}
       </div>

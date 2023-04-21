@@ -13,10 +13,8 @@ function SingleAsset() {
   const [transaction_buy, setTransactionBuy] = useState(true);
 
   const asset = useSelector(state => state.asset.singleAsset);
-  const assets = useSelector(state => state.asset.allAssets);
 
   useEffect(() => {
-    dispatch(assetActions.getAll());
     dispatch(assetActions.getOne(id));
   }, [dispatch]);
 
@@ -43,7 +41,6 @@ function SingleAsset() {
 
   return (
     <>
-      <h1>Asset</h1>
       <div>Symbol: {asset.symbol}</div>
       <div>Average Cost: {asset.average_cost}</div>
       <div>Market Price: {asset.market_price}</div>

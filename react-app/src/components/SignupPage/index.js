@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
 
+import signup_picture from '../../signup picture.png'
+
 function SignUp() {
 
   const dispatch = useDispatch();
@@ -72,6 +74,9 @@ function SignUp() {
         </label>
         <button type="submit">Sign Up</button>
       </form>
+      <div>
+        <img src={signup_picture} alt="signup_picture" />
+      </div>
     </>
   );
 }

@@ -33,6 +33,7 @@ def all_assets():
     asset_data['market_price'] = rounded_market_price
     asset_dict[asset.id] = asset_data
 
+  print('--------------Get All Assets--------------')
   return asset_dict
 
 # Get one asset
@@ -40,20 +41,21 @@ def all_assets():
 @login_required
 def one_asset(id):
 
-    asset = Asset.query.get(id)
+  asset = Asset.query.get(id)
 
-    assetDict = asset.to_dict()
+  assetDict = asset.to_dict()
 
-    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={assetDict["symbol"]}&interval=1min&apikey={api_key}'
-    r = requests.get(url)
-    data = r.json()
+  url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={assetDict["symbol"]}&interval=1min&apikey={api_key}'
+  r = requests.get(url)
+  data = r.json()
 
-    market_price = data["Time Series (1min)"][list(data["Time Series (1min)"].keys())[5]]["4. close"]
-    rounded_market_price = round(float(market_price), 2)
+  market_price = data["Time Series (1min)"][list(data["Time Series (1min)"].keys())[5]]["4. close"]
+  rounded_market_price = round(float(market_price), 2)
 
-    assetDict['market_price'] = rounded_market_price
+  assetDict['market_price'] = rounded_market_price
 
-    return assetDict
+  print('--------------Get One Asset--------------')
+  return assetDict
 
 # Create an asset
 @asset_routes.route('', methods=['POST'])
@@ -81,6 +83,7 @@ def create_asset():
     db.session.add(new_asset)
     db.session.commit()
 
+    print('--------------Create Asset--------------')
     return new_asset.to_dict()
 
 # Update an asset
@@ -105,6 +108,7 @@ def update_asset(id):
 
     assetDict['market_price'] = rounded_market_price
 
+    print('--------------Update Asset--------------')
     return assetDict
 
 # Delete an asset
@@ -114,4 +118,6 @@ def delete_asset(id):
   asset = Asset.query.get(id)
   db.session.delete(asset)
   db.session.commit()
+
+  print('--------------Delete Asset--------------')
   return f'{id} deleted'

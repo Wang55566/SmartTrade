@@ -13,6 +13,9 @@ from .config import Config
 # Assets
 from .api.asset_routes import asset_routes
 
+#Search
+from .api.search_routes import search_routes
+
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
 # Setup login manager
@@ -34,6 +37,9 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 
 # Assets
 app.register_blueprint(asset_routes, url_prefix='/api/assets')
+
+# Search
+app.register_blueprint(search_routes, url_prefix='/api/search')
 
 db.init_app(app)
 Migrate(app, db)
