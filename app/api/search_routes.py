@@ -27,7 +27,7 @@ def search_results(search):
 @login_required
 def result_details(symbol):
 
-  url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=1min&apikey={api_key}'
+  url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={api_key}'
   r = requests.get(url)
   data = r.json()
   return data

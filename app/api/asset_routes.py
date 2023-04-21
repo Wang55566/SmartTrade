@@ -33,8 +33,9 @@ def all_assets():
     url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={asset_data["symbol"]}&apikey={api_key}'
     r = requests.get(url)
     data = r.json()
-
     market_price = data["Global Quote"]["05. price"]
+
+
     rounded_market_price = round(float(market_price), 2)
 
     asset_data['market_price'] = rounded_market_price
@@ -52,11 +53,17 @@ def one_asset(id):
 
   assetDict = asset.to_dict()
 
-  url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={assetDict["symbol"]}&interval=1min&apikey={api_key}'
+  # url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={assetDict["symbol"]}&interval=1min&apikey={api_key}'
+  # r = requests.get(url)
+  # data = r.json()
+  # market_price = data["Time Series (1min)"][list(data["Time Series (1min)"].keys())[5]]["4. close"]
+
+  url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={assetDict["symbol"]}&apikey={api_key}'
   r = requests.get(url)
   data = r.json()
+  market_price = data["Global Quote"]["05. price"]
 
-  market_price = data["Time Series (1min)"][list(data["Time Series (1min)"].keys())[5]]["4. close"]
+
   rounded_market_price = round(float(market_price), 2)
 
   assetDict['market_price'] = rounded_market_price
@@ -74,16 +81,22 @@ def create_asset():
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
 
-    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={form.data["symbol"]}&interval=1min&apikey={api_key}'
+    # url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={form.data["symbol"]}&interval=1min&apikey={api_key}'
+    # r = requests.get(url)
+    # data = r.json()
+    # cost = data["Time Series (1min)"][list(data["Time Series (1min)"].keys())[5]]["4. close"]
+    # rounded_cost = round(float(cost), 2)
+
+    url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={form.data["symbol"]}&apikey={api_key}'
     r = requests.get(url)
     data = r.json()
-    cost = data["Time Series (1min)"][list(data["Time Series (1min)"].keys())[5]]["4. close"]
-    rounded_cost = round(float(cost), 2)
+    market_price = data["Global Quote"]["05. price"]
+    rounded_market_price = round(float(market_price), 2)
 
     new_asset = Asset(
       user_id=current_user.id,
       symbol=form.data['symbol'],
-      average_cost=rounded_cost,
+      average_cost=rounded_market_price,
       shares=form.data['shares']
     )
 
@@ -107,10 +120,17 @@ def update_asset(id):
 
     assetDict = asset.to_dict()
 
-    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={assetDict["symbol"]}&interval=1min&apikey={api_key}'
+    # url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={assetDict["symbol"]}&interval=1min&apikey={api_key}'
+    # r = requests.get(url)
+    # data = r.json()
+    # market_price = data["Time Series (1min)"][list(data["Time Series (1min)"].keys())[5]]["4. close"]
+
+    url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={assetDict["symbol"]}&apikey={api_key}'
     r = requests.get(url)
     data = r.json()
-    market_price = data["Time Series (1min)"][list(data["Time Series (1min)"].keys())[5]]["4. close"]
+    market_price = data["Global Quote"]["05. price"]
+
+
     rounded_market_price = round(float(market_price), 2)
 
     assetDict['market_price'] = rounded_market_price

@@ -44,7 +44,6 @@ function SearchResult() {
     }
     await dispatch(assetActions.create(newAsset));
     await dispatch(assetActions.getAll());
-    history.push('/main');
   }
 
 
