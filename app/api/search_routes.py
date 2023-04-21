@@ -20,5 +20,14 @@ def search_results(search):
   r = requests.get(url)
   data = r.json()
 
-  print('--------------Search Results--------------', data)
+  return data
+
+# Get Result Details
+@search_routes.route('/<string:symbol>/details')
+@login_required
+def result_details(symbol):
+
+  url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=1min&apikey={api_key}'
+  r = requests.get(url)
+  data = r.json()
   return data

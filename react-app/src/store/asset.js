@@ -56,7 +56,6 @@ export const getOne = (id) => async (dispatch) => {
 }
 
 export const create = (asset) => async (dispatch) => {
-  console.log('----------------------')
   const response = await fetch('/api/assets', {
     method: 'POST',
     headers: {

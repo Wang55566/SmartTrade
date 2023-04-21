@@ -1,5 +1,6 @@
 const GETSEARCHRESULTS  =  'search/GET_SEARCH_RESULTS';
 const ClEAR = 'search/CLEAR';
+const GETRESULTDETAILS = 'search/GET_RESULT_DETAILS';
 
 const getSearchResults = (results) => {
   return {
@@ -7,10 +8,16 @@ const getSearchResults = (results) => {
     payload: results
   }
 }
-
 const clear = () => {
   return {
     type: ClEAR,
+  }
+}
+
+const resultDetails = (resultdetails) => {
+  return {
+    type: GETRESULTDETAILS,
+    payload: resultdetails
   }
 }
 
@@ -26,7 +33,15 @@ export const clearSearch = () => async (dispatch) => {
   dispatch(clear());
 }
 
-const initialState = { results: {} };
+export const getResultDetails = (symbol) => async (dispatch) => {
+  const response = await fetch(`/api/search/${symbol}/details`);
+  if(response.ok) {
+    const data = await response.json();
+    dispatch(resultDetails(data));
+  }
+}
+
+const initialState = { results: {}, resultdetails: {} };
 
 const searchReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -38,6 +53,10 @@ const searchReducer = (state = initialState, action) => {
       const state2 = { ...state };
       state2.results = {};
       return state2;
+    case GETRESULTDETAILS:
+      const state3 = { ...state };
+      state3.resultdetails = action.payload;
+      return state3;
     default:
       return state;
   }

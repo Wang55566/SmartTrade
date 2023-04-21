@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLinkm, useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 import * as assetActions from '../../store/asset';
 

@@ -34,6 +34,7 @@ def all_assets():
     asset_dict[asset.id] = asset_data
 
   print('--------------Get All Assets--------------')
+  print(data)
   return asset_dict
 
 # Get one asset

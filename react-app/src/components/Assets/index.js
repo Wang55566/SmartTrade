@@ -14,7 +14,9 @@ function Assets() {
   const assets = useSelector(state => state.asset.allAssets);
 
   useEffect(() => {
-    dispatch(assetActions.getAll());
+    if(Object.values(assets).length === 0) {
+      dispatch(assetActions.getAll());
+    }
   }, [dispatch]);
 
   return (
@@ -22,7 +24,7 @@ function Assets() {
       <div className="all-asset">
         {Object.values(assets).map(asset => (
           <NavLink
-            to={`/assets/${asset.id}`}
+            to={`/search/${asset.symbol}`}
             key={asset.id}
             className="asset-link"
           >

@@ -5,6 +5,13 @@
   min-height: 64px;
 }
 
+.nav2 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 64px;
+}
+
 .profile-button {
   margin-right:100px;
 }
@@ -16,6 +23,11 @@
 .hidden {
   display: none;
 }
+
+.login-signup {
+  display: flex;
+}
+
 .login-button {
 
   color: yellowgreen;
@@ -62,6 +74,15 @@
   padding: 0px 28px;
   min-width: 102px !important;
   width: 102px !important;
+}
+
+.login-signup {
+  margin:10px;
+}
+
+.search-results-container {
+  font-size: 12px;
+  font-family: "Capsule Sans Text", sans-serif;
 }
 
 .search-results {
