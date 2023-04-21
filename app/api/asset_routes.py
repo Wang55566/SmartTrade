@@ -23,18 +23,24 @@ def all_assets():
   for asset in assets:
     asset_data = asset.to_dict()
 
-    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={asset_data["symbol"]}&interval=1min&apikey={api_key}'
+    # url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={asset_data["symbol"]}&interval=1min&apikey={api_key}'
+    # r = requests.get(url)
+    # data = r.json()
+
+    # market_price = data["Time Series (1min)"][list(data["Time Series (1min)"].keys())[5]]["4. close"]
+    # rounded_market_price = round(float(market_price), 2)
+
+    url = f'https://www.alphavantage.co/query?function=GLOGAL_QUOTE&symbol={asset_data["symbol"]}&apikey={api_key}'
     r = requests.get(url)
     data = r.json()
 
-    market_price = data["Time Series (1min)"][list(data["Time Series (1min)"].keys())[5]]["4. close"]
+    market_price = data["Global Quote"]["05. price"]
     rounded_market_price = round(float(market_price), 2)
 
     asset_data['market_price'] = rounded_market_price
     asset_dict[asset.id] = asset_data
 
   print('--------------Get All Assets--------------')
-  print(data)
   return asset_dict
 
 # Get one asset
