@@ -30,7 +30,7 @@ def all_assets():
     # market_price = data["Time Series (1min)"][list(data["Time Series (1min)"].keys())[5]]["4. close"]
     # rounded_market_price = round(float(market_price), 2)
 
-    url = f'https://www.alphavantage.co/query?function=GLOGAL_QUOTE&symbol={asset_data["symbol"]}&apikey={api_key}'
+    url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={asset_data["symbol"]}&apikey={api_key}'
     r = requests.get(url)
     data = r.json()
 
