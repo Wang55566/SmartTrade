@@ -4,15 +4,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import login_picture from '../../login picture.png'
+import * as assetActions from '../../store/asset';
 
 function Login() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+  const assets = useSelector(state => state.asset.allAssets);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/main" />;
+  if (sessionUser) {
+    dispatch(assetActions.getAll());
+    return <Redirect to="/main" />;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();

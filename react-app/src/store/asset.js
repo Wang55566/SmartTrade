@@ -120,6 +120,7 @@ const assetReducer = (state = initialState, action) => {
     case DELETEASSET:
       const state5 = { allAssets: {...state.allAssets}, singleAsset: {...state.singleAsset}}
       delete state5.allAssets[action.payload.id]
+      state5.singleAsset = {};
       return state5
     default:
       return state;

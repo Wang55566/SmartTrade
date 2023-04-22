@@ -143,8 +143,9 @@ def update_asset(id):
 @login_required
 def delete_asset(id):
   asset = Asset.query.get(id)
+  deleted_asset = asset.to_dict()
   db.session.delete(asset)
   db.session.commit()
 
   print('--------------Delete Asset--------------')
-  return f'{id} deleted'
+  return deleted_asset
