@@ -6,6 +6,8 @@ import * as assetActions from '../../store/asset';
 
 import './Assets.css';
 
+import chart from '../../Chart.png'
+
 function Assets() {
 
   const dispatch = useDispatch();
@@ -13,28 +15,63 @@ function Assets() {
   const user = useSelector(state => state.session.user);
   const assets = useSelector(state => state.asset.allAssets);
 
+  // let totalValue;
+  // let stockValue = Object.values(assets)?.forEach(asset => {
+  //   totalValue += asset?.market_price * asset?.shares
+  //   console.log(asset?.market_price * asset?.shares)
+  // })
+
+  // console.log(stockValue)
+
+  // totalValue = user?.available_cash + stockValue;
+
+
   useEffect(() => {
     dispatch(assetActions.getAll());
   }, [dispatch]);
 
   return (
     <>
-      <div className="all-asset">
-        {Object.values(assets).map(asset => (
-          <NavLink
-            to={`/search/${asset.symbol}`}
-            key={asset.id}
-            className="asset-link"
-          >
-          <div className="one-asset">
-            <div>Symbol: {asset.symbol}</div>
-            <div>Market_price: {asset.market_price}</div>
+      <div className="main-page">
+
+        <div className='middle'>
+
+          <div className="total-value">
+            Total Value
           </div>
-          </NavLink>
-        ))}
-      </div>
-      <div>
-        Buying Power: {user?.available_cash}
+
+          <div className="chart">
+            <img src={chart} alt="chart" />
+          </div>
+
+          <div className="cash">
+            Buying Power: {user?.available_cash}
+          </div>
+        </div>
+
+        <div className='right'>
+
+          <div className="all-asset">
+            <h3>Stocks</h3>
+            {Object.values(assets).map(asset => (
+              <NavLink
+              to={`/search/${asset.symbol}`}
+              key={asset.id}
+              className="asset-link"
+              >
+              <div className="one-asset">
+                <div className='symbol-shares'>
+                  <div>{asset.symbol}</div>
+                  <div>{asset.shares} Shares</div>
+                </div>
+                <div>${asset.market_price}</div>
+              </div>
+              </NavLink>
+            ))}
+          </div>
+
+        </div>
+
       </div>
     </>
   )

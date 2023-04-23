@@ -2,12 +2,12 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
-  min-height: 64px;
+  height: 100px;
 }
 
 .nav2 {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   min-height: 64px;
 }
@@ -76,13 +76,25 @@
   width: 102px !important;
 }
 
-.login-signup {
-  margin:10px;
+.title {
+  font-family: "Capsule Sans Text", sans-serif;
+  font-size: 30px;
+  font-weight: bolder;
+  color: rgb(10, 7, 2);
+}
+
+.search-bar-search-results {
+  border: 2px solid red;
+}
+
+.search-bar {
+  position: relative;
 }
 
 .search-results-container {
   font-size: 12px;
   font-family: "Capsule Sans Text", sans-serif;
+  position: absolute;
 }
 
 .search-results {

@@ -6,6 +6,8 @@ import { Redirect } from "react-router-dom";
 import login_picture from '../../login picture.png'
 import * as assetActions from '../../store/asset';
 
+import './LoginPage.css'
+
 function Login() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
@@ -29,35 +31,52 @@ function Login() {
 
   return (
     <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Log In</button>
-      </form>
-      <div>
-        <img src={login_picture} alt="login_picture" />
+      <div className="login-page">
+
+        <div>
+          <img src={login_picture} alt="login_picture" width='800px' height='800px'/>
+        </div>
+
+        <div className="login-form">
+          <h1>Log In</h1>
+          <form onSubmit={handleSubmit}>
+            <ul>
+              {errors.map((error, idx) => (
+                <li key={idx}>{error}</li>
+              ))}
+            </ul>
+            <label>
+              Email
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </label>
+            <label>
+              Password
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </label>
+            <button type="submit">Log In</button>
+
+            <button
+                  type='submit'
+                  onClick={() => {
+                    setEmail('demo1@aa.io');
+                    setPassword('password');
+                  }}
+                  className="bg-blue-dff color-white cursor-p border-0 pad-tb-10p fontS-115rem borderR-5p">
+                  Log in as Demo User
+            </button>
+          </form>
+        </div>
+
       </div>
     </>
   );

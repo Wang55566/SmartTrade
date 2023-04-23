@@ -15,6 +15,7 @@ function SearchResult() {
   const [average_cost, setAverageCost] = useState('');
   const [market_price, setMarketPrice] = useState('');
   const [shares, setShares] = useState('');
+  const [assetId, setAssetId] = useState('');
 
   const [inputShares, setInputShares] = useState('');
 
@@ -28,54 +29,57 @@ function SearchResult() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-
-
-  // useEffect(() => {
-  //   dispatch(assetActions.getAll())
-  //   // console.log(assets)
-  //   // console.log(singleAsset)
-  //   Object.values(assets).forEach( asset => {
-  //     if (asset.symbol === symbol) {
-  //       dispatch(assetActions.getOne(asset.id))
-  //       setAverageCost(asset.average_cost)
-  //       setMarketPrice(asset.market_price)
-  //       setShares(asset.shares)
-  //     }
-  //   })
-
-  //   dispatch(searchActions.getResultDetails(symbol))
-
   // }, [dispatch, symbol])
 
+  // useEffect(() => {
+
+  //     dispatch(assetActions.getAll())
+  //     dispatch(searchActions.clearSearch())
+  //     .then(() => {
+  //       Object.values(assets).forEach( asset => {
+  //         if (asset.symbol === symbol) {
+  //           // console.log('single asset', asset)
+  //           dispatch(assetActions.getOne(asset.id))
+  //           setAverageCost(asset.average_cost)
+  //           setMarketPrice(asset.market_price)
+  //           setShares(asset.shares)
+  //         }
+  //       })
+  //     })
+  //     .then (() => {
+  //       dispatch(searchActions.getResultDetails(symbol))
+  //     })
+  //     .then(() => {
+  //       if(Object.values(singleAsset).length === 0 ) {
+  //         // console.log('no single asset')
+  //         // setAverageCost('')
+  //         // setMarketPrice('')
+  //         // setShares('')
+  //       }
+  //     })
+
+  // }, [dispatch, symbol, shares])
+
   useEffect(() => {
+    dispatch(assetActions.getAll())
+  }, [dispatch])
 
-      dispatch(assetActions.getAll())
-      dispatch(searchActions.clearSearch())
-      .then(() => {
-        // console.log(assets)
-        Object.values(assets).forEach( asset => {
-          if (asset.symbol === symbol) {
-            console.log('single asset', asset)
-            dispatch(assetActions.getOne(asset.id))
-            setAverageCost(asset.average_cost)
-            setMarketPrice(asset.market_price)
-            setShares(asset.shares)
-          }
-        })
-      })
-      .then (() => {
-        dispatch(searchActions.getResultDetails(symbol))
-      })
-      .then(() => {
-        if(Object.values(singleAsset).length === 0 ) {
-          console.log('no single asset')
-          // setAverageCost(0)
-          // setMarketPrice(0)
-          // setShares(0)
-        }
-      })
+  useEffect(() => {
+    Object.values(assets)?.forEach( asset => {
+      if (asset?.symbol === symbol) {
+        setAverageCost(asset.average_cost)
+        setMarketPrice(asset.market_price)
+        setShares(asset.shares)
+        setAssetId(asset.id)
+    }})
+  }, [assets]);
 
-  }, [dispatch, symbol])
+  useEffect(() => {
+    if(assetId) {
+      dispatch(assetActions?.getOne?.(assetId))
+    }
+  }, [assetId])
+
 
 
   const handleSubmit = async (e) => {
@@ -130,8 +134,9 @@ function SearchResult() {
         }
         await dispatch(assetActions.create(newAsset));
         await setInputShares('')
-        setAverageCost(result?.[Object.keys(result)[0]]?.['05. price'])
-        setShares(parseInt(inputShares))
+        await setAverageCost(result?.[Object.keys(result)[0]]?.['05. price'])
+        await setShares(parseInt(inputShares))
+        await setMarketPrice(result?.[Object.keys(result)[0]]?.['05. price'])
       }
       else {
         alert('You cannot sell shares you do not own')

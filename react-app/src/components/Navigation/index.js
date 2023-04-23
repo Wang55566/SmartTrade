@@ -7,14 +7,15 @@ import './Navigation.css';
 import * as searchActions from '../../store/search';
 import * as assetActions from '../../store/asset';
 
-function Navigation({ isLoaded }){
+import logo from'../../Logo.png';
+
+function Navigation(){
 
 	const sessionUser = useSelector(state => state.session.user);
 
 	const searchResult = useSelector(state => state.search.results);
 
 	const [searchActive, setSearchActive] = useState(false);
-
 
 	const [query, setQuery] = useState('');
 
@@ -33,12 +34,12 @@ function Navigation({ isLoaded }){
 		await setSearchActive(true)
 	}
 
-	const handleOnBlur = (e) => {
+	const handleOnBlur = async (e) => {
 		e.preventDefault()
-		setQuery('')
-		console.log('blur')
-		// dispatch(searchActions.clearSearch())
-		// setSearchActive(false)
+			setQuery('')
+			// await console.log('blur')
+			// await dispatch(searchActions.clearSearch())
+			// await setSearchActive(false)
 	}
 
 	const clickHome = (e) => {
@@ -53,11 +54,13 @@ function Navigation({ isLoaded }){
 				{sessionUser ?
 				<div className='nav'>
 
-					<div>
+					<div className='logo'>
 						<NavLink
-						exact to="/"
+						exact to="/main"
 						onClick={clickHome}
-						>Home</NavLink>
+						>
+							<img src={logo} alt="logo" width='50px' height='50px'/>
+						</NavLink>
 					</div>
 
 					<div className='search-bar-search-results'>
@@ -98,6 +101,17 @@ function Navigation({ isLoaded }){
 				</div>
 				:
 				<div className='nav2'>
+
+					<div className='logo'>
+						<NavLink
+						exact to="/"
+						>
+							<img src={logo} alt="logo" width='50px' height='50px'/>
+						</NavLink>
+					</div>
+
+					<div className='title'>Smart Trade</div>
+
 					<div className='login-signup'>
 						<div>
 							<NavLink className='login-button' to="/login">Log in</NavLink>
@@ -106,6 +120,7 @@ function Navigation({ isLoaded }){
 							<NavLink className='signup-button'to="/signup">Sign up</NavLink>
 						</div>
 					</div>
+
 				</div>}
 		</>
 	)

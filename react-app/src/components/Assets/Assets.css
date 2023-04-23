@@ -1,15 +1,43 @@
 
-.all-asset {
-  display: block;
-  text-align: right;
+.main-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 }
 
-.asset-link {
+.middle {
+  display:block;
+}
+
+.total-value {
+  width:1058px;
+  height: 119.75px;
+  padding: 0px 0px 20px;
+  font-size: 32px;
+  font-weight: bolder;
+}
+
+.all-asset {
+  display: block;
+  width:150px;
+  border:1px solid black;
+  grid-column-start:2
+}
+
+h3 {
+display: flex;
+justify-content: center;
+}
+
+a.asset-link {
+  display:flex;
   text-decoration: none;
+  justify-content: flex-end;
 }
 
 .one-asset {
+  display: flex;
   border: 1px solid #000;
-  max-width: fit-content;
-  margin: 10px;
+  width: 150px;
+  justify-content: space-between;
 }
