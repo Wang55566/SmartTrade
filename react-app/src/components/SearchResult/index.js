@@ -5,9 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as searchActions from '../../store/search';
 import * as assetActions from '../../store/asset';
 
-import Trade from '../Trade';
-
-
 function SearchResult() {
 
   const { symbol } = useParams();
@@ -75,9 +72,12 @@ function SearchResult() {
   }, [assets]);
 
   useEffect(() => {
+    // console.log('asset id', assetId)
     if(assetId) {
       dispatch(assetActions?.getOne?.(assetId))
     }
+
+    dispatch(searchActions.getResultDetails(symbol))
   }, [assetId])
 
 
@@ -179,10 +179,6 @@ function SearchResult() {
           Buying Power: {user?.available_cash}
         </div>
       </div>
-
-      {/* <div>
-        <Trade singleAsset={singleAsset}/>
-      </div> */}
     </>
   )
 }

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import * as assetActions from '../../store/asset';
+import * as searchActions from '../../store/search';
 
 import './Assets.css';
 
@@ -58,6 +59,7 @@ function Assets() {
               to={`/search/${asset.symbol}`}
               key={asset.id}
               className="asset-link"
+              onClick={() => (dispatch(searchActions.clearSearch()))}
               >
               <div className="one-asset">
                 <div className='symbol-shares'>

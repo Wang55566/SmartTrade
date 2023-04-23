@@ -23,8 +23,7 @@ function Navigation(){
 
 	const handleSearch = async (e) => {
 	  e.preventDefault()
-	  await dispatch(searchActions.allSearch(query))
-		await setSearchActive(true)
+			await dispatch(searchActions.allSearch(query))
   }
 
 	const handleOnChange = async (e) => {
@@ -34,19 +33,20 @@ function Navigation(){
 		await setSearchActive(true)
 	}
 
-	const handleOnBlur = async (e) => {
+	const handleOnBlur = (e) => {
 		e.preventDefault()
 			setQuery('')
-			// await console.log('blur')
-			// await dispatch(searchActions.clearSearch())
-			// await setSearchActive(false)
+			console.log('blur')
+			setSearchActive(false)
+			dispatch(searchActions.clearSearch())
 	}
 
-	const clickHome = (e) => {
+	const clickHome = async (e) => {
 
 		dispatch(searchActions.clearSearch())
 		dispatch(assetActions.getAll())
-		// await setSearchActive(false)
+		await setSearchActive(false)
+		await setQuery('')
 	}
 
 	return (
@@ -63,7 +63,9 @@ function Navigation(){
 						</NavLink>
 					</div>
 
-					<div className='search-bar-search-results'>
+					<div className='search-bar-search-results'
+					    // onBlur={handleOnBlur}
+					>
 
 						<div className= 'search-bar'>
 							<form onSubmit={handleSearch} className='bg-blue-0cc pad8p borderR-5p'>
@@ -71,7 +73,6 @@ function Navigation(){
 							<input
 								value={query}
 								onChange={handleOnChange}
-								onBlur={handleOnBlur}
 								className='bg-blue-0cc border-0 color-white mrg-r-8p'/>
 							</form>
 						</div>
@@ -79,11 +80,12 @@ function Navigation(){
 						{searchActive === true ? <div className='search-results-container'>
 							{Object.values(searchResult)[0]?.map( (result) => {
 								return (
-									<div key={result['1. symbol']}>
+									<div className='search-result-box' key={result['1. symbol']}>
 										<NavLink
 										to={`/search/${result['1. symbol']}`}
 										className='search-results'
 										onClick={()=> dispatch(assetActions.clearSingle())}
+										// onBlur={handleOnBlur}
 										>
 										<div>Symbol: {result['1. symbol']}</div>
 										<div>Company: {result['2. name']}</div>

@@ -5,6 +5,8 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 
+import * as searchActions from "../../store/search";
+
 import { useHistory } from 'react-router-dom';
 
 function ProfileButton({ user }) {
@@ -17,6 +19,8 @@ function ProfileButton({ user }) {
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
+
+    dispatch(searchActions.clearSearch());
   };
 
   useEffect(() => {

@@ -89,12 +89,14 @@
 
 .search-bar {
   position: relative;
+  border: 2px solid blue;
 }
 
 .search-results-container {
   font-size: 12px;
   font-family: "Capsule Sans Text", sans-serif;
   position: absolute;
+  border: 1px solid green
 }
 
 .search-results {
