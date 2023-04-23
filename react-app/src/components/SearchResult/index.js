@@ -2,19 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-
 import * as searchActions from '../../store/search';
 import * as assetActions from '../../store/asset';
+
+import Trade from '../Trade';
 
 
 function SearchResult() {
 
   const { symbol } = useParams();
 
-  const [average_cost, setAverageCost] = useState(0);
-  const [market_price, setMarketPrice] = useState(0);
-  const [shares, setShares] = useState(0);
-
+  const [average_cost, setAverageCost] = useState('');
+  const [market_price, setMarketPrice] = useState('');
+  const [shares, setShares] = useState('');
 
   const [inputShares, setInputShares] = useState('');
 
@@ -28,30 +28,67 @@ function SearchResult() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+
+
+  // useEffect(() => {
+  //   dispatch(assetActions.getAll())
+  //   // console.log(assets)
+  //   // console.log(singleAsset)
+  //   Object.values(assets).forEach( asset => {
+  //     if (asset.symbol === symbol) {
+  //       dispatch(assetActions.getOne(asset.id))
+  //       setAverageCost(asset.average_cost)
+  //       setMarketPrice(asset.market_price)
+  //       setShares(asset.shares)
+  //     }
+  //   })
+
+  //   dispatch(searchActions.getResultDetails(symbol))
+
+  // }, [dispatch, symbol])
+
   useEffect(() => {
-    dispatch(assetActions.getAll())
-    Object.values(assets).forEach( asset => {
-      if (asset.symbol === symbol) {
-        dispatch(assetActions.getOne(asset.id))
-        setAverageCost(asset.average_cost)
-        setMarketPrice(asset.market_price)
-        setShares(asset.shares)
-      }
-    })
+
+      dispatch(assetActions.getAll())
+      dispatch(searchActions.clearSearch())
+      .then(() => {
+        // console.log(assets)
+        Object.values(assets).forEach( asset => {
+          if (asset.symbol === symbol) {
+            console.log('single asset', asset)
+            dispatch(assetActions.getOne(asset.id))
+            setAverageCost(asset.average_cost)
+            setMarketPrice(asset.market_price)
+            setShares(asset.shares)
+          }
+        })
+      })
+      .then (() => {
+        dispatch(searchActions.getResultDetails(symbol))
+      })
+      .then(() => {
+        if(Object.values(singleAsset).length === 0 ) {
+          console.log('no single asset')
+          // setAverageCost(0)
+          // setMarketPrice(0)
+          // setShares(0)
+        }
+      })
 
   }, [dispatch, symbol])
 
 
   const handleSubmit = async (e) => {
 
+    e.preventDefault();
+
     // Update the asset
     if(Object.values(singleAsset).length !== 0) {
 
       console.log('Updating asset')
 
-      e.preventDefault();
-
       if (transaction_buy === true) {
+
         console.log('update buying')
         const product = singleAsset.average_cost * singleAsset.shares;
         const new_shares = singleAsset.shares + parseInt(inputShares);
@@ -59,40 +96,45 @@ function SearchResult() {
         await dispatch(assetActions.update({ shares: new_shares, average_cost: new_average_cost, id: singleAsset.id }));
         await setShares(new_shares)
         await setAverageCost(new_average_cost)
+        await setInputShares('')
       }
-      else {
 
-        if(singleAsset.shares < parseInt(inputShares)) {
-          alert('You cannot sell more shares than you own')
-          return
-        } else if(singleAsset.shares === parseInt(inputShares)) {
-          console.log('update removing')
-          await dispatch(assetActions.remove(singleAsset.id));
-          await setShares(0)
-          await setAverageCost(0)
-        } else {
-          console.log('update selling')
-          const new_shares = singleAsset.shares - parseInt(inputShares);
-          await dispatch(assetActions.update({ shares: new_shares, average_cost: singleAsset.average_cost, id: singleAsset.id }));
-          await setShares(new_shares)
-        }
+    else {
+
+      if(singleAsset.shares < parseInt(inputShares)) {
+        alert('You cannot sell more shares than you own')
+        return
+      } else if(singleAsset.shares === parseInt(inputShares)) {
+        console.log('update removing')
+        await dispatch(assetActions.remove(singleAsset.id));
+        await setShares(0)
+        await setAverageCost(0)
+        await setInputShares('')
+      } else {
+        console.log('update selling')
+        const new_shares = singleAsset.shares - parseInt(inputShares);
+        await dispatch(assetActions.update({ shares: new_shares, average_cost: singleAsset.average_cost, id: singleAsset.id }));
+        await setShares(new_shares)
+        await setInputShares('')
       }
     }
+  }
 
     // Create a new asset
     else {
       if (transaction_buy === true) {
-        console.log('creating asset')
+
         const newAsset = {
           symbol: symbol,
           shares: parseInt(inputShares)
         }
         await dispatch(assetActions.create(newAsset));
-        await dispatch(assetActions.getAll())
+        await setInputShares('')
+        setAverageCost(result?.[Object.keys(result)[0]]?.['05. price'])
+        setShares(parseInt(inputShares))
       }
       else {
         alert('You cannot sell shares you do not own')
-        return
       }
     }
   }
@@ -107,6 +149,10 @@ function SearchResult() {
           <div>Average Cost: {average_cost}</div>
           <div>Market Price: {market_price}</div>
           <div>Shares: {shares}</div>
+        </div>
+
+        <div className='result-detail'>
+          <div>Global Quote Price: {result?.[Object.keys(result)[0]]?.['05. price']}</div>
         </div>
 
         <div>
@@ -128,6 +174,10 @@ function SearchResult() {
           Buying Power: {user?.available_cash}
         </div>
       </div>
+
+      {/* <div>
+        <Trade singleAsset={singleAsset}/>
+      </div> */}
     </>
   )
 }

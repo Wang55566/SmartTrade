@@ -104,6 +104,7 @@ def create_asset():
     db.session.commit()
 
     print('--------------Create Asset--------------')
+    print(new_asset.to_dict())
     return new_asset.to_dict()
 
 # Update an asset

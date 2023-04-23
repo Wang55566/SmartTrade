@@ -3,6 +3,13 @@ const GETONEASSET  =  'asset/GET_ONE_ASSET' ;
 const CREATEASSET  =  'asset/CREATE_ASSET' ;
 const UPDATEASSET  =  'asset/UPDATE_ASSET' ;
 const DELETEASSET  =  'asset/DELETE_ASSET' ;
+const CLEARSINGLEASSET  =  'asset/CLEAR_SINGLE_ASSET' ;
+
+const clearSingleAsset = () => {
+  return {
+    type: CLEARSINGLEASSET
+  }
+}
 
 const getAllAssets = (assets) => {
   return {
@@ -39,6 +46,10 @@ const deleteAsset = (id) => {
   }
 }
 
+export const clearSingle = () => async (dispatch) => {
+  dispatch(clearSingleAsset());
+}
+
 export const getAll = () => async (dispatch) => {
   const response = await fetch('/api/assets');
   if(response.ok) {
@@ -56,6 +67,7 @@ export const getOne = (id) => async (dispatch) => {
 }
 
 export const create = (asset) => async (dispatch) => {
+
   const response = await fetch('/api/assets', {
     method: 'POST',
     headers: {
@@ -66,6 +78,8 @@ export const create = (asset) => async (dispatch) => {
   if(response.ok) {
     const data = await response.json();
     dispatch(createAsset(data));
+    dispatch(getOne(data.id));
+    dispatch(getAll());
   }
 }
 
@@ -81,6 +95,7 @@ export const update = (asset) => async (dispatch) => {
     const data = await response.json();
     dispatch(updateAsset(data));
   }
+  return response;
 }
 
 export const remove = (id) => async (dispatch) => {
@@ -110,6 +125,7 @@ const assetReducer = (state = initialState, action) => {
     case CREATEASSET:
       const state3 = { allAssets: {...state.allAssets}, singleAsset: {...state.singleAsset}};
       state3.allAssets[action.payload.id] = action.payload;
+      console.log('-----create action.payload-----', action.payload)
       state3.singleAsset = action.payload;
       return state3
     case UPDATEASSET:
@@ -119,9 +135,13 @@ const assetReducer = (state = initialState, action) => {
       return state4
     case DELETEASSET:
       const state5 = { allAssets: {...state.allAssets}, singleAsset: {...state.singleAsset}}
-      delete state5.allAssets[action.payload.id]
+      delete state5.allAssets[action.payload]
       state5.singleAsset = {};
       return state5
+    case CLEARSINGLEASSET:
+      const state6 = { allAssets: {...state.allAssets}, singleAsset: {...state.singleAsset}}
+      state6.singleAsset = {};
+      return state6
     default:
       return state;
   }

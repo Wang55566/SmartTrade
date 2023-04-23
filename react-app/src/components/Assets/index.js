@@ -14,9 +14,7 @@ function Assets() {
   const assets = useSelector(state => state.asset.allAssets);
 
   useEffect(() => {
-    if(Object.values(assets).length === 0) {
-      dispatch(assetActions.getAll());
-    }
+    dispatch(assetActions.getAll());
   }, [dispatch]);
 
   return (

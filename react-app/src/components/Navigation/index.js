@@ -5,12 +5,15 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
 import * as searchActions from '../../store/search';
+import * as assetActions from '../../store/asset';
 
 function Navigation({ isLoaded }){
 
 	const sessionUser = useSelector(state => state.session.user);
 
 	const searchResult = useSelector(state => state.search.results);
+
+	const [searchActive, setSearchActive] = useState(false);
 
 
 	const [query, setQuery] = useState('');
@@ -20,18 +23,29 @@ function Navigation({ isLoaded }){
 	const handleSearch = async (e) => {
 	  e.preventDefault()
 	  await dispatch(searchActions.allSearch(query))
+		await setSearchActive(true)
   }
 
 	const handleOnChange = async (e) => {
 		e.preventDefault()
 		await setQuery(e.target.value)
 		await dispatch(searchActions.allSearch(e.target.value))
+		await setSearchActive(true)
 	}
 
-	const handleOnBlur = async (e) => {
+	const handleOnBlur = (e) => {
 		e.preventDefault()
-		await setQuery('')
-		// await dispatch(searchActions.clearSearch())
+		setQuery('')
+		console.log('blur')
+		// dispatch(searchActions.clearSearch())
+		// setSearchActive(false)
+	}
+
+	const clickHome = (e) => {
+
+		dispatch(searchActions.clearSearch())
+		dispatch(assetActions.getAll())
+		// await setSearchActive(false)
 	}
 
 	return (
@@ -40,7 +54,10 @@ function Navigation({ isLoaded }){
 				<div className='nav'>
 
 					<div>
-						<NavLink exact to="/">Home</NavLink>
+						<NavLink
+						exact to="/"
+						onClick={clickHome}
+						>Home</NavLink>
 					</div>
 
 					<div className='search-bar-search-results'>
@@ -56,20 +73,21 @@ function Navigation({ isLoaded }){
 							</form>
 						</div>
 
-						<div className='search-results-container'>
+						{searchActive === true ? <div className='search-results-container'>
 							{Object.values(searchResult)[0]?.map( (result) => {
 								return (
 									<div key={result['1. symbol']}>
 										<NavLink
 										to={`/search/${result['1. symbol']}`}
 										className='search-results'
+										onClick={()=> dispatch(assetActions.clearSingle())}
 										>
-										<div>{result['1. symbol']}</div>
-										<div>{result['2. name']}</div>
+										<div>Symbol: {result['1. symbol']}</div>
+										<div>Company: {result['2. name']}</div>
 										</NavLink>
 									</div>
 								)})}
-						</div>
+						</div> : ""}
 
 					</div>
 
