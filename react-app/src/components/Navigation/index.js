@@ -12,8 +12,8 @@ import logo from'../../Logo.png';
 function Navigation(){
 
 	const sessionUser = useSelector(state => state.session.user);
-
 	const searchResult = useSelector(state => state.search.results);
+	const singleAsset = useSelector(state => state.asset.singleAsset);
 
 	const [searchActive, setSearchActive] = useState(false);
 	const ulRef = useRef();
@@ -55,6 +55,7 @@ function Navigation(){
 	const clickHome = async (e) => {
 
 		dispatch(searchActions.clearSearch())
+		dispatch(assetActions.clearSingle())
 		dispatch(assetActions.getAll())
 		await setSearchActive(false)
 		await setQuery('')
@@ -74,10 +75,9 @@ function Navigation(){
 						</NavLink>
 					</div>
 
-					<div className='search-bar-search-results'
-					>
+					<div className='search-bar-search-results'>
 
-						<div className= 'search-bar'>
+						{Object.values(singleAsset).length === 0 ? <div className= 'search-bar'>
 							<form onSubmit={handleSearch} className='bg-blue-0cc pad8p borderR-5p'>
 							<i className="fas fa-search mrg-r-8p"></i>
 							<input
@@ -87,7 +87,7 @@ function Navigation(){
 								style={{ width: '300px'}}
 							/>
 							</form>
-						</div>
+						</div>: ''}
 
 						{searchActive === true ? <div className={searchClassName} ref={ulRef}>
 							{Object.values(searchResult)[0]?.map( (result) => {
@@ -96,7 +96,7 @@ function Navigation(){
 										<NavLink
 										to={`/search/${result['1. symbol']}`}
 										className='search-results'
-										onClick={()=> dispatch(assetActions.clearSingle())}
+										onClick={() => dispatch(assetActions.clearSingle())}
 										>
 										<div className='results-symbols'>{result['1. symbol']}</div>
 										<div className='results-names'>{result['2. name']}</div>

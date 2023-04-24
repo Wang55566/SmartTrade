@@ -127,6 +127,7 @@
 .search-results {
   display: flex;
   text-decoration: none;
+  background-color: whitesmoke;
   font-size: 13px;
   font-weight: 500;
   font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;

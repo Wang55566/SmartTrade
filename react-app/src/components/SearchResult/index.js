@@ -31,11 +31,14 @@ function SearchResult() {
   const history = useHistory();
 
   useEffect(() => {
+    console.log('------------first use effect------------', symbol)
+    dispatch(searchActions.getResultDetails(symbol))
     dispatch(searchActions.clearSearch())
     dispatch(assetActions.getAll())
   }, [dispatch])
 
   useEffect(() => {
+    console.log('------------first use effect------------', symbol)
     setAssetId('')
     Object.values(assets).forEach( asset => {
       if (asset.symbol === symbol) {
@@ -47,6 +50,7 @@ function SearchResult() {
   }, [assets]);
 
   useEffect(() => {
+    console.log('------------third use effect------------', symbol)
     if(assetId) {
       dispatch(assetActions?.getOne?.(assetId))
     } else {
@@ -54,8 +58,6 @@ function SearchResult() {
       setMarketPrice('')
       setShares('')
     }
-
-    dispatch(searchActions.getResultDetails(symbol))
 
   }, [dispatch, assetId])
 
@@ -139,25 +141,21 @@ function SearchResult() {
             <img src={stock_chart} alt='stock chart' />
           </div>
 
-          <div className="cash">
-            <div className='cash-text'>Buying Power</div>
-            <div className='cash-number'>${user?.available_cash}</div>
-          </div>
+          <div>Average Cost: {average_cost}</div>
+          <div>Shares: {shares}</div>
 
         </div>
 
         <div className='trade-panel'>
 
-          <div className='asset-summary'>
-            <div>Symbol: {symbol}</div>
-            <div>Average Cost: {average_cost}</div>
-            <div>Market Price: {market_price}</div>
-            <div>Shares: {shares}</div>
-          </div>
-
-          <div>
+          <div className='transaction-switch'>
             <button onClick={(e) => setTransactionBuy(!transaction_buy)}>{transaction_buy === true ? "Switch to sell" : "Switch to Buy"}</button>
           </div>
+
+          <div className='asset-summary'>
+            <div>Market Price: {market_price}</div>
+          </div>
+
           <div>
             <form onSubmit={handleSubmit}>
               <label>Shares</label>
