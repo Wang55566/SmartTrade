@@ -10,7 +10,7 @@ class Watchlist(db.Model):
 
       id = db.Column(db.Integer, primary_key=True)
       name = db.Column(db.String(50), nullable=False)
-      number_of_stocks = db.Column(db.Integer, nullable=False)
+      number_of_stocks = db.Column(db.Integer, nullable=False , default=0)
       created_at = db.Column(db.DateTime, default=datetime.now())
       updated_at = db.Column(db.DateTime, default=datetime.now())
 
