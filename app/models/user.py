@@ -20,6 +20,10 @@ class User(db.Model, UserMixin):
     assets = db.relationship('Asset', back_populates='user', cascade='all, delete-orphan')
     watchlists = db.relationship('Watchlist', back_populates='user', cascade='all, delete-orphan')
 
+    # First Name and Last Name
+    first_name = db.Column(db.String(40))
+    last_name = db.Column(db.String(40))
+
     @property
     def password(self):
         return self.hashed_password
@@ -36,5 +40,7 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'available_cash': self.available_cash
+            'available_cash': self.available_cash,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
         }
