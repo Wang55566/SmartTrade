@@ -30,44 +30,15 @@ function SearchResult() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  // }, [dispatch, symbol])
-
-  // useEffect(() => {
-
-  //     dispatch(assetActions.getAll())
-  //     dispatch(searchActions.clearSearch())
-  //     .then(() => {
-  //       Object.values(assets).forEach( asset => {
-  //         if (asset.symbol === symbol) {
-  //           // console.log('single asset', asset)
-  //           dispatch(assetActions.getOne(asset.id))
-  //           setAverageCost(asset.average_cost)
-  //           setMarketPrice(asset.market_price)
-  //           setShares(asset.shares)
-  //         }
-  //       })
-  //     })
-  //     .then (() => {
-  //       dispatch(searchActions.getResultDetails(symbol))
-  //     })
-  //     .then(() => {
-  //       if(Object.values(singleAsset).length === 0 ) {
-  //         // console.log('no single asset')
-  //         // setAverageCost('')
-  //         // setMarketPrice('')
-  //         // setShares('')
-  //       }
-  //     })
-
-  // }, [dispatch, symbol, shares])
-
   useEffect(() => {
+    dispatch(searchActions.clearSearch())
     dispatch(assetActions.getAll())
   }, [dispatch])
 
   useEffect(() => {
-    Object.values(assets)?.forEach( asset => {
-      if (asset?.symbol === symbol) {
+    setAssetId('')
+    Object.values(assets).forEach( asset => {
+      if (asset.symbol === symbol) {
         setAverageCost(asset.average_cost)
         setMarketPrice(asset.market_price)
         setShares(asset.shares)
@@ -76,13 +47,17 @@ function SearchResult() {
   }, [assets]);
 
   useEffect(() => {
-    // console.log('asset id', assetId)
     if(assetId) {
       dispatch(assetActions?.getOne?.(assetId))
+    } else {
+      setAverageCost('')
+      setMarketPrice('')
+      setShares('')
     }
 
     dispatch(searchActions.getResultDetails(symbol))
-  }, [assetId])
+
+  }, [dispatch, assetId])
 
 
 

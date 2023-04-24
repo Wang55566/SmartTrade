@@ -27,6 +27,10 @@
   padding: 0px;
 }
 
+.hidden {
+  display: none;
+}
+
 .dropdown-profile, .dropdown-logout{
   font-size: 13px;
   font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
@@ -39,9 +43,6 @@
   background-color: rgb(227, 233, 237);
 }
 
-.hidden {
-  display: none;
-}
 
 .login-signup {
   display: flex;
@@ -114,7 +115,7 @@
   position: relative;
   width: 350px;
   height: 30px;
-  margin-top: 20px;
+  margin: 20px 0px 15px 0px;
   /* border: 2px solid blue; */
 }
 

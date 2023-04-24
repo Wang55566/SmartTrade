@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
@@ -16,6 +16,25 @@ function Navigation(){
 	const searchResult = useSelector(state => state.search.results);
 
 	const [searchActive, setSearchActive] = useState(false);
+	const ulRef = useRef();
+
+	useEffect(() => {
+		if (!searchActive) return;
+
+		const closeSearch = (e) => {
+			if(!ulRef.current.contains(e.target)) {
+				setSearchActive(false)
+			}
+		};
+
+		document.addEventListener('click', closeSearch);
+
+		return () => document.removeEventListener('click', closeSearch);
+	}, [searchActive]);
+
+	const searchClassName = "search-results-container" + (searchActive ? "" : " hidden");
+  const closeMenu = () => setSearchActive(false);
+
 
 	const [query, setQuery] = useState('');
 
@@ -31,14 +50,6 @@ function Navigation(){
 		await setQuery(e.target.value)
 		await dispatch(searchActions.allSearch(e.target.value))
 		await setSearchActive(true)
-	}
-
-	const handleOnBlur = (e) => {
-		e.preventDefault()
-			setQuery('')
-			console.log('blur')
-			setSearchActive(false)
-			dispatch(searchActions.clearSearch())
 	}
 
 	const clickHome = async (e) => {
@@ -64,7 +75,6 @@ function Navigation(){
 					</div>
 
 					<div className='search-bar-search-results'
-					    // onBlur={handleOnBlur}
 					>
 
 						<div className= 'search-bar'>
@@ -79,7 +89,7 @@ function Navigation(){
 							</form>
 						</div>
 
-						{searchActive === true ? <div className='search-results-container'>
+						{searchActive === true ? <div className={searchClassName} ref={ulRef}>
 							{Object.values(searchResult)[0]?.map( (result) => {
 								return (
 									<div className='search-result-box' key={result['1. symbol']}>
@@ -87,7 +97,6 @@ function Navigation(){
 										to={`/search/${result['1. symbol']}`}
 										className='search-results'
 										onClick={()=> dispatch(assetActions.clearSingle())}
-										// onBlur={handleOnBlur}
 										>
 										<div className='results-symbols'>{result['1. symbol']}</div>
 										<div className='results-names'>{result['2. name']}</div>
