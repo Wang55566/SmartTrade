@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import SignupFormPage from "./components/SignupFormPage";
-import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 
 import Assets from "./components/Assets";
-import SingleAsset from "./components/SingleAsset";
 import Home from "./components/Home";
 import Login from "./components/LoginPage";
 import Signup from "./components/SignupPage";
@@ -37,10 +34,6 @@ function App() {
           </Route>
           <Route path="/signup">
             <Signup />
-          </Route>
-          <Route path="/assets/:id">
-            <Navigation isLoaded={isLoaded} />
-            <SingleAsset/>
           </Route>
           <Route path="/search/:symbol">
             <Navigation isLoaded={isLoaded} />

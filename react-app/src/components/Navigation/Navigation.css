@@ -2,23 +2,44 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
-  height: 100px;
+  height: 120px;
 }
 
 .nav2 {
   display: flex;
+  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
   min-height: 64px;
 }
 
+.dropdown {
+  display: block;
+}
+
 .profile-button {
-  margin-right:100px;
+  margin:20px 100px;
+
 }
 
 .profile-dropdown {
   position: absolute;
+  padding: 0px;
 }
+
+.dropdown-profile, .dropdown-logout{
+  font-size: 13px;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  border: 1px solid rgb(227, 233, 237);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  margin-top: 5px;
+}
+
+.dropdown-profile:hover, .dropdown-logout:hover {
+  background-color: rgb(227, 233, 237);
+}
+
+
 
 .hidden {
   display: none;
@@ -77,29 +98,56 @@
 }
 
 .title {
-  font-family: "Capsule Sans Text", sans-serif;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
   font-size: 30px;
   font-weight: bolder;
   color: rgb(10, 7, 2);
 }
 
-.search-bar-search-results {
+/* .search-bar-search-results {
   border: 2px solid red;
+} */
+
+.logo {
+  margin-top: 20px;
 }
 
 .search-bar {
   position: relative;
-  border: 2px solid blue;
+  width: 350px;
+  height: 30px;
+  margin-top: 20px;
+  /* border: 2px solid blue; */
 }
 
 .search-results-container {
-  font-size: 12px;
-  font-family: "Capsule Sans Text", sans-serif;
   position: absolute;
-  border: 1px solid green
+  /* border: 1px solid green */
 }
 
 .search-results {
   display: flex;
   text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+
+.search-results:hover {
+  background-color: rgb(227, 233, 237);
+}
+
+.results-symbols {
+  color: rgb(2, 1, 0);
+  margin-right: 30px;
+}
+
+.results-names {
+  color: rgb(69, 206, 35);
+}
+
+.dropdown-profile .dropdown-logout {
+  font-size: 13px;
+  font-weight: 500;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
 }

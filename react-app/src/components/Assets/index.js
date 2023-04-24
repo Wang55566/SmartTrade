@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
@@ -16,15 +16,10 @@ function Assets() {
   const user = useSelector(state => state.session.user);
   const assets = useSelector(state => state.asset.allAssets);
 
-  // let totalValue;
-  // let stockValue = Object.values(assets)?.forEach(asset => {
-  //   totalValue += asset?.market_price * asset?.shares
-  //   console.log(asset?.market_price * asset?.shares)
-  // })
-
-  // console.log(stockValue)
-
-  // totalValue = user?.available_cash + stockValue;
+  let totalValue = 0;
+  let stockValue = Object.values(assets)?.forEach(asset => {
+    totalValue += (asset?.market_price * asset?.shares)
+  })
 
 
   useEffect(() => {
@@ -38,7 +33,7 @@ function Assets() {
         <div className='middle'>
 
           <div className="total-value">
-            Total Value
+            $ {totalValue+user?.available_cash}
           </div>
 
           <div className="chart">
@@ -46,7 +41,8 @@ function Assets() {
           </div>
 
           <div className="cash">
-            Buying Power: {user?.available_cash}
+            <div className='cash-text'>Buying Power</div>
+            <div className='cash-number'>${user?.available_cash}</div>
           </div>
         </div>
 
@@ -63,7 +59,7 @@ function Assets() {
               >
               <div className="one-asset">
                 <div className='symbol-shares'>
-                  <div>{asset.symbol}</div>
+                  <div className='asset-symbol'>{asset.symbol}</div>
                   <div>{asset.shares} Shares</div>
                 </div>
                 <div>${asset.market_price}</div>

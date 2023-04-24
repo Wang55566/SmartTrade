@@ -73,7 +73,9 @@ function Navigation(){
 							<input
 								value={query}
 								onChange={handleOnChange}
-								className='bg-blue-0cc border-0 color-white mrg-r-8p'/>
+								className='bg-blue-0cc border-0 color-white mrg-r-8p'
+								style={{ width: '300px'}}
+							/>
 							</form>
 						</div>
 
@@ -87,8 +89,8 @@ function Navigation(){
 										onClick={()=> dispatch(assetActions.clearSingle())}
 										// onBlur={handleOnBlur}
 										>
-										<div>Symbol: {result['1. symbol']}</div>
-										<div>Company: {result['2. name']}</div>
+										<div className='results-symbols'>{result['1. symbol']}</div>
+										<div className='results-names'>{result['2. name']}</div>
 										</NavLink>
 									</div>
 								)})}

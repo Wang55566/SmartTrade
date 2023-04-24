@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
-import OpenModalButton from "../OpenModalButton";
-import LoginFormModal from "../LoginFormModal";
-import SignupFormModal from "../SignupFormModal";
 
 import * as searchActions from "../../store/search";
 
 import { useHistory } from 'react-router-dom';
+
+import "./Navigation.css";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -43,6 +42,11 @@ function ProfileButton({ user }) {
     await history.push('/');
   };
 
+  const handleProfile = async (e) => {
+    e.preventDefault();
+    await alert('Profile page is coming soon!');
+  };
+
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
@@ -54,9 +58,10 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
+            <li className='dropdown-profile'>
+              <button onClick={handleProfile}>Profile</button>
+            </li>
+            <li className='dropdown-logout'>
               <button onClick={handleLogout}>Log Out</button>
             </li>
           </>

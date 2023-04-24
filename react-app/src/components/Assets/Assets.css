@@ -14,30 +14,58 @@
   height: 119.75px;
   padding: 0px 0px 20px;
   font-size: 32px;
-  font-weight: bolder;
+  font-weight: 700;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+
+.cash {
+  display: flex;
+  justify-content: space-between;
+  height:24px;
+  padding:24px 0px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  border-bottom: 1px solid rgb(227, 233, 237);
 }
 
 .all-asset {
   display: block;
-  width:150px;
-  border:1px solid black;
+  width:220px;
+  border: 1px solid rgb(227, 233, 237);
   grid-column-start:2
 }
 
 h3 {
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: flex-start;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  padding: 0px 24px;
+  border-bottom: 1px solid rgb(227, 233, 237);
 }
 
 a.asset-link {
   display:flex;
   text-decoration: none;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .one-asset {
   display: flex;
-  border: 1px solid #000;
-  width: 150px;
+  width: 220px;
   justify-content: space-between;
+  font-size: 13px;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  padding: 0px 24px;
+  margin: 3px;
+}
+
+.one-asset:hover {
+  background-color: rgb(227, 233, 237);
+}
+
+.asset-symbol {
+  font-weight: 700;
 }
