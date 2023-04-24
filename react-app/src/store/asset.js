@@ -78,7 +78,6 @@ export const create = (asset) => async (dispatch) => {
   if(response.ok) {
     const data = await response.json();
     dispatch(createAsset(data));
-    dispatch(getOne(data.id));
     dispatch(getAll());
   }
 }

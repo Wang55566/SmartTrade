@@ -128,7 +128,7 @@ function SearchResult() {
     else {
       if (transaction_buy === true) {
 
-        const newAsset = {
+          const newAsset = {
           symbol: symbol,
           shares: parseInt(inputShares)
         }
