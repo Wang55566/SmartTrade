@@ -3,5 +3,14 @@
 }
 .signup-form {
   display:block;
-  border: 2px solid black;
+}
+
+label, input {
+  display: block;
+}
+
+h1 {
+  font-size: 21px;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-weight: 500;
 }

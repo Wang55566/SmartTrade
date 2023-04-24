@@ -42,7 +42,7 @@ function SignUp() {
         </div>
 
         <div className='signup-form'>
-          <h1>Sign Up</h1>
+          <h1>Enter your first and last name as they appear on your government ID.</h1>
           <form onSubmit={handleSubmit}>
             <ul>
               {errors.map((error, idx) => <li key={idx}>{error}</li>)}

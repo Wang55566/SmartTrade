@@ -44,6 +44,7 @@ function Assets() {
             <div className='cash-text'>Buying Power</div>
             <div className='cash-number'>${user?.available_cash}</div>
           </div>
+          
         </div>
 
         <div className='right'>

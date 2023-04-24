@@ -6,8 +6,13 @@ li {
 
 button {
   background-color: transparent;
-  border: none;
+  padding: 0.5rem;
   font-size: inherit;
   font-family: inherit;
   cursor: pointer;
+  border: none;
+}
+
+button:hover {
+  background-color: #eee;
 }

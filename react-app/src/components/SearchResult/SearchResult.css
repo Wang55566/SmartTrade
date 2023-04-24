@@ -1,0 +1,28 @@
+.single-stock-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 2fr 1fr;
+}
+
+.result-detail {
+  font-size: 32px;
+  font-weight: 700;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+
+.trade-panel {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  padding-top: 100px;
+}
+
+.cash {
+  display: flex;
+  justify-content: space-between;
+  height:24px;
+  padding:24px 0px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  border-bottom: 1px solid rgb(227, 233, 237);
+}

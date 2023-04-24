@@ -5,6 +5,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as searchActions from '../../store/search';
 import * as assetActions from '../../store/asset';
 
+import stock_chart from '../../stock chart.png'
+
+import './SearchResult.css'
+
 function SearchResult() {
 
   const { symbol } = useParams();
@@ -147,36 +151,51 @@ function SearchResult() {
 
   return (
     <>
-      <div>
+      <div className='single-stock-details'>
 
-        <div className='asset-summary'>
-          <div>Symbol: {symbol}</div>
-          <div>Average Cost: {average_cost}</div>
-          <div>Market Price: {market_price}</div>
-          <div>Shares: {shares}</div>
+        <div className='left-panel'>
+
+          <div className='result-detail'>
+            <div>{result?.[Object.keys(result)[0]]?.['01. symbol']}</div>
+            <div>$ {result?.[Object.keys(result)[0]]?.['05. price']}</div>
+          </div>
+
+          <div>
+            <img src={stock_chart} alt='stock chart' />
+          </div>
+
+          <div className="cash">
+            <div className='cash-text'>Buying Power</div>
+            <div className='cash-number'>${user?.available_cash}</div>
+          </div>
+
         </div>
 
-        <div className='result-detail'>
-          <div>Global Quote Price: {result?.[Object.keys(result)[0]]?.['05. price']}</div>
-        </div>
+        <div className='trade-panel'>
 
-        <div>
-          <button onClick={(e) => setTransactionBuy(!transaction_buy)}>{transaction_buy === true ? "Switch to sell" : "Switch to Buy"}</button>
-        </div>
-        <div>
-          <form onSubmit={handleSubmit}>
-            <label>Shares</label>
-            <input
-              type="number"
-              value={inputShares}
-              onChange={(e) => setInputShares(e.target.value)}
-              required
-            />
-            <button type="submit">{transaction_buy === true ? "Buy" : "Sell"}</button>
-          </form>
-        </div>
-        <div>
-          Buying Power: {user?.available_cash}
+          <div className='asset-summary'>
+            <div>Symbol: {symbol}</div>
+            <div>Average Cost: {average_cost}</div>
+            <div>Market Price: {market_price}</div>
+            <div>Shares: {shares}</div>
+          </div>
+
+          <div>
+            <button onClick={(e) => setTransactionBuy(!transaction_buy)}>{transaction_buy === true ? "Switch to sell" : "Switch to Buy"}</button>
+          </div>
+          <div>
+            <form onSubmit={handleSubmit}>
+              <label>Shares</label>
+              <input
+                type="number"
+                value={inputShares}
+                onChange={(e) => setInputShares(e.target.value)}
+                required
+              />
+              <button type="submit">{transaction_buy === true ? "Buy" : "Sell"}</button>
+            </form>
+          </div>
+
         </div>
       </div>
     </>
