@@ -4,10 +4,15 @@ import session from './session'
 import assetReducer from './asset'
 import searchReducer from './search'
 
+import watchlistReducer from './watchlist'
+import liststockReducer from './liststock'
+
 const rootReducer = combineReducers({
   session,
   asset: assetReducer,
-  search: searchReducer
+  search: searchReducer,
+  watchlist: watchlistReducer,
+  liststock: liststockReducer
 });
 
 

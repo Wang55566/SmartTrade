@@ -11,7 +11,6 @@ import './LoginPage.css'
 function Login() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const assets = useSelector(state => state.asset.allAssets);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
