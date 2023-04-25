@@ -17,3 +17,11 @@ class ListStock(db.Model):
       watchlist_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('watchlists.id')))
 
       watchlist = db.relationship('Watchlist', back_populates='liststocks')
+
+      def to_dict(self):
+            return {
+                  "id": self.id,
+                  "symbol": self.symbol,
+                  "market_price": self.market_price,
+                  "watchlist_id": self.watchlist_id,
+            }

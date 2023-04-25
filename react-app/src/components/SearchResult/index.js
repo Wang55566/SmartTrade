@@ -193,7 +193,7 @@ function SearchResult() {
                   className='transaction-input-box'
                 />
               </div>
-              <div className='transaction-estimated-cost'>Estimated Cost: {estimated}</div>
+              <div className='transaction-estimated-cost'>Estimated price: {estimated}</div>
               <button type="submit" className='transaction-button'>{transaction_buy === true ? "Buy" : "Sell"}</button>
             </form>
           </div>

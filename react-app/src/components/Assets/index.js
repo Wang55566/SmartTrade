@@ -31,6 +31,19 @@ function Assets() {
     dispatch(watchlistActions.getAllLists());
   }, [dispatch]);
 
+  const handleCreateList = async (e) => {
+    e.preventDefault();
+    if(e.target[0].value!=='') {
+      const name = e.target[0].value
+      const user_id = user.id;
+      await dispatch(watchlistActions.createOneList({name, user_id}));
+      await dispatch(watchlistActions.getAllLists());
+      setCreateList(false);
+    } else {
+      alert('Please enter a name for your list')
+    }
+  }
+
   return (
     <>
       <div className="main-page">
@@ -79,16 +92,26 @@ function Assets() {
             <div className='create-header'>
               <h3>Lists</h3>
               <div className='create-watchlist'>
-                <button onClick={() => setCreateList(true)}><i className="fas fa-plus"></i></button>
+                <button onClick={() => setCreateList(!createList)}><i className="fas fa-plus"></i></button>
               </div>
             </div>
 
-            {/* <div className="create-list-form">
-            </div> */}
+            {createList && (
+            <div className="create-list-form">
+                <form onSubmit={handleCreateList}>
+                  <input
+                    type="text"
+                    placeholder="List Name"
+                    className="create-list-input"
+                  />
+                  <button type="submit" className='create-list-button'>Create</button>
+                </form>
+            </div>
+            )}
 
             {Object.values(watchlists).map(watchlist => (
               <div key={watchlist.id} className="one-watchlist">
-                {watchlist.name}
+                <div onClick={() => alert("Coming Soon")}>{watchlist.name}</div>
               </div>
             ))}
 

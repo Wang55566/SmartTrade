@@ -47,7 +47,6 @@ h3 {
   font-weight: 700;
   font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
   padding: 0px 24px;
-  border-bottom: 1px solid rgb(227, 233, 237);
 }
 
 a.asset-link {
@@ -63,7 +62,7 @@ a.asset-link {
   font-size: 13px;
   font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
   padding: 0px 24px;
-  margin: 3px;
+  margin: 3px 0px 7px 0px;
 }
 
 .one-asset:hover {
@@ -78,4 +77,29 @@ a.asset-link {
   display:flex;
   justify-content: space-between;
   align-items:center;
+  padding-right: 20px;
+}
+
+.create-list-form {
+  padding: 0px 24px;
+}
+
+.create-list-button {
+  margin-left: 58px;
+}
+
+.all-watchlist {
+  display: block;
+  width:220px;
+  border: 1px solid rgb(227, 233, 237);
+  font-size: 14px;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+
+.one-watchlist {
+  height:35px;
+  font-weight: 700;
+  color: -webkit-link;
+  cursor: pointer;
+  padding: 0px 24px;
 }
