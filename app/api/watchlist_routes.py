@@ -35,11 +35,15 @@ def one_watchlist(id):
 
     watchlistDict = watchlist.to_dict()
 
+    stock_list = []
+
     for stock in watchlist.liststocks:
-      watchlistDict['liststocks'][stock.id] = stock.to_dict()
+      stock_list.append(stock.to_dict())
+      print(stock.to_dict())
+
+    watchlistDict['stocks'] = stock_list
 
     print('--------------Get One Watchlist--------------')
-    print(watchlistDict)
     return watchlistDict
 
 # Create a watchlist

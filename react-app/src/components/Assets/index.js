@@ -17,13 +17,19 @@ function Assets() {
   const user = useSelector(state => state.session.user);
   const assets = useSelector(state => state.asset.allAssets);
   const watchlists = useSelector(state => state.watchlist.allLists);
+  const oneList = useSelector(state => state.watchlist.oneList);
 
   const [createList, setCreateList] = useState(false);
+  const [openList, setOpenList] = useState(false);
 
   let totalValue = 0;
   let stockValue = Object.values(assets)?.forEach(asset => {
     totalValue += (asset?.market_price * asset?.shares)
   })
+
+  if(Object.values(watchlists)?.length > 0) {
+    console.log(oneList.stocks)
+  }
 
 
   useEffect(() => {
@@ -42,6 +48,11 @@ function Assets() {
     } else {
       alert('Please enter a name for your list')
     }
+  }
+
+  const handleOpenOneList = async (id) => {
+    await dispatch(watchlistActions.getOnelist(id));
+    setOpenList(!openList);
   }
 
   return (
@@ -108,14 +119,36 @@ function Assets() {
                 </form>
             </div>
             )}
+            <div className='list-containter'>
+                {Object.values(watchlists).map(watchlist => (
+                  <div key={watchlist.id} className="one-watchlist">
+                    <div onClick={() => handleOpenOneList(watchlist.id)}>{watchlist.name}</div>
+                  </div>
 
-            {Object.values(watchlists).map(watchlist => (
-              <div key={watchlist.id} className="one-watchlist">
-                <div onClick={() => alert("Coming Soon")}>{watchlist.name}</div>
-              </div>
-            ))}
+                ))}
+            </div>
+
+
 
           </div>
+
+          {openList? <div className='list-stocks'>
+            <h3> {oneList?.name}</h3>
+
+            <div className='show-list-stocks'>
+              {Object.values(watchlists)?.length > 0 ? oneList?.stocks?.map(stock => (
+                <NavLink
+                to={`/search/${stock?.symbol}`}
+                key={stock?.id}
+                className='stock-link'
+                >
+                <div className="one-stock">
+                  <div>{stock?.symbol}</div>
+                </div>
+                </NavLink>)): ""}
+            </div>
+
+          </div>: ""}
 
         </div>
 
