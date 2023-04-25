@@ -131,8 +131,8 @@ function SearchResult() {
         <div className='left-panel'>
 
           <div className='result-detail'>
-            <div>{result[Object.keys(result)[0]]['01. symbol']}</div>
-            <div>$ {result[Object.keys(result)[0]]['05. price']}</div>
+            <div>{result?.[Object.keys(result)[0]]?.['01. symbol']}</div>
+            <div>$ {result?.[Object.keys(result)[0]]?.['05. price']}</div>
           </div>
 
           <div>
