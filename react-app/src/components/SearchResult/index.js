@@ -23,22 +23,20 @@ function SearchResult() {
   const [transaction_buy, setTransactionBuy] = useState(true);
 
   const assets = useSelector(state => state.asset.allAssets);
-  const user = useSelector(state => state.session.user);
   const result = useSelector(state => state.search.resultdetails);
   const singleAsset = useSelector(state => state.asset.singleAsset);
 
   const dispatch = useDispatch();
-  const history = useHistory();
 
   useEffect(() => {
-    console.log('------------first use effect------------', symbol)
-    dispatch(searchActions.getResultDetails(symbol))
+    console.log('------------first use effect------------')
     dispatch(searchActions.clearSearch())
     dispatch(assetActions.getAll())
   }, [dispatch])
 
   useEffect(() => {
-    console.log('------------first use effect------------', symbol)
+    console.log('------------second use effect------------')
+    dispatch(searchActions.getResultDetails(symbol))
     setAssetId('')
     Object.values(assets).forEach( asset => {
       if (asset.symbol === symbol) {
@@ -47,10 +45,10 @@ function SearchResult() {
         setShares(asset.shares)
         setAssetId(asset.id)
     }})
-  }, [assets]);
+  }, [assets, symbol]);
 
   useEffect(() => {
-    console.log('------------third use effect------------', symbol)
+    console.log('------------third use effect------------')
     if(assetId) {
       dispatch(assetActions?.getOne?.(assetId))
     } else {
@@ -133,8 +131,8 @@ function SearchResult() {
         <div className='left-panel'>
 
           <div className='result-detail'>
-            <div>{result?.[Object.keys(result)[0]]?.['01. symbol']}</div>
-            <div>$ {result?.[Object.keys(result)[0]]?.['05. price']}</div>
+            <div>{result[Object.keys(result)[0]]['01. symbol']}</div>
+            <div>$ {result[Object.keys(result)[0]]['05. price']}</div>
           </div>
 
           <div>

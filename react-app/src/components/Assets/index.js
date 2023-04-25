@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import * as assetActions from '../../store/asset';
 import * as searchActions from '../../store/search';
+import * as watchlistActions from '../../store/watchlist';
 
 import './Assets.css';
 
@@ -15,6 +16,9 @@ function Assets() {
 
   const user = useSelector(state => state.session.user);
   const assets = useSelector(state => state.asset.allAssets);
+  const watchlists = useSelector(state => state.watchlist.allLists);
+
+  const [createList, setCreateList] = useState(false);
 
   let totalValue = 0;
   let stockValue = Object.values(assets)?.forEach(asset => {
@@ -24,6 +28,7 @@ function Assets() {
 
   useEffect(() => {
     dispatch(assetActions.getAll());
+    dispatch(watchlistActions.getAllLists());
   }, [dispatch]);
 
   return (
@@ -44,7 +49,7 @@ function Assets() {
             <div className='cash-text'>Buying Power</div>
             <div className='cash-number'>${user?.available_cash}</div>
           </div>
-          
+
         </div>
 
         <div className='right'>
@@ -67,6 +72,26 @@ function Assets() {
               </div>
               </NavLink>
             ))}
+          </div>
+
+          <div className="all-watchlist">
+
+            <div className='create-header'>
+              <h3>Lists</h3>
+              <div className='create-watchlist'>
+                <button onClick={() => setCreateList(true)}><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+
+            {/* <div className="create-list-form">
+            </div> */}
+
+            {Object.values(watchlists).map(watchlist => (
+              <div key={watchlist.id} className="one-watchlist">
+                {watchlist.name}
+              </div>
+            ))}
+
           </div>
 
         </div>

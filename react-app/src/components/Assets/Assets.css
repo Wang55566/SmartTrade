@@ -29,6 +29,10 @@
   border-bottom: 1px solid rgb(227, 233, 237);
 }
 
+.right {
+  width:222px;
+}
+
 .all-asset {
   display: block;
   width:220px;
@@ -68,4 +72,10 @@ a.asset-link {
 
 .asset-symbol {
   font-weight: 700;
+}
+
+.create-header {
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
 }

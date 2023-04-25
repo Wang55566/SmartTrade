@@ -77,7 +77,7 @@ function Navigation(){
 
 					<div className='search-bar-search-results'>
 
-						{Object.values(singleAsset).length === 0 ? <div className= 'search-bar'>
+						<div className= 'search-bar'>
 							<form onSubmit={handleSearch} className='bg-blue-0cc pad8p borderR-5p'>
 							<i className="fas fa-search mrg-r-8p"></i>
 							<input
@@ -87,7 +87,7 @@ function Navigation(){
 								style={{ width: '300px'}}
 							/>
 							</form>
-						</div>: ''}
+						</div>
 
 						{searchActive === true ? <div className={searchClassName} ref={ulRef}>
 							{Object.values(searchResult)[0]?.map( (result) => {
