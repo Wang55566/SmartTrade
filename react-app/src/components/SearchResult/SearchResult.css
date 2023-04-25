@@ -26,14 +26,66 @@
   grid-row-start: 1;
   padding-left: 24px;
   width:274px;
+  height: 280px;
   border: 1px solid rgb(227, 233, 237);
   border-radius: 4px;
   box-sizing: border-box;
   box-shadow: 0px -12px 24px rgb(0 0 0 0.02), 0px 12px 24px rgb(0 0 0 0.06);
   margin:50px;
+  position: relative;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
 }
 
 .transaction-switch {
   display: flex;
   justify-content: flex-end;
+}
+
+.transaction-form {
+  margin-top: 50px;
+}
+
+.share-input {
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  margin: 15px 23px 15px 0px;
+}
+
+.transaction-input-box {
+  width:60px;
+  margin-left:15px
+}
+
+.transaction-button {
+  width:225.77;
+  height:44px;
+  padding:0px 48px;
+  box-sizing:border-box;
+  border-radius:44px;
+  background-color:rgb(255, 80, 0);
+  color:rgb(255, 255, 255);
+  position:absolute;
+  bottom: 24px;
+  left: 71px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.transaction-button:hover {
+  background-color:rgb(255, 80, 0, 0.8);
+}
+
+.transaction-market-price {
+  margin-left: 45px;
+}
+
+.transaction-estimated-cost {
+  display: flex;
+  justify-content: center;
+  margin-right: 25px;
+}
+
+.transaction-market-price {
+  font-weight: 700;
 }

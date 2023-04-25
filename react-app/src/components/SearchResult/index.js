@@ -26,6 +26,10 @@ function SearchResult() {
   const result = useSelector(state => state.search.resultdetails);
   const singleAsset = useSelector(state => state.asset.singleAsset);
 
+  let quoted_price = result?.[Object.keys(result)[0]]?.['05. price'];
+  let quoted_price_to_fixed = parseFloat(quoted_price).toFixed(2);
+  let estimated = (quoted_price_to_fixed * inputShares).toFixed(2);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -113,9 +117,9 @@ function SearchResult() {
         }
         await dispatch(assetActions.create(newAsset));
         await setInputShares('')
-        await setAverageCost(result?.[Object.keys(result)[0]]?.['05. price'])
+        await setAverageCost(quoted_price_to_fixed)
         await setShares(parseInt(inputShares))
-        await setMarketPrice(result?.[Object.keys(result)[0]]?.['05. price'])
+        await setMarketPrice(quoted_price_to_fixed)
       }
       else {
         alert('You cannot sell shares you do not own')
@@ -132,7 +136,7 @@ function SearchResult() {
 
           <div className='result-detail'>
             <div>{result?.[Object.keys(result)[0]]?.['01. symbol']}</div>
-            <div>$ {result?.[Object.keys(result)[0]]?.['05. price']}</div>
+            <div>$ {quoted_price_to_fixed}</div>
           </div>
 
           <div>
@@ -150,20 +154,21 @@ function SearchResult() {
             <button onClick={(e) => setTransactionBuy(!transaction_buy)}>{transaction_buy === true ? "Switch to sell" : "Switch to Buy"}</button>
           </div>
 
-          <div className='asset-summary'>
-            <div>Market Price: {market_price}</div>
-          </div>
-
-          <div>
+          <div className='transaction-form'>
             <form onSubmit={handleSubmit}>
-              <label>Shares</label>
-              <input
-                type="number"
-                value={inputShares}
-                onChange={(e) => setInputShares(e.target.value)}
-                required
-              />
-              <button type="submit">{transaction_buy === true ? "Buy" : "Sell"}</button>
+              <div className='transaction-market-price'>Market Price: {quoted_price_to_fixed}</div>
+              <div className='share-input'>
+                <label className='transaction-label'>Shares</label>
+                <input
+                  type="number"
+                  value={inputShares}
+                  onChange={(e) => setInputShares(e.target.value)}
+                  required
+                  className='transaction-input-box'
+                />
+              </div>
+              <div className='transaction-estimated-cost'>Estimated Cost: {estimated}</div>
+              <button type="submit" className='transaction-button'>{transaction_buy === true ? "Buy" : "Sell"}</button>
             </form>
           </div>
 

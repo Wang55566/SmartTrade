@@ -79,7 +79,7 @@ function Assets() {
             <div className='create-header'>
               <h3>Lists</h3>
               <div className='create-watchlist'>
-                <button onClick={() => setCreateList(true)}><i class="fas fa-plus"></i></button>
+                <button onClick={() => setCreateList(true)}><i className="fas fa-plus"></i></button>
               </div>
             </div>
 
