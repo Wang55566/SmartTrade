@@ -1,9 +1,17 @@
 .login-page {
   display: flex;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
 }
 
 .login-form {
   display:block;
+  margin: 0 auto;
+  width: 400px;
+  padding: 40px 40px 40px 40px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px -12px 24px rgb(0 0 0 0.02), 0px 12px 24px rgb(0 0 0 0.06);
 }
 
 label, input {
@@ -12,6 +20,5 @@ label, input {
 
 h1 {
   font-size: 21px;
-  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
   font-weight: 500;
 }

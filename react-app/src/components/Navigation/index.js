@@ -78,15 +78,16 @@ function Navigation(){
 					<div className='search-bar-search-results'>
 
 						<div className= 'search-bar'>
-							<form onSubmit={handleSearch} className='bg-blue-0cc pad8p borderR-5p'>
-							<i className="fas fa-search mrg-r-8p"></i>
+							<form onSubmit={handleSearch} className='search-form'>
+								<i className="fas fa-search"></i>
 							<input
 								value={query}
 								onChange={handleOnChange}
-								className='bg-blue-0cc border-0 color-white mrg-r-8p'
+								className='search-input'
 								style={{ width: '300px'}}
 							/>
 							</form>
+
 						</div>
 
 						{searchActive === true ? <div className={searchClassName} ref={ulRef}>

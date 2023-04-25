@@ -57,6 +57,24 @@ function SignUp() {
               />
             </label>
             <label>
+              First Name
+              <input
+                type="text"
+                value={first_name}
+                onChange={(e) => setFirstName(e.target.value)}
+                required
+              />
+            </label>
+            <label>
+              Last Name
+              <input
+                type="text"
+                value={last_name}
+                onChange={(e) => setLastName(e.target.value)}
+                required
+              />
+            </label>
+            <label>
               Username
               <input
                 type="text"
@@ -80,24 +98,6 @@ function SignUp() {
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-              />
-            </label>
-            <label>
-              First Name
-              <input
-                type="text"
-                value={first_name}
-                onChange={(e) => setFirstName(e.target.value)}
-                required
-              />
-            </label>
-            <label>
-              Last Name
-              <input
-                type="text"
-                value={last_name}
-                onChange={(e) => setLastName(e.target.value)}
                 required
               />
             </label>

@@ -103,10 +103,6 @@
   color: rgb(10, 7, 2);
 }
 
-/* .search-bar-search-results {
-  border: 2px solid red;
-} */
-
 .logo {
   margin-top: 20px;
 }
@@ -116,12 +112,10 @@
   width: 350px;
   height: 30px;
   margin: 20px 0px 15px 0px;
-  /* border: 2px solid blue; */
 }
 
 .search-results-container {
   position: absolute;
-  /* border: 1px solid green */
 }
 
 .search-results {

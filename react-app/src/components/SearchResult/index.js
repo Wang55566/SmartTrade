@@ -29,6 +29,7 @@ function SearchResult() {
   let quoted_price = result?.[Object.keys(result)[0]]?.['05. price'];
   let quoted_price_to_fixed = parseFloat(quoted_price).toFixed(2);
   let estimated = (quoted_price_to_fixed * inputShares).toFixed(2);
+  let market_value = (shares * quoted_price_to_fixed).toFixed(2);
 
   const dispatch = useDispatch();
 
@@ -68,6 +69,13 @@ function SearchResult() {
   const handleSubmit = async (e) => {
 
     e.preventDefault();
+
+    // Validate input
+    let inputSharesNumber = Number(inputShares)
+    if(inputSharesNumber < 1 || !Number.isInteger(inputSharesNumber)) {
+      alert('Please enter a positive integer')
+      return;
+    }
 
     // Update the asset
     if(Object.values(singleAsset).length !== 0) {
@@ -143,8 +151,26 @@ function SearchResult() {
             <img src={stock_chart} alt='stock chart' />
           </div>
 
-          <div>Average Cost: {average_cost}</div>
-          <div>Shares: {shares}</div>
+          <div className='asset-stock-details'>
+            {Object.values(singleAsset).length !== 0 ?
+              <>
+                <div className='asset-left'>
+                  <div>Your market value</div>
+                  <div className='bold-price'>${market_value}</div>
+                </div>
+                <div className='asset-right'>
+                  <div>Your average cost</div>
+                  <div className='bold-price'>${average_cost}</div>
+                  <div>shares</div>
+                  <div className='bold-price'>{shares}</div>
+                </div>
+              </>
+            :
+              <>
+                <div className='asset-none'></div>
+              </>
+            }
+          </div>
 
         </div>
 
