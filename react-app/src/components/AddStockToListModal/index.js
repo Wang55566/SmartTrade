@@ -25,6 +25,8 @@ function AddStockToListModal({symbol, quoted_price_to_fixed}) {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(watchlistActions.addStockToList(symbol, quoted_price_to_fixed, selectedValue))
+    dispatch(watchlistActions.getAllLists())
+    dispatch(watchlistActions.getOneList(selectedValue))
     closeModal();
   }
 

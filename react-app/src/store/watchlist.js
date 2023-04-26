@@ -64,7 +64,7 @@ export const getAllLists = () => async (dispatch) => {
   }
 }
 
-export const getOnelist = (id) => async (dispatch) => {
+export const getOneList = (id) => async (dispatch) => {
   const response = await fetch(`/api/watchlists/${id}`)
   if (response.ok) {
     const data = await response.json()

@@ -54,7 +54,7 @@ function Assets() {
   }
 
   const handleOpenOneList = async (id) => {
-    await dispatch(watchlistActions.getOnelist(id));
+    await dispatch(watchlistActions.getOneList(id));
     setOpenList(!openList);
   }
 

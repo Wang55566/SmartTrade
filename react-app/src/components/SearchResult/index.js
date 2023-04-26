@@ -85,7 +85,7 @@ function SearchResult() {
     }
 
     if(watchlistId) {
-      dispatch(watchlistActions.getOnelist(watchlistId))
+      dispatch(watchlistActions.getOneList(watchlistId))
     } else {
       setWatchlistId('')
     }
