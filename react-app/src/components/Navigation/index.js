@@ -6,6 +6,7 @@ import './Navigation.css';
 
 import * as searchActions from '../../store/search';
 import * as assetActions from '../../store/asset';
+import * as watchlistActions from '../../store/watchlist';
 
 import logo from'../../Logo.png';
 
@@ -56,9 +57,15 @@ function Navigation(){
 
 		dispatch(searchActions.clearSearch())
 		dispatch(assetActions.clearSingle())
+		dispatch(watchlistActions.clearAList())
 		dispatch(assetActions.getAll())
 		await setSearchActive(false)
 		await setQuery('')
+	}
+
+	const clickSearchResult = async (e) => {
+		dispatch(assetActions.clearSingle())
+		dispatch(watchlistActions.clearAList())
 	}
 
 	return (
@@ -98,7 +105,7 @@ function Navigation(){
 										<NavLink
 										to={`/search/${result['1. symbol']}`}
 										className='search-results'
-										onClick={() => dispatch(assetActions.clearSingle())}
+										onClick={clickSearchResult}
 										>
 										<div className='results-symbols'>{result['1. symbol']}</div>
 										<div className='results-names'>{result['2. name']}</div>

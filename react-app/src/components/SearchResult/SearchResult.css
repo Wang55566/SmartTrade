@@ -75,7 +75,6 @@
 }
 
 .transaction-button {
-  width:225.77;
   height:44px;
   padding:0px 48px;
   box-sizing:border-box;
@@ -106,3 +105,30 @@
 .transaction-market-price {
   font-weight: 700;
 }
+
+.watchlist-container {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  margin:0px 0px 0px 148px;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-weight: 700;
+}
+
+/* .watchlist-button {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin:0px 0px 0px 133px;
+  width:80px;
+  height:30px;
+  padding:0px 48px;
+  border: 1px solid rgb(223, 204, 195);
+  background-color:rgb(223, 204, 195);
+  color:rgb(238, 7, 7);
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-weight: 700;
+}
+
+.watchlist-button:hover {
+  background-color:rgba(189, 171, 162, 0.8);
+} */

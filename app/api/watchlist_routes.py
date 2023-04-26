@@ -1,9 +1,9 @@
 from flask import Blueprint, jsonify, request
-from app.models import db, User, Watchlist
+from app.models import db, User, Watchlist, ListStock
 from flask_login import current_user, login_required
 from .auth_routes import validation_errors_to_error_messages
 
-from app.forms import WatchlistForm
+from app.forms import WatchlistForm, ListStockForm
 
 import requests
 import os
@@ -16,11 +16,15 @@ watchlist_routes = Blueprint('watchlists', __name__)
 def all_watchlists():
 
   watchlists = Watchlist.query.filter(Watchlist.user_id == current_user.id).all()
-
   watchlist_dict = {}
   for watchlist in watchlists:
+    stock_list = []
     watchlist_data = watchlist.to_dict()
     watchlist_dict[watchlist.id] = watchlist_data
+    stock_list = []
+    for stock in watchlist.liststocks:
+      stock_list.append(stock.to_dict())
+    watchlist_dict[watchlist.id]['stocks'] = stock_list
 
   print('--------------Get All Watchlists--------------')
 
@@ -39,7 +43,6 @@ def one_watchlist(id):
 
     for stock in watchlist.liststocks:
       stock_list.append(stock.to_dict())
-      print(stock.to_dict())
 
     watchlistDict['stocks'] = stock_list
 
@@ -76,7 +79,7 @@ def update_watchlist(id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-      
+
       watchlist.name = form.data['name']
 
       db.session.commit()
@@ -96,3 +99,31 @@ def delete_watchlist(id):
 
     print('--------------Delete Watchlist--------------')
     return watchlist.to_dict()
+
+# Add a stock to a watchlist
+@watchlist_routes.route('/<int:id>/add', methods=['POST'])
+@login_required
+def add_stock(id):
+
+      watchlist = Watchlist.query.get(id)
+
+      form = ListStockForm()
+      form['csrf_token'].data = request.cookies['csrf_token']
+
+      if form.validate_on_submit():
+        liststock = ListStock(
+          symbol = form.data['symbol'],
+          market_price = form.data['market_price'],
+          watchlist_id = form.data['watchlist_id']
+        )
+        db.session.add(liststock)
+
+        watchlist.number_of_stocks += 1
+        db.session.commit()
+
+        print('--------------Add Stock--------------')
+        return watchlist.to_dict()
+
+# Move a stock to a different watchlist
+
+# Delete a stock from a watchlist

@@ -7,6 +7,9 @@ import * as assetActions from '../../store/asset';
 import * as session from '../../store/session';
 import * as watchlistActions from '../../store/watchlist';
 
+import OpenModalButton from '../OpenModalButton';
+import AddStockToListModal from '../AddStockToListModal';
+
 import stock_chart from '../../stock chart.png'
 
 import './SearchResult.css'
@@ -24,7 +27,7 @@ function SearchResult() {
 
   const [transaction_buy, setTransactionBuy] = useState(true);
 
-  const [watchListIdArray, setWatchListIdArray] = useState([]);
+  const [watchlistId, setWatchlistId] = useState('');
 
   const assets = useSelector(state => state.asset.allAssets);
   const result = useSelector(state => state.search.resultdetails);
@@ -52,6 +55,7 @@ function SearchResult() {
     console.log('------------second use effect------------')
     dispatch(searchActions.getResultDetails(symbol))
     setAssetId('')
+    setWatchlistId('')
     Object.values(assets).forEach( asset => {
       if (asset.symbol === symbol) {
         setAverageCost(asset.average_cost)
@@ -59,12 +63,16 @@ function SearchResult() {
         setShares(asset.shares)
         setAssetId(asset.id)
     }})
-    Object.values(watchlists).forEach( watchlist => {
-      dispatch(watchlistActions.getOnelist(watchlist.id))
-      // setWatchListIdArray(watchListIdArray => [...watchListIdArray, watchlist.id])
-      console.log(watchlist.id)
+
+    Object.values(watchlists).map(watchlist => {
+      for(let stocks of watchlist.stocks) {
+        if(stocks.symbol === symbol) {
+          setWatchlistId(stocks.watchlist_id)
+        }
+      }
     })
-  }, [assets, symbol, watchlists]);
+
+  }, [assets, symbol]);
 
   useEffect(() => {
     console.log('------------third use effect------------')
@@ -76,7 +84,13 @@ function SearchResult() {
       setShares('')
     }
 
-  }, [dispatch, assetId, watchListIdArray])
+    if(watchlistId) {
+      dispatch(watchlistActions.getOnelist(watchlistId))
+    } else {
+      setWatchlistId('')
+    }
+
+  }, [dispatch, assetId, watchlistId])
 
 
 
@@ -149,6 +163,13 @@ function SearchResult() {
     }
   }
 
+  // const handleWatchlist = async (e) => {
+  //   e.preventDefault();
+  //   console.log('market-price:', quoted_price_to_fixed)
+  //   console.log('symbol:', symbol)
+  //   console.log('watchlistId:', watchlistId)
+  // }
+
 
   return (
     <>
@@ -213,6 +234,17 @@ function SearchResult() {
           </div>
 
         </div>
+
+
+        <div className='watchlist-container'>
+          <div className='one-watchlist-title'>Watchlist</div>
+        <OpenModalButton
+          className='watchlist-button'
+          buttonText={oneList.name ? <i className="fas fa-check">{oneList.name}</i> : 'Add'}
+          modalComponent={<AddStockToListModal quoted_price_to_fixed={quoted_price_to_fixed} symbol={symbol}/>}
+        />
+        </div>
+
       </div>
     </>
   )
