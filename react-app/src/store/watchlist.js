@@ -71,6 +71,31 @@ export const createOneList = (watchlist) => async (dispatch) => {
   }
 }
 
+export const updateOneList = (name, id) => async (dispatch) => {
+  console.log(name)
+  const response = await fetch(`/api/watchlists/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({name, id})
+  })
+  if (response.ok) {
+    const data = await response.json()
+    dispatch(updateWatchList(data))
+    return data
+  }
+}
+
+export const deleteOneList = (id) => async (dispatch) => {
+  const response = await fetch(`/api/watchlists/${id}`, {
+    method: 'DELETE'
+  })
+  if (response.ok) {
+    dispatch(deleteWatchList(id))
+  }
+}
+
 const initialState = { allLists: {}, oneList: {} };
 
 const watchlistReducer = (state = initialState, action) => {
@@ -87,6 +112,13 @@ const watchlistReducer = (state = initialState, action) => {
       const state3 = { ...state };
       state3.allLists[action.payload.id] = action.payload;
       return state3;
+    case UPDATEWATCHLIST:
+      const state4 = { ...state };
+      state4.allLists[action.payload.id] = action.payload;
+      return state4;
+    case DELETEWATCHLIST:
+      const state5 = { ...state };
+      delete state5.allLists[action.payload.id];
     default:
       return state;
   }

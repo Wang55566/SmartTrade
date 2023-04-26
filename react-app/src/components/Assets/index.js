@@ -6,6 +6,10 @@ import * as assetActions from '../../store/asset';
 import * as searchActions from '../../store/search';
 import * as watchlistActions from '../../store/watchlist';
 
+import OpenModalButton from '../OpenModalButton';
+import RenameListModal from '../RenameListModal';
+import DeleteListModal from '../DeleteListModal';
+
 import './Assets.css';
 
 import chart from '../../Chart.png'
@@ -24,12 +28,11 @@ function Assets() {
 
   let totalValue = 0;
   let stockValue = Object.values(assets)?.forEach(asset => {
-    totalValue += (asset?.market_price * asset?.shares)
+    totalValue += asset?.market_price * asset?.shares
   })
 
-  if(Object.values(watchlists)?.length > 0) {
-    console.log(oneList.stocks)
-  }
+  // console.log(totalValue)
+  // console.log(stockValue)
 
 
   useEffect(() => {
@@ -115,16 +118,30 @@ function Assets() {
                     placeholder="List Name"
                     className="create-list-input"
                   />
-                  <button type="submit" className='create-list-button'>Create</button>
+                  <div className="flx">
+                    <button type="submit" className='create-list-button'>Create</button>
+                    <button onClick={() => setCreateList(false)} className='create-list-cancel'>Cancel</button>
+                  </div>
                 </form>
             </div>
             )}
             <div className='list-containter'>
-                {Object.values(watchlists).map(watchlist => (
-                  <div key={watchlist.id} className="one-watchlist">
-                    <div onClick={() => handleOpenOneList(watchlist.id)}>{watchlist.name}</div>
+                {Object.values(watchlists).map( (watchlist) => (
+                  <div key={watchlist.id}>
+                    <div className="one-watchlist">
+                      <div onClick={() => handleOpenOneList(watchlist.id)}>{watchlist.name}</div>
+                      <div className='oneList-edit-delete'>
+                        <OpenModalButton
+                          buttonText={<i className="fas fa-edit"></i>}
+                          modalComponent={<RenameListModal watchlist={watchlist} />}
+                        />
+                        <OpenModalButton
+                          buttonText={<i className="fas fa-trash-alt"></i>}
+                          modalComponent={<DeleteListModal watchlist={watchlist} />}
+                        />
+                      </div>
+                    </div>
                   </div>
-
                 ))}
             </div>
 

@@ -71,7 +71,7 @@ function Navigation(){
 						exact to="/main"
 						onClick={clickHome}
 						>
-							<img src={logo} alt="logo" width='50px' height='50px'/>
+							<img src={logo} alt="logo" width='60px' height='60px'/>
 						</NavLink>
 					</div>
 
@@ -85,6 +85,7 @@ function Navigation(){
 								onChange={handleOnChange}
 								className='search-input'
 								style={{ width: '300px'}}
+								placeholder='Search for a stock'
 							/>
 							</form>
 

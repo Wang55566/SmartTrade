@@ -88,6 +88,16 @@ a.asset-link {
   margin-left: 58px;
 }
 
+.one-watchlist {
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+}
+
+i.fas.fa-edit {
+  margin-right: 3px;
+}
+
 .all-watchlist {
   display: block;
   width:220px;

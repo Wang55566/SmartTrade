@@ -70,15 +70,14 @@ def create_watchlist():
 @login_required
 def update_watchlist(id):
 
+    watchlist = Watchlist.query.get(id)
+    print(watchlist.to_dict())
     form = WatchlistForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-      watchlist = Watchlist(
-        user_id = current_user.id,
-        name = form.data['name'],
-        number_of_stocks = form.data['number_of_stocks'],
-      )
+      
+      watchlist.name = form.data['name']
 
       db.session.commit()
 

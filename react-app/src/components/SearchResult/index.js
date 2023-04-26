@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import * as searchActions from '../../store/search';
 import * as assetActions from '../../store/asset';
+import * as session from '../../store/session';
+import * as watchlistActions from '../../store/watchlist';
 
 import stock_chart from '../../stock chart.png'
 
@@ -22,9 +24,14 @@ function SearchResult() {
 
   const [transaction_buy, setTransactionBuy] = useState(true);
 
+  const [watchListIdArray, setWatchListIdArray] = useState([]);
+
   const assets = useSelector(state => state.asset.allAssets);
   const result = useSelector(state => state.search.resultdetails);
   const singleAsset = useSelector(state => state.asset.singleAsset);
+  const user = useSelector(state => state.session.user);
+  const watchlists = useSelector(state => state.watchlist.allLists);
+  const oneList = useSelector(state => state.watchlist.oneList);
 
   let quoted_price = result?.[Object.keys(result)[0]]?.['05. price'];
   let quoted_price_to_fixed = parseFloat(quoted_price).toFixed(2);
@@ -37,6 +44,8 @@ function SearchResult() {
     console.log('------------first use effect------------')
     dispatch(searchActions.clearSearch())
     dispatch(assetActions.getAll())
+    dispatch(watchlistActions.getAllLists())
+
   }, [dispatch])
 
   useEffect(() => {
@@ -50,7 +59,12 @@ function SearchResult() {
         setShares(asset.shares)
         setAssetId(asset.id)
     }})
-  }, [assets, symbol]);
+    Object.values(watchlists).forEach( watchlist => {
+      dispatch(watchlistActions.getOnelist(watchlist.id))
+      // setWatchListIdArray(watchListIdArray => [...watchListIdArray, watchlist.id])
+      console.log(watchlist.id)
+    })
+  }, [assets, symbol, watchlists]);
 
   useEffect(() => {
     console.log('------------third use effect------------')
@@ -62,7 +76,7 @@ function SearchResult() {
       setShares('')
     }
 
-  }, [dispatch, assetId])
+  }, [dispatch, assetId, watchListIdArray])
 
 
 

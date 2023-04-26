@@ -111,11 +111,21 @@
   position: relative;
   width: 350px;
   height: 30px;
-  margin: 20px 0px 15px 0px;
+  margin: 20px 0px 3px 0px;
 }
 
 .search-results-container {
   position: absolute;
+}
+
+.fa-search {
+  position: absolute;
+  top: 3px;
+  left: 5px;
+}
+
+.search-input {
+  padding-left:23px
 }
 
 .search-results {

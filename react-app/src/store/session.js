@@ -1,6 +1,12 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const UPDATE_CASH = "session/UPDATE_CASH";
+
+const updateCash = (cash) => ({
+	type: UPDATE_CASH,
+	payload: cash,
+});
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -96,12 +102,33 @@ export const signUp = (username, email, password, first_name, last_name) => asyn
 	}
 };
 
+export const cash = (cash) => async (dispatch) => {
+	const response = await fetch("/api/users/cash", {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			cash,
+		}),
+	});
+
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(updateCash(data));
+	}
+};
+
+
+
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case SET_USER:
 			return { user: action.payload };
 		case REMOVE_USER:
 			return { user: null };
+		case UPDATE_CASH:
+			return { ...state, user: { ...state.user, cash: action.payload } };
 		default:
 			return state;
 	}
