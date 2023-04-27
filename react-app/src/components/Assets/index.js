@@ -141,11 +141,11 @@ function Assets() {
                       <div className='oneList-edit-delete'>
                         <OpenModalButton
                           buttonText={<i className="fas fa-edit"></i>}
-                          modalComponent={<RenameListModal watchlist={watchlist} setOpenList={setOpenList}/>}
+                          modalComponent={<RenameListModal watchlist={watchlist}/>}
                         />
                         <OpenModalButton
                           buttonText={<i className="fas fa-trash-alt"></i>}
-                          modalComponent={<DeleteListModal watchlist={watchlist} />}
+                          modalComponent={<DeleteListModal watchlist={watchlist} setOpenList={setOpenList}/>}
                         />
                       </div>
                     </div>
