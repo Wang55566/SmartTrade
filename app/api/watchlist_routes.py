@@ -105,25 +105,55 @@ def delete_watchlist(id):
 @login_required
 def add_stock(id):
 
-      watchlist = Watchlist.query.get(id)
+    watchlist = Watchlist.query.get(id)
 
-      form = ListStockForm()
-      form['csrf_token'].data = request.cookies['csrf_token']
+    form = ListStockForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-      if form.validate_on_submit():
-        liststock = ListStock(
-          symbol = form.data['symbol'],
-          market_price = form.data['market_price'],
-          watchlist_id = form.data['watchlist_id']
-        )
-        db.session.add(liststock)
+    if form.validate_on_submit():
+      liststock = ListStock(
+        symbol = form.data['symbol'],
+        market_price = form.data['market_price'],
+        watchlist_id = form.data['watchlist_id']
+      )
+      db.session.add(liststock)
 
-        watchlist.number_of_stocks += 1
-        db.session.commit()
+      watchlist.number_of_stocks += 1
+      db.session.commit()
 
-        print('--------------Add Stock--------------')
-        return watchlist.to_dict()
+      return watchlist.to_dict()
 
 # Move a stock to a different watchlist
+@watchlist_routes.route('/<int:watchlist_id>/move/<string:symbol>', methods=['PUT'])
+@login_required
+def move_stock(symbol, watchlist_id):
+
+    watchlist = Watchlist.query.get(watchlist_id)
+
+    stock = ListStock.query.filter(ListStock.symbol == symbol).first()
+
+    form = ListStockForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+      stock.watchlist_id = form.data['watchlist_id']
+
+      db.session.commit()
+
+      return watchlist.to_dict()
 
 # Delete a stock from a watchlist
+@watchlist_routes.route('/<int:watchlist_id>/remove/<string:symbol>', methods=['DELETE'])
+@login_required
+def delete_stock(symbol, watchlist_id):
+
+    watchlist = Watchlist.query.get(watchlist_id)
+
+    stock = ListStock.query.filter(ListStock.symbol == symbol).first()
+
+    db.session.delete(stock)
+
+    watchlist.number_of_stocks -= 1
+    db.session.commit()
+
+    print('--------------Delete Stock--------------')
+    return watchlist.to_dict()

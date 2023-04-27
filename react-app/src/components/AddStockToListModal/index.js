@@ -18,15 +18,21 @@ function AddStockToListModal({symbol, quoted_price_to_fixed}) {
   const watchlists = useSelector(state => state.watchlist.allLists);
   const oneList = useSelector(state => state.watchlist.oneList);
 
-  const handleChange = (e) => {
-    setSelectedValue(e.target.value);
+  const handleChange = async (e) => {
+    await setSelectedValue(e.target.value);
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(watchlistActions.addStockToList(symbol, quoted_price_to_fixed, selectedValue))
-    dispatch(watchlistActions.getAllLists())
-    dispatch(watchlistActions.getOneList(selectedValue))
+    if(Object.values(oneList).length === 0) {
+      await dispatch(watchlistActions.addStockToList(symbol, quoted_price_to_fixed, selectedValue))
+      await dispatch(watchlistActions.getAllLists())
+      await dispatch(watchlistActions.getOneList(selectedValue))
+    } else if(selectedValue === "") {
+      await dispatch(watchlistActions.removeStockFromList(symbol, oneList.id))
+    } else if(selectedValue !== oneList.id) {
+      await dispatch(watchlistActions.moveStockFromListToList(symbol, oneList.id, selectedValue))
+    }
     closeModal();
   }
 

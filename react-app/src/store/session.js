@@ -102,20 +102,20 @@ export const signUp = (username, email, password, first_name, last_name) => asyn
 	}
 };
 
-export const cash = (cash) => async (dispatch) => {
-	const response = await fetch("/api/users/cash", {
+export const cash = (cash, userId) => async (dispatch) => {
+	const response = await fetch(`/api/users/${userId}/cash`, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({
-			cash,
+			available_cash: cash
 		}),
 	});
 
 	if (response.ok) {
 		const data = await response.json();
-		dispatch(updateCash(data));
+		dispatch(setUser(data));
 	}
 };
 

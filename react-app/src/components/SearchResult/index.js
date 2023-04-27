@@ -113,13 +113,19 @@ function SearchResult() {
       if (transaction_buy === true) {
 
         console.log('update buying')
-        const product = singleAsset.average_cost * singleAsset.shares;
-        const new_shares = singleAsset.shares + parseInt(inputShares);
-        const new_average_cost = ((product + (singleAsset.market_price * parseInt(inputShares))) / new_shares).toFixed(2);
-        await dispatch(assetActions.update({ shares: new_shares, average_cost: new_average_cost, id: singleAsset.id }));
-        await setShares(new_shares)
-        await setAverageCost(new_average_cost)
-        await setInputShares('')
+        if(user.available_cash >= (quoted_price_to_fixed * parseInt(inputShares))) {
+          const product = singleAsset.average_cost * singleAsset.shares;
+          const new_shares = singleAsset.shares + parseInt(inputShares);
+          const new_average_cost = ((product + (singleAsset.market_price * parseInt(inputShares))) / new_shares).toFixed(2);
+          await dispatch(assetActions.update({ shares: new_shares, average_cost: new_average_cost, id: singleAsset.id }));
+          await dispatch(session.cash(user.available_cash - (quoted_price_to_fixed * parseInt(inputShares)), user.id))
+          await setShares(new_shares)
+          await setAverageCost(new_average_cost)
+          await setInputShares('')
+        } else {
+          alert('You do not have enough cash to buy this stock')
+          return
+        }
       }
 
     else {
@@ -133,12 +139,14 @@ function SearchResult() {
         await setShares(0)
         await setAverageCost(0)
         await setInputShares('')
+        await dispatch(session.cash(user.available_cash + (quoted_price_to_fixed * parseInt(inputShares)), user.id))
       } else {
         console.log('update selling')
         const new_shares = singleAsset.shares - parseInt(inputShares);
         await dispatch(assetActions.update({ shares: new_shares, average_cost: singleAsset.average_cost, id: singleAsset.id }));
         await setShares(new_shares)
         await setInputShares('')
+        await dispatch(session.cash(user.available_cash + (quoted_price_to_fixed * parseInt(inputShares)), user.id))
       }
     }
   }
@@ -147,28 +155,28 @@ function SearchResult() {
     else {
       if (transaction_buy === true) {
 
+        if(user.available_cash >= (quoted_price_to_fixed * parseInt(inputShares))) {
+
           const newAsset = {
-          symbol: symbol,
-          shares: parseInt(inputShares)
+            symbol: symbol,
+            shares: parseInt(inputShares)
+          }
+          await dispatch(assetActions.create(newAsset));
+          await setInputShares('')
+          await setAverageCost(quoted_price_to_fixed)
+          await setShares(parseInt(inputShares))
+          await setMarketPrice(quoted_price_to_fixed)
+          await dispatch(session.cash(user.available_cash - (quoted_price_to_fixed * parseInt(inputShares)), user.id))
+        } else {
+          alert('You do not have enough cash to buy this stock')
+          return
         }
-        await dispatch(assetActions.create(newAsset));
-        await setInputShares('')
-        await setAverageCost(quoted_price_to_fixed)
-        await setShares(parseInt(inputShares))
-        await setMarketPrice(quoted_price_to_fixed)
       }
       else {
         alert('You cannot sell shares you do not own')
       }
     }
   }
-
-  // const handleWatchlist = async (e) => {
-  //   e.preventDefault();
-  //   console.log('market-price:', quoted_price_to_fixed)
-  //   console.log('symbol:', symbol)
-  //   console.log('watchlistId:', watchlistId)
-  // }
 
 
   return (

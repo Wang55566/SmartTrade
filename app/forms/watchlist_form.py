@@ -9,5 +9,5 @@ class WatchlistForm(FlaskForm):
 
 class ListStockForm(FlaskForm):
     symbol = StringField('symbol', validators=[DataRequired()])
-    market_price = FloatField('market_price', validators=[DataRequired()])
+    market_price = FloatField('market_price')
     watchlist_id = IntegerField('watchlist_id', validators=[DataRequired()])

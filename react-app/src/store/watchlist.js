@@ -5,9 +5,9 @@ const UPDATEWATCHLIST = 'watchlist/UPDATE_WATCH_LIST'
 const DELETEWATCHLIST = 'watchlist/DELETE_WATCH_LIST'
 const CLEARONEWATCHLIST = 'watchlist/CLEAR_WATCH_LIST'
 
-const ADDONESTOCKTOONELIST = 'watchlist/ADD_ONE_STOCK_TO_ONE_LIST'
-const REMOVEONESTOCKFROMONELIST = 'watchlist/REMOVE_ONE_STOCK_FROM_ONE_LIST'
-const MOVEONESTOCKFROMONELISTTOANOTHER = 'watchlist/MOVE_ONE_STOCK_FROM_ONE_LIST_TO_ANOTHER'
+// const ADDONESTOCKTOONELIST = 'watchlist/ADD_ONE_STOCK_TO_ONE_LIST'
+// const REMOVEONESTOCKFROMONELIST = 'watchlist/REMOVE_ONE_STOCK_FROM_ONE_LIST'
+// const MOVEONESTOCKFROMONELISTTOANOTHER = 'watchlist/MOVE_ONE_STOCK_FROM_ONE_LIST_TO_ANOTHER'
 
 
 const clearOnelist = () => {
@@ -123,6 +123,38 @@ export const addStockToList = (symbol, quoted_price_to_fixed, selectedValue) => 
   if (response.ok) {
     const data = await response.json()
     dispatch(getAllLists())
+  }
+}
+
+export const removeStockFromList = (symbol, listId) => async (dispatch) => {
+
+  const response = await fetch(`/api/watchlists/${listId}/remove/${symbol}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({symbol, watchlist_id: listId})
+  })
+  if (response.ok) {
+    const data = await response.json()
+    dispatch(getAllLists())
+    dispatch(clearAList())
+  }
+}
+
+export const moveStockFromListToList = (symbol, listId, newListId) => async (dispatch) => {
+
+  const response = await fetch(`/api/watchlists/${listId}/move/${symbol}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({symbol, watchlist_id: newListId})
+  })
+  if (response.ok) {
+    const data = await response.json()
+    dispatch(getAllLists())
+    dispatch(getOneList(newListId))
   }
 }
 
