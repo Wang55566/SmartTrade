@@ -25,6 +25,7 @@ function Assets() {
 
   const [createList, setCreateList] = useState(false);
   const [openList, setOpenList] = useState(false);
+  const [oneListId, setOneListId] = useState(null);
 
   let totalValue = 0;
   let stockValue = Object.values(assets)?.forEach(asset => {

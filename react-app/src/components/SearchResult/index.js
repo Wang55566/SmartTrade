@@ -217,40 +217,50 @@ function SearchResult() {
 
         </div>
 
-        <div className='trade-panel'>
+        <div className='right-panel'>
+          <div className='trade-panel'>
 
-          <div className='transaction-switch'>
-            <button onClick={(e) => setTransactionBuy(!transaction_buy)}>{transaction_buy === true ? "Switch to sell" : "Switch to Buy"}</button>
+            <div className='transaction-switch'>
+              <button onClick={(e) => setTransactionBuy(!transaction_buy)}>{transaction_buy === true ? "Switch to sell" : "Switch to Buy"}</button>
+            </div>
+
+            <div className='transaction-form'>
+              <form onSubmit={handleSubmit}>
+                <div className='transaction-market-price'>Market Price: {quoted_price_to_fixed}</div>
+                <div className='share-input'>
+                  <label className='transaction-label'>Shares</label>
+                  <input
+                    type="number"
+                    value={inputShares}
+                    onChange={(e) => setInputShares(e.target.value)}
+                    required
+                    className='transaction-input-box'
+                  />
+                </div>
+                <div className='transaction-estimated-cost'>Estimated price: {estimated}</div>
+                <button type="submit" className='transaction-button'>{transaction_buy === true ? "Buy" : "Sell"}</button>
+              </form>
+            </div>
+
           </div>
 
-          <div className='transaction-form'>
-            <form onSubmit={handleSubmit}>
-              <div className='transaction-market-price'>Market Price: {quoted_price_to_fixed}</div>
-              <div className='share-input'>
-                <label className='transaction-label'>Shares</label>
-                <input
-                  type="number"
-                  value={inputShares}
-                  onChange={(e) => setInputShares(e.target.value)}
-                  required
-                  className='transaction-input-box'
-                />
-              </div>
-              <div className='transaction-estimated-cost'>Estimated price: {estimated}</div>
-              <button type="submit" className='transaction-button'>{transaction_buy === true ? "Buy" : "Sell"}</button>
-            </form>
+          <div className='available-cash-by-trade-panel'>
+            <div className='cash-text'>Buying Power</div>
+            <div className='trade-panel-cash'>${user?.available_cash}</div>
           </div>
 
-        </div>
 
+          <div className='watchlist-container'>
+            <div className='one-watchlist-title'>Watchlist</div>
+            <div className='watchlist-text'>
+              <OpenModalButton
+                className='watchlist-button'
+                buttonText={oneList.name ? <i className="fas fa-check">{oneList.name}</i> : <i className="fa fa-plus">Add</i>}
+                modalComponent={<AddStockToListModal quoted_price_to_fixed={quoted_price_to_fixed} symbol={symbol}/>}
+              />
+            </div>
+          </div>
 
-        <div className='watchlist-container'>
-          <div className='one-watchlist-title'>Watchlist</div>
-        <OpenModalButton
-          className='watchlist-button'
-          buttonText={oneList.name ? <i className="fas fa-check">{oneList.name}</i> : 'Add'}
-          modalComponent={<AddStockToListModal quoted_price_to_fixed={quoted_price_to_fixed} symbol={symbol}/>}
-        />
         </div>
 
       </div>

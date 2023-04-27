@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 
 import * as watchlistActions from "../../store/watchlist";
 
+import './DeleteListModal.css';
+
 function DeleteListModal({ watchlist }) {
 
   const dispatch = useDispatch();
@@ -21,14 +23,16 @@ function DeleteListModal({ watchlist }) {
 
   return (
     <div className='delete-watchlist'>
-      <h2>
-        Are you sure you want to delete "{watchlist.name}"?
-      </h2>
       <h3>
-        If you delete this list, it will be gone forever!
+        Are you sure you want to delete "{watchlist.name}"?
       </h3>
-      <button className='delete-yes' onClick={onClickYes}>Yes</button>
-      <button className='delete-no' onClick={onClickNo}>No</button>
+      <h4>
+        If you delete this list, it will be gone forever!
+      </h4>
+      <div className='buttons'>
+        <button className='delete-yes' onClick={onClickYes}>Confirm</button>
+        <button className='delete-no' onClick={onClickNo}>Cancel</button>
+      </div>
     </div>
   )
 }

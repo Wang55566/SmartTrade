@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import {useModal} from '../../context/Modal';
 import { useDispatch } from "react-redux";
 
+import './RenameListModal.css';
+
 import * as watchlistActions from "../../store/watchlist";
 
 function RenameListModal({ watchlist }) {
@@ -32,9 +34,9 @@ function RenameListModal({ watchlist }) {
 
   return (
     <div className='rename-watchlist'>
-      <h2>
+      <h3>
         Rename you list "{watchlist.name}"?
-      </h2>
+      </h3>
       <form onSubmit={handleSubmit}>
       <input
         type="text"
@@ -44,8 +46,10 @@ function RenameListModal({ watchlist }) {
         onChange={(e) => setListName(e.target.value)}
         required
       />
-      <button type="submit" className='rename-save'>Save</button>
-      <button className='rename-cancel' onClick={onClickCancel}>Cancel</button>
+      <div className='buttons'>
+        <button type="submit" className='rename-save'>Save</button>
+        <button className='rename-cancel' onClick={onClickCancel}>Cancel</button>
+      </div>
       </form>
     </div>
   )

@@ -1,0 +1,9 @@
+.delete-watchlist {
+  width: 450px;
+  height:auto;
+}
+
+h4 {
+  display:flex;
+  justify-content: center;
+}
