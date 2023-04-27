@@ -59,7 +59,6 @@ function SearchResult() {
     Object.values(assets).forEach( asset => {
       if (asset.symbol === symbol) {
         setAverageCost(asset.average_cost)
-        setMarketPrice(asset.market_price)
         setShares(asset.shares)
         setAssetId(asset.id)
     }})
@@ -80,7 +79,6 @@ function SearchResult() {
       dispatch(assetActions?.getOne?.(assetId))
     } else {
       setAverageCost('')
-      setMarketPrice('')
       setShares('')
     }
 
@@ -165,7 +163,6 @@ function SearchResult() {
           await setInputShares('')
           await setAverageCost(quoted_price_to_fixed)
           await setShares(parseInt(inputShares))
-          await setMarketPrice(quoted_price_to_fixed)
           await dispatch(session.cash(user.available_cash - (quoted_price_to_fixed * parseInt(inputShares)), user.id))
         } else {
           alert('You do not have enough cash to buy this stock')
