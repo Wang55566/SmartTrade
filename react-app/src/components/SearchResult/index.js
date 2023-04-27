@@ -243,7 +243,7 @@ function SearchResult() {
 
           <div className='available-cash-by-trade-panel'>
             <div className='cash-text'>Buying Power</div>
-            <div className='trade-panel-cash'>${user?.available_cash}</div>
+            <div className='trade-panel-cash'>${user?.available_cash.toFixed(2)}</div>
           </div>
 
 

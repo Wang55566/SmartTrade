@@ -32,6 +32,8 @@ function Assets() {
     totalValue += asset?.market_price * asset?.shares
   })
 
+  console.log(typeof stockValue, typeof user?.available_cash)
+
   // console.log(totalValue)
   // console.log(stockValue)
 
@@ -71,7 +73,7 @@ function Assets() {
         <div className='middle'>
 
           <div className="total-value">
-            $ {totalValue+user?.available_cash}
+            $ {(totalValue+user?.available_cash).toFixed(2)}
           </div>
 
           <div className="chart">
@@ -80,7 +82,7 @@ function Assets() {
 
           <div className="cash">
             <div className='cash-text'>Buying Power</div>
-            <div className='cash-number'>${user?.available_cash}</div>
+            <div className='cash-number'>${(user?.available_cash).toFixed(2)}</div>
           </div>
 
         </div>
