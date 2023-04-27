@@ -5,7 +5,7 @@ import * as watchlistActions from "../../store/watchlist";
 
 import './DeleteListModal.css';
 
-function DeleteListModal({ watchlist }) {
+function DeleteListModal({ watchlist, setOpenList }) {
 
   const dispatch = useDispatch();
 
@@ -18,6 +18,7 @@ function DeleteListModal({ watchlist }) {
   const onClickYes = async () => {
     await dispatch(watchlistActions.deleteOneList(watchlist.id));
     await dispatch(watchlistActions.getAllLists());
+    setOpenList(false)
     closeModal();
   }
 
