@@ -54,9 +54,14 @@ function Assets() {
     }
   }
 
-  const handleOpenOneList = async (id) => {
+  const handleOpenOneList = async(id) => {
     await dispatch(watchlistActions.getOneList(id));
-    setOpenList(!openList);
+    await setOneListId(id);
+    if(oneListId === id) {
+      await setOpenList(!openList)
+    } else {
+      await setOpenList(true)
+    }
   }
 
   return (

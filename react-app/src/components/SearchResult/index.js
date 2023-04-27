@@ -19,7 +19,6 @@ function SearchResult() {
   const { symbol } = useParams();
 
   const [average_cost, setAverageCost] = useState('');
-  const [market_price, setMarketPrice] = useState('');
   const [shares, setShares] = useState('');
   const [assetId, setAssetId] = useState('');
 
