@@ -73,7 +73,7 @@ function Assets() {
         <div className='middle'>
 
           <div className="total-value">
-            $ {(totalValue+user?.available_cash).toFixed(2)}
+            $ {(totalValue+user?.available_cash)?.toFixed(2)}
           </div>
 
           <div className="chart">
@@ -82,7 +82,7 @@ function Assets() {
 
           <div className="cash">
             <div className='cash-text'>Buying Power</div>
-            <div className='cash-number'>${(user?.available_cash).toFixed(2)}</div>
+            <div className='cash-number'>${(user?.available_cash)?.toFixed(2)}</div>
           </div>
 
         </div>
