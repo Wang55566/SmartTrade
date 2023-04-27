@@ -45,6 +45,7 @@ function SearchResult() {
 
   useEffect(() => {
     console.log('------------first use effect------------')
+    dispatch(watchlistActions.clearAList())
     dispatch(searchActions.clearSearch())
     dispatch(assetActions.getAll())
     dispatch(watchlistActions.getAllLists())
