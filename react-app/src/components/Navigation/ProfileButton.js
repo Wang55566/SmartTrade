@@ -1,18 +1,25 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
-import OpenModalButton from "../OpenModalButton";
-import LoginFormModal from "../LoginFormModal";
-import SignupFormModal from "../SignupFormModal";
+
+import * as searchActions from "../../store/search";
+
+import { useHistory } from 'react-router-dom';
+
+import "./Navigation.css";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
+  const history = useHistory();
+
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
+
+    dispatch(searchActions.clearSearch());
   };
 
   useEffect(() => {
@@ -29,9 +36,15 @@ function ProfileButton({ user }) {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
-  const handleLogout = (e) => {
+  const handleLogout = async (e) => {
     e.preventDefault();
-    dispatch(logout());
+    await dispatch(logout());
+    await history.push('/');
+  };
+
+  const handleProfile = async (e) => {
+    e.preventDefault();
+    await alert('Profile page is coming soon!');
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -39,33 +52,20 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button onClick={openMenu} className='open-drop-down-profile'>
+      <i class="fa fa-user" aria-hidden="true"></i>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
+            <li className='dropdown-profile'>
+              <button onClick={handleProfile} className='dropdown-profile-button'>Profile</button>
+            </li>
+            <li className='dropdown-logout'>
+              <button onClick={handleLogout} className='dropdown-logout-button'>Log Out</button>
             </li>
           </>
-        ) : (
-          <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-          </>
-        )}
+        ) : null}
       </ul>
     </>
   );

@@ -1,0 +1,162 @@
+.single-stock-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 2fr 1fr;
+}
+
+.result-detail {
+  font-size: 32px;
+  font-weight: 700;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+
+.cash {
+  display: flex;
+  justify-content: space-between;
+  height:24px;
+  padding:24px 0px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  border-bottom: 1px solid rgb(227, 233, 237);
+}
+
+.asset-stock-details {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+
+.asset-left, .asset-right {
+  border: 1px solid rgba(7, 0, 0, 0.06);
+  width: 283px;
+  font-size: 17px;
+}
+
+.bold-price {
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.trade-panel {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  padding-left: 24px;
+  width:274px;
+  height: 280px;
+  border: 1px solid rgb(227, 233, 237);
+  border-radius: 4px;
+  box-sizing: border-box;
+  box-shadow: 0px -12px 24px rgb(0 0 0 0.02), 0px 12px 24px rgb(0 0 0 0.06);
+  margin:50px 50px 20px 0px;
+  position: relative;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+
+.transaction-switch {
+  display: flex;
+  justify-content: flex-end;
+  background-color: rgb(255, 255, 255);
+}
+
+.switch-button {
+  border: 1px solid rgb(227, 233, 237);
+  box-shadow: rgb(0 0 0 / 2%) 0px 1px 3px 0px;
+  height: 20px;
+  margin: 10px 10px 10px 0px;
+  background-color: rgb(226, 213, 213);
+  font-size: 15px;
+  font-weight: 550;
+  color: rgb(197, 130, 130);
+}
+
+.switch-button:hover {
+  background-color: rgba(188, 166, 166, 0.8);
+  color:aliceblue
+}
+
+.transaction-form {
+  margin-top: 50px;
+}
+
+.share-input {
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  margin: 15px 23px 15px 0px;
+}
+
+.transaction-input-box {
+  width:60px;
+  margin-left:15px;
+}
+
+.transaction-button {
+  border: 1px solid rgb(255, 80, 0);
+  height:44px;
+  padding:0px 48px;
+  box-sizing:border-box;
+  border-radius:44px;
+  background-color:rgb(255, 80, 0);
+  color:rgb(255, 255, 255);
+  position:absolute;
+  bottom: 24px;
+  left: 71px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.transaction-button:hover {
+  background-color:rgb(255, 80, 0, 0.8);
+}
+
+.transaction-market-price {
+  margin-left: 45px;
+}
+
+.transaction-estimated-cost {
+  display: flex;
+  justify-content: center;
+  margin-right: 25px;
+}
+
+.transaction-market-price {
+  font-weight: 700;
+}
+
+.available-cash-by-trade-panel {
+  display: flex;
+  width:272.4px;
+  justify-content: space-between;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  margin: 20px 0px 35px 0px
+}
+
+.trade-panel-cash {
+  font-weight: 700;
+  margin-left: 10px;
+}
+
+.watchlist-container {
+  margin:60px 0px 0px 20px;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif
+}
+
+.watchlist-text {
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  display: inline-block;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+.watchlist-container button {
+  border:none;
+  width:100px;
+  height:30px;
+  border-radius: 15px;
+  background-color:rgb(197, 204, 224);
+}
+
+.watchlist-container button:hover {
+  background-color:rgb(197, 204, 224, 0.8);
+}

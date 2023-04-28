@@ -1,8 +1,10 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User
+from app.models import db, User
 
 user_routes = Blueprint('users', __name__)
+
+from app.forms import TransactionForm
 
 
 @user_routes.route('/')
@@ -23,3 +25,16 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+@user_routes.route('/<int:id>/cash', methods=['PUT'])
+@login_required
+def update_cash(id):
+    print('----------------- update cash route -----------------')
+    user = User.query.get(id)
+    print('----------------- user -----------------', user)
+    form = TransactionForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        user.available_cash = form.data['available_cash']
+        db.session.commit()
+        return user.to_dict()

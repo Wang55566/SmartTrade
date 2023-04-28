@@ -1,1 +1,37 @@
 /* TODO Add site wide styles */
+
+li {
+  list-style: none;
+}
+
+/* button {
+  background-color: transparent;
+  padding: 0.5rem;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+button:hover {
+  background-color: #eee;
+} */
+
+label, input {
+  display: block;
+  margin:5px 0px;
+}
+
+input {
+  border-radius: 6px;
+  border: 2px solid #ccc;
+}
+
+h1 {
+  font-size: 21px;
+  font-weight: 500;
+}
+
+button {
+  cursor: pointer;
+}

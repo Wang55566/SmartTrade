@@ -1,0 +1,22 @@
+.watchlist-form {
+  width: 400px;
+  height:auto;
+  border-radius: 5px;
+}
+
+h3 {
+  display:flex;
+  justify-content: center;
+}
+
+.watchlist-form label, input {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}

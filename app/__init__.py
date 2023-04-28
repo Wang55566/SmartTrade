@@ -10,6 +10,15 @@ from .api.auth_routes import auth_routes
 from .seeds import seed_commands
 from .config import Config
 
+# Assets
+from .api.asset_routes import asset_routes
+
+#Search
+from .api.search_routes import search_routes
+
+# Watchlists
+from .api.watchlist_routes import watchlist_routes
+
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
 # Setup login manager
@@ -28,6 +37,16 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
+
+# Assets
+app.register_blueprint(asset_routes, url_prefix='/api/assets')
+
+# Search
+app.register_blueprint(search_routes, url_prefix='/api/search')
+
+# Watchlists
+app.register_blueprint(watchlist_routes, url_prefix='/api/watchlists')
+
 db.init_app(app)
 Migrate(app, db)
 

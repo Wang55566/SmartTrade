@@ -1,0 +1,18 @@
+.signup-page {
+  display: flex;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+.signup-form {
+  display:block;
+  margin: 0px;
+  width: 450px;
+  padding: 40px 56px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #d3e7cd;
+  box-shadow: 0px -12px 24px rgb(0 0 0 0.02), 0px 12px 24px rgb(0 0 0 0.06);
+}
+
+.signup-page-signup-button {
+  margin-top: 20px;
+}

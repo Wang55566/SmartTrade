@@ -1,6 +1,12 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const UPDATE_CASH = "session/UPDATE_CASH";
+
+const updateCash = (cash) => ({
+	type: UPDATE_CASH,
+	payload: cash,
+});
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -67,7 +73,7 @@ export const logout = () => async (dispatch) => {
 	}
 };
 
-export const signUp = (username, email, password) => async (dispatch) => {
+export const signUp = (username, email, password, first_name, last_name) => async (dispatch) => {
 	const response = await fetch("/api/auth/signup", {
 		method: "POST",
 		headers: {
@@ -77,6 +83,8 @@ export const signUp = (username, email, password) => async (dispatch) => {
 			username,
 			email,
 			password,
+			first_name,
+			last_name,
 		}),
 	});
 
@@ -94,12 +102,33 @@ export const signUp = (username, email, password) => async (dispatch) => {
 	}
 };
 
+export const cash = (cash, userId) => async (dispatch) => {
+	const response = await fetch(`/api/users/${userId}/cash`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			available_cash: cash
+		}),
+	});
+
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(setUser(data));
+	}
+};
+
+
+
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case SET_USER:
 			return { user: action.payload };
 		case REMOVE_USER:
 			return { user: null };
+		case UPDATE_CASH:
+			return { ...state, user: { ...state.user, cash: action.payload } };
 		default:
 			return state;
 	}
