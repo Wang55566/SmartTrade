@@ -52,17 +52,17 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button onClick={openMenu} className='open-drop-down-profile'>
+      <i class="fa fa-user" aria-hidden="true"></i>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
             <li className='dropdown-profile'>
-              <button onClick={handleProfile}>Profile</button>
+              <button onClick={handleProfile} className='dropdown-profile-button'>Profile</button>
             </li>
             <li className='dropdown-logout'>
-              <button onClick={handleLogout}>Log Out</button>
+              <button onClick={handleLogout} className='dropdown-logout-button'>Log Out</button>
             </li>
           </>
         ) : null}

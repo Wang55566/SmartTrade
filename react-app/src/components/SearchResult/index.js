@@ -218,7 +218,7 @@ function SearchResult() {
           <div className='trade-panel'>
 
             <div className='transaction-switch'>
-              <button onClick={(e) => setTransactionBuy(!transaction_buy)}>{transaction_buy === true ? "Switch to sell" : "Switch to Buy"}</button>
+              <button onClick={(e) => setTransactionBuy(!transaction_buy)} className='switch-button'>{transaction_buy === true ? "Switch to sell" : "Switch to Buy"}</button>
             </div>
 
             <div className='transaction-form'>

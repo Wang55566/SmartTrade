@@ -14,7 +14,6 @@ function Navigation(){
 
 	const sessionUser = useSelector(state => state.session.user);
 	const searchResult = useSelector(state => state.search.results);
-	const singleAsset = useSelector(state => state.asset.singleAsset);
 
 	const [searchActive, setSearchActive] = useState(false);
 	const ulRef = useRef();

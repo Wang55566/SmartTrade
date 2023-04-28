@@ -4,20 +4,15 @@
 }
 .signup-form {
   display:block;
-  margin: 0 auto;
-  width: 400px;
-  padding: 40px 40px 40px 40px;
+  margin: 0px;
+  width: 450px;
+  padding: 40px 56px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: #d3e7cd;
   box-shadow: 0px -12px 24px rgb(0 0 0 0.02), 0px 12px 24px rgb(0 0 0 0.06);
 }
 
-label, input {
-  display: block;
-}
-
-h1 {
-  font-size: 21px;
-  font-weight: 500;
+.signup-page-signup-button {
+  margin-top: 20px;
 }

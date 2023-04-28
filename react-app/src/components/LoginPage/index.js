@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 
 import login_picture from '../../login picture.png'
 import * as assetActions from '../../store/asset';
@@ -62,17 +62,20 @@ function Login() {
                 required
               />
             </label>
-            <button type="submit">Log In</button>
 
-            <button
-                  type='submit'
-                  onClick={() => {
-                    setEmail('demo2@aa.io');
-                    setPassword('password');
-                  }}
-                  className="bg-blue-dff color-white cursor-p border-0 pad-tb-10p fontS-115rem borderR-5p">
-                  Log in as Demo User
-            </button>
+            <div className='login-page-buttons'>
+              <button type="submit" className='login-page-login-button'>Log In</button>
+              <button
+                    type='submit'
+                    onClick={() => {
+                      setEmail('demo2@aa.io');
+                      setPassword('password');
+                    }}
+                    className="login-demo-user">
+                    Log in as a Demo User
+              </button>
+              <NavLink to="/signup" className='login-page-signup-button'>Create your account</NavLink>
+            </div>
           </form>
         </div>
 

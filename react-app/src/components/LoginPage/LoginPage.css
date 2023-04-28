@@ -5,20 +5,45 @@
 
 .login-form {
   display:block;
-  margin: 0 auto;
-  width: 400px;
-  padding: 40px 40px 40px 40px;
-  border: 1px solid #ccc;
+  width: 450px;
+  padding: 40px 56px;
+  border: 2px solid #ccc;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: #d3e7cd;
   box-shadow: 0px -12px 24px rgb(0 0 0 0.02), 0px 12px 24px rgb(0 0 0 0.06);
 }
 
-label, input {
-  display: block;
+.login-page-buttons {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
 }
 
-h1 {
-  font-size: 21px;
-  font-weight: 500;
+.login-page-login-button, .signup-page-signup-button {
+  margin-right: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  width: 80px;
+  height: 40px;
+  border-radius: 20px;
+  color:rgb(61, 133, 6);
+  font-weight: 700;
+}
+
+.login-page-login-button:hover, .signup-page-signup-button:hover {
+  background-color: #1e6b04;
+  color: #fff;
+}
+
+.login-demo-user, .login-page-signup-button {
+  background-color: #d3e7cd;
+  border:none;
+  width: fit-content;
+  margin-top: 20px;
+  border-radius: 20px;
+  color:rgb(61, 133, 6);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: underline;
+  padding:0px;
 }

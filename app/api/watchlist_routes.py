@@ -10,6 +10,8 @@ import os
 
 watchlist_routes = Blueprint('watchlists', __name__)
 
+api_key = os.environ.get('API_KEY')
+
 # Get all watchlists
 @watchlist_routes.route('')
 @login_required
@@ -42,7 +44,16 @@ def one_watchlist(id):
     stock_list = []
 
     for stock in watchlist.liststocks:
-      stock_list.append(stock.to_dict())
+      stock_dict = stock.to_dict()
+      symbol = stock_dict['symbol']
+      url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={api_key}'
+      r = requests.get(url)
+      data = r.json()
+      market_price = data["Global Quote"]["05. price"]
+
+      rounded_market_price = round(float(market_price), 2)
+      stock_dict['market_price'] = rounded_market_price
+      stock_list.append(stock_dict)
 
     watchlistDict['stocks'] = stock_list
 

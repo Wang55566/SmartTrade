@@ -28,14 +28,9 @@ function Assets() {
   const [oneListId, setOneListId] = useState(null);
 
   let totalValue = 0;
-  let stockValue = Object.values(assets)?.forEach(asset => {
+  Object.values(assets)?.forEach(asset => {
     totalValue += asset?.market_price * asset?.shares
   })
-
-  console.log(typeof stockValue, typeof user?.available_cash)
-
-  // console.log(totalValue)
-  // console.log(stockValue)
 
 
   useEffect(() => {
@@ -114,7 +109,7 @@ function Assets() {
             <div className='create-header'>
               <h3>Lists</h3>
               <div className='create-watchlist'>
-                <button onClick={() => setCreateList(!createList)}><i className="fas fa-plus"></i></button>
+                <button onClick={() => setCreateList(!createList)} className='create-watchlist-button'><i className="fas fa-plus"></i></button>
               </div>
             </div>
 
@@ -126,8 +121,8 @@ function Assets() {
                     placeholder="List Name"
                     className="create-list-input"
                   />
-                  <div className="flx">
-                    <button type="submit" className='create-list-button'>Create</button>
+                  <div className="create-list-buttons">
+                    <button type="submit" className='create-list-create'>Create</button>
                     <button onClick={() => setCreateList(false)} className='create-list-cancel'>Cancel</button>
                   </div>
                 </form>
@@ -146,6 +141,7 @@ function Assets() {
                         <OpenModalButton
                           buttonText={<i className="fas fa-trash-alt"></i>}
                           modalComponent={<DeleteListModal watchlist={watchlist} setOpenList={setOpenList}/>}
+                          className='delete-list-button'
                         />
                       </div>
                     </div>
@@ -159,7 +155,10 @@ function Assets() {
 
           {openList? <div className='list-stocks'>
             <h3> {oneList?.name}</h3>
-
+            <div className='list-stocks-header'>
+              <div>Symbol</div>
+              <div>Market Price</div>
+            </div>
             <div className='show-list-stocks'>
               {Object.values(watchlists)?.length > 0 ? oneList?.stocks?.map(stock => (
                 <NavLink
@@ -169,6 +168,7 @@ function Assets() {
                 >
                 <div className="one-stock">
                   <div>{stock?.symbol}</div>
+                  <div>${stock?.market_price}</div>
                 </div>
                 </NavLink>)): ""}
             </div>

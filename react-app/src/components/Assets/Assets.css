@@ -29,6 +29,10 @@
   border-bottom: 1px solid rgb(227, 233, 237);
 }
 
+.cash-number {
+  margin-right: 20px;
+}
+
 .right {
   width:222px;
 }
@@ -37,7 +41,7 @@
   display: block;
   width:220px;
   border: 1px solid rgb(227, 233, 237);
-  grid-column-start:2
+  grid-column-start:2;
 }
 
 h3 {
@@ -62,7 +66,8 @@ a.asset-link {
   font-size: 13px;
   font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
   padding: 0px 24px;
-  margin: 3px 0px 7px 0px;
+  margin: 3px 0px 10px 0px;
+  color: #0000EE
 }
 
 .one-asset:hover {
@@ -77,25 +82,55 @@ a.asset-link {
   display:flex;
   justify-content: space-between;
   align-items:center;
-  padding-right: 20px;
+  padding-right: 25px;
+}
+
+.create-watchlist-button {
+  border:1px solid rgb(227, 233, 237);
+}
+
+.create-watchlist-button:hover {
+  background-color: rgb(197, 223, 236);
 }
 
 .create-list-form {
   padding: 0px 24px;
+  height:80px;
 }
 
-.create-list-button {
-  margin-left: 58px;
+.create-list-input {
+  width:161px;
 }
+
+.create-list-buttons {
+  display:flex;
+  justify-content: flex-start;
+}
+
+.create-list-create, .create-list-cancel {
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  border:1px solid rgb(227, 233, 237);
+  padding: 0px 10px;
+  margin: 10px 15px 0px 0px;
+  background-color: rgb(44, 29, 204);
+  color:white;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+
+}
+
+.create-list-create:hover, .create-list-cancel:hover {
+  background-color: rgb(19, 38, 123);
+}
+
 
 .one-watchlist {
   display: flex;
   justify-content: space-between;
   align-items:center;
-}
-
-i.fas.fa-edit {
-  margin-right: 3px;
 }
 
 .all-watchlist {
@@ -109,9 +144,9 @@ i.fas.fa-edit {
 .one-watchlist {
   height:35px;
   font-weight: 700;
-  color: -webkit-link;
+  color: #0000EE;
   cursor: pointer;
-  padding: 0px 24px;
+  padding: 3px 24px;
 }
 
 .one-watchlist:hover {
@@ -120,6 +155,18 @@ i.fas.fa-edit {
 
 .list-stocks {
   border: 1px solid rgb(227, 233, 237);
+}
+
+.list-stocks-header {
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  padding: 0px 24px;
+  height:35px;
+  font-size: 14px;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-weight: 500;
+  color:rgb(254, 13, 0)
 }
 
 .show-list-stocks {
@@ -135,6 +182,11 @@ i.fas.fa-edit {
 
 .one-stock {
   display: flex;
-  justify-content: flex-start;
-  margin:10px 0px 10px 0px;
+  justify-content: space-between;
+  padding:10px 0px 10px 0px;
+  color: #0000EE;
+}
+
+.one-stock:hover {
+  background-color: rgb(227, 233, 237);
 }
