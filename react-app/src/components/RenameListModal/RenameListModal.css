@@ -1,8 +1,38 @@
 .rename-watchlist {
-  width: 350px;
-  height:auto;
+  display: block;
 }
 
-.rename-list-input {
-  margin:0px 0px 0px 85px;
+.rename-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 18px;
+  display: flex;
+  justify-content: center;
+  color:red
+}
+
+.rename-watchlist input {
+  display: flex;
+  margin-left: 85px;
+  font-weight: 600;
+  width:fit-content
+}
+
+.rename-watchlist-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.rename-save, .rename-cancel {
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: cursive;
+  font-weight: 600;
+}
+
+.rename-save:hover, .rename-cancel:hover {
+  background-color: rgb(247, 199, 199);
 }

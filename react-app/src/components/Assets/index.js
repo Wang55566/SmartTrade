@@ -13,6 +13,7 @@ import DeleteListModal from '../DeleteListModal';
 import './Assets.css';
 
 import chart from '../../Chart.png'
+import not_real_chart from '../../statistic chart.jpeg'
 
 function Assets() {
 
@@ -38,16 +39,17 @@ function Assets() {
     dispatch(watchlistActions.getAllLists());
   }, [dispatch]);
 
+  // maximum 13 characters
   const handleCreateList = async (e) => {
     e.preventDefault();
-    if(e.target[0].value!=='') {
+    if(e.target[0].value!=='' && e.target[0].value.length < 14) {
       const name = e.target[0].value
       const user_id = user.id;
       await dispatch(watchlistActions.createOneList({name, user_id}));
       await dispatch(watchlistActions.getAllLists());
       setCreateList(false);
     } else {
-      alert('Please enter a name for your list')
+      alert('Please enter a watchlist name with 1-13 characters')
     }
   }
 
@@ -65,19 +67,19 @@ function Assets() {
     <>
       <div className="main-page">
 
-        <div className='middle'>
+        <div className='left'>
 
           <div className="total-value">
             $ {(totalValue+user?.available_cash)?.toFixed(2)}
           </div>
 
           <div className="chart">
-            <img src={chart} alt="chart" />
+            <img src={not_real_chart} alt="chart" width='1038px' height='400px'/>
           </div>
 
-          <div className="cash">
-            <div className='cash-text'>Buying Power</div>
-            <div className='cash-number'>${(user?.available_cash)?.toFixed(2)}</div>
+          <div className="cash-main">
+            <div className='cash-main-text'>Buying Power</div>
+            <div className='cash-main-number'>${(user?.available_cash)?.toFixed(2)}</div>
           </div>
 
         </div>
@@ -85,7 +87,7 @@ function Assets() {
         <div className='right'>
 
           <div className="all-asset">
-            <h3>Stocks</h3>
+            <h3>Assets</h3>
             {Object.values(assets).map(asset => (
               <NavLink
               to={`/search/${asset.symbol}`}
@@ -107,7 +109,7 @@ function Assets() {
           <div className="all-watchlist">
 
             <div className='create-header'>
-              <h3>Lists</h3>
+              <h3>Watchlists</h3>
               <div className='create-watchlist'>
                 <button onClick={() => setCreateList(!createList)} className='create-watchlist-button'><i className="fas fa-plus"></i></button>
               </div>
@@ -132,7 +134,7 @@ function Assets() {
                 {Object.values(watchlists).map( (watchlist) => (
                   <div key={watchlist.id}>
                     <div className="one-watchlist">
-                      <div onClick={() => handleOpenOneList(watchlist.id)}>{watchlist.name}</div>
+                      <div onClick={() => handleOpenOneList(watchlist.id)} className='one-watchlist-name'>{watchlist.name}</div>
                       <div className='oneList-edit-delete'>
                         <OpenModalButton
                           buttonText={<i className="fas fa-edit"></i>}
@@ -141,7 +143,6 @@ function Assets() {
                         <OpenModalButton
                           buttonText={<i className="fas fa-trash-alt"></i>}
                           modalComponent={<DeleteListModal watchlist={watchlist} setOpenList={setOpenList}/>}
-                          className='delete-list-button'
                         />
                       </div>
                     </div>
@@ -155,10 +156,6 @@ function Assets() {
 
           {openList? <div className='list-stocks'>
             <h3> {oneList?.name}</h3>
-            <div className='list-stocks-header'>
-              <div>Symbol</div>
-              <div>Market Price</div>
-            </div>
             <div className='show-list-stocks'>
               {Object.values(watchlists)?.length > 0 ? oneList?.stocks?.map(stock => (
                 <NavLink
@@ -167,8 +164,8 @@ function Assets() {
                 className='stock-link'
                 >
                 <div className="one-stock">
-                  <div>{stock?.symbol}</div>
-                  <div>${stock?.market_price}</div>
+                  <div className='list-stock-symbol'>{stock?.symbol}</div>
+                  <div className='list-stock-price'>${stock?.market_price}</div>
                 </div>
                 </NavLink>)): ""}
             </div>

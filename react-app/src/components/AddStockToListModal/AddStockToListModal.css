@@ -1,22 +1,44 @@
 .watchlist-form {
   width: 400px;
   height:auto;
-  border-radius: 5px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-h3 {
-  display:flex;
+.watchlist-modal-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 20px;
+  display: flex;
   justify-content: center;
 }
 
-.watchlist-form label, input {
+.watchlist-form label, .watchlist-form input {
   display: flex;
   align-items: center;
   margin: 10px;
+  font-weight: 600;
+  color:blueviolet
+}
+
+.remove-from-list {
+  color: red;
 }
 
 .buttons {
   display: flex;
   justify-content: center;
   margin: 20px;
+}
+
+.list-confirm, .list-cancel {
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: cursive;
+  font-weight: 600;
+}
+
+.list-confirm:hover, .list-cancel:hover {
+  background-color: rgb(247, 199, 199);
 }

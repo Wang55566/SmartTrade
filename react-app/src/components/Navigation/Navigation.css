@@ -47,7 +47,7 @@
   border: 1px solid #a9ead5;
   border-radius: 4px;
   background-color: white;
-  font-family: "Helvetica",system-ui,"Segoe UI",Helvetica,sans-serif;
+  font-family: "Comic Sans MS", sans-serif;
   font-size: 15px;
   font-weight: 500;
   margin-top:10px;
@@ -70,11 +70,9 @@
 
   color: yellowgreen;
   text-decoration: none;
-  -webkit-box-align: center;
   align-items: center;
   box-sizing: border-box;
   display: inline-flex;
-  -webkit-box-pack: center;
   justify-content: center;
   text-align: start;
   white-space: normal;
@@ -85,23 +83,22 @@
   height: 44px;
   padding: 0px 28px;
   width: 102px;
-  font-family: "Capsule Sans Text", sans-serif;
+  font-family: "Comic Sans MS", sans-serif;
   margin-right: 5px;
 }
 
 .login-button:hover {
   background-color: rgb(255, 199, 87);
   color: black;
+  border:1px solid rgb(0, 0, 0);
 }
 
 .signup-button {
   color: yellowgreen;
   text-decoration: none;
-  -webkit-box-align: center;
   align-items: center;
   box-sizing: border-box;
   display: inline-flex;
-  -webkit-box-pack: center;
   justify-content: center;
   overflow: hidden;
   position: relative;
@@ -109,27 +106,26 @@
   white-space: nowrap;
   border-radius: 24px;
   cursor: pointer;
-  animation-name: animation-fifjv8;
-  animation-duration: 3000ms;
-  animation-iteration-count: infinite;
   background: rgb(0, 0, 0);
   border: 1px solid rgb(255, 199, 87);
   height: 44px;
   padding: 0px 28px;
   width: 102px;
+  font-family: "Comic Sans MS", sans-serif;
 }
 
 .signup-button:hover {
   background-color: rgb(255, 199, 87);
   color: black;
+  border:1px solid rgb(0, 0, 0);
 }
 
 .title {
-  font-family: "Helvetica",system-ui,"Segoe UI",Helvetica,sans-serif;
-  font-size: 35px;
+  font-family: "Lucida Handwriting",system-ui,"Segoe UI",sans-serif;
+  font-size: 32px;
   font-weight: bolder;
   color: rgb(16, 219, 26);
-  margin-left:120px;
+  margin-left: 130px;
   text-shadow: -1px -1px 0 #350f0f, 1px -1px 0 #38ce72, -1px 1px 0 #fff, 1px 1px 0 #fff;
 }
 
@@ -160,7 +156,8 @@
   background-color: whitesmoke;
   font-size: 13px;
   font-weight: 500;
-  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",sans-serif;
+  z-index:5;
 }
 
 .search-results:hover {
@@ -174,4 +171,5 @@
 
 .results-names {
   color: rgb(69, 206, 35);
+  font-weight: 700;
 }
