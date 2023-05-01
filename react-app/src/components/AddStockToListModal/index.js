@@ -37,9 +37,9 @@ function AddStockToListModal({symbol, quoted_price_to_fixed}) {
   }
 
   return (
-    <div>
+    <div className='watchlist-modal'>
       <div className='watchlist-form'>
-        <h3>Watchlist</h3>
+        <h3 className="watchlist-modal-title"> Select a watchlist</h3>
         <form onSubmit={handleSubmit}>
         {Object.values(watchlists).map((watchlist) => (
           <label key={watchlist.id}>
@@ -58,13 +58,14 @@ function AddStockToListModal({symbol, quoted_price_to_fixed}) {
               value=""
               checked={selectedValue === ""}
               onChange={handleChange}
+              className="remove-from-list"
             />
-            Remove from {oneList.name}
+            Remove it from "{oneList.name}" ?
           </label>: ""}
 
           <div className='buttons'>
-            <button type="submit">Confirm</button>
-            <button onClick={closeModal}>Cancel</button>
+            <button type="submit" className="list-confirm">Confirm</button>
+            <button onClick={closeModal} className="list-cancel">Cancel</button>
           </div>
 
         </form>

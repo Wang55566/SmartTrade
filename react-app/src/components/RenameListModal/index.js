@@ -20,22 +20,22 @@ function RenameListModal({ watchlist }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(listName !=='') {
+    if(listName !=='' && listName.length < 14) {
       const name = listName;
       const id = watchlist.id;
       await dispatch(watchlistActions.updateOneList(name, id));
       await dispatch(watchlistActions.getAllLists());
       closeModal();
     } else {
-      alert('Please enter a name for your list')
+      alert('Please enter a watchlist name with 1-13 characters')
     }
   }
 
 
   return (
     <div className='rename-watchlist'>
-      <h3>
-        Rename you list "{watchlist.name}"?
+      <h3 className='rename-title'>
+        Rename your watchlist "{watchlist.name}"?
       </h3>
       <form onSubmit={handleSubmit}>
       <input
@@ -46,7 +46,7 @@ function RenameListModal({ watchlist }) {
         onChange={(e) => setListName(e.target.value)}
         required
       />
-      <div className='buttons'>
+      <div className='rename-watchlist-buttons'>
         <button type="submit" className='rename-save'>Save</button>
         <button className='rename-cancel' onClick={onClickCancel}>Cancel</button>
       </div>

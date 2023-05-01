@@ -34,7 +34,7 @@ function DeleteListModal(props) {
       <h4>
         If you delete this list, it will be gone forever!
       </h4>
-      <div className='buttons'>
+      <div className='delete-watchlist-buttons'>
         <button className='delete-yes' onClick={onClickYes}>Confirm</button>
         <button className='delete-no' onClick={onClickNo}>Cancel</button>
       </div>

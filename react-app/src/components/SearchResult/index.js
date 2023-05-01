@@ -11,6 +11,7 @@ import OpenModalButton from '../OpenModalButton';
 import AddStockToListModal from '../AddStockToListModal';
 
 import stock_chart from '../../stock chart.png'
+import not_real_chart from '../../statistic chart.jpeg'
 
 import './SearchResult.css'
 
@@ -27,6 +28,8 @@ function SearchResult() {
   const [transaction_buy, setTransactionBuy] = useState(true);
 
   const [watchlistId, setWatchlistId] = useState('');
+
+  const [errors, setErrors] = useState('');
 
   const assets = useSelector(state => state.asset.allAssets);
   const result = useSelector(state => state.search.resultdetails);
@@ -54,6 +57,7 @@ function SearchResult() {
   useEffect(() => {
     console.log('------------second use effect------------')
     dispatch(searchActions.getResultDetails(symbol))
+    setErrors('')
     setAssetId('')
     setWatchlistId('')
     Object.values(assets).forEach( asset => {
@@ -99,7 +103,7 @@ function SearchResult() {
     // Validate input
     let inputSharesNumber = Number(inputShares)
     if(inputSharesNumber < 1 || !Number.isInteger(inputSharesNumber)) {
-      alert('Please enter a positive integer')
+      setErrors(`${inputShares} is not a valid number of shares`)
       return;
     }
 
@@ -121,7 +125,7 @@ function SearchResult() {
           await setAverageCost(new_average_cost)
           await setInputShares('')
         } else {
-          alert('You do not have enough cash to buy this stock')
+          setErrors('You do not have enough buying power')
           return
         }
       }
@@ -129,7 +133,7 @@ function SearchResult() {
     else {
 
       if(singleAsset.shares < parseInt(inputShares)) {
-        alert('You cannot sell more shares than you own')
+        setErrors('You cannot sell more shares than you own')
         return
       } else if(singleAsset.shares === parseInt(inputShares)) {
         console.log('update removing')
@@ -165,12 +169,12 @@ function SearchResult() {
           await setShares(parseInt(inputShares))
           await dispatch(session.cash(user.available_cash - (quoted_price_to_fixed * parseInt(inputShares)), user.id))
         } else {
-          alert('You do not have enough cash to buy this stock')
+          setErrors('You do not have enough buying power')
           return
         }
       }
       else {
-        alert('You cannot sell shares you do not own')
+        setErrors('You cannot sell shares you do not own')
       }
     }
   }
@@ -188,20 +192,20 @@ function SearchResult() {
           </div>
 
           <div>
-            <img src={stock_chart} alt='stock chart' />
+            <img src={not_real_chart} alt='stock chart' width='721px' height='300px' />
           </div>
 
           <div className='asset-stock-details'>
             {Object.values(singleAsset).length !== 0 ?
               <>
                 <div className='asset-left'>
-                  <div>Your market value</div>
+                  <div className='asset-text'>Your market value</div>
                   <div className='bold-price'>${market_value}</div>
                 </div>
                 <div className='asset-right'>
-                  <div>Your average cost</div>
+                  <div className='asset-text'>Your average cost</div>
                   <div className='bold-price'>${average_cost}</div>
-                  <div>shares</div>
+                  <div className='asset-text'> shares</div>
                   <div className='bold-price'>{shares}</div>
                 </div>
               </>
@@ -215,15 +219,21 @@ function SearchResult() {
         </div>
 
         <div className='right-panel'>
+
           <div className='trade-panel'>
 
             <div className='transaction-switch'>
               <button onClick={(e) => setTransactionBuy(!transaction_buy)} className='switch-button'>{transaction_buy === true ? "Switch to sell" : "Switch to Buy"}</button>
             </div>
 
+            <div className='errors'>{errors}</div>
+
             <div className='transaction-form'>
               <form onSubmit={handleSubmit}>
-                <div className='transaction-market-price'>Market Price: {quoted_price_to_fixed}</div>
+                <div className='transaction-current-price'>
+                  <div className='current-price-text'>Current Price:</div>
+                  <div className='current-price-number'>${quoted_price_to_fixed}</div>
+                </div>
                 <div className='share-input'>
                   <label className='transaction-label'>Shares</label>
                   <input
@@ -234,28 +244,31 @@ function SearchResult() {
                     className='transaction-input-box'
                   />
                 </div>
-                <div className='transaction-estimated-cost'>Estimated price: {estimated}</div>
+                <div className='transaction-estimated-cost'>
+                  <div className='estimated-cost-text'>Estimated Cost: </div>
+                  <div className='estimated-cost-number'>${estimated}</div>
+                </div>
                 <button type="submit" className='transaction-button'>{transaction_buy === true ? "Buy" : "Sell"}</button>
               </form>
             </div>
 
-          </div>
+            <div className='available-cash-in-trade-panel'>
+              <div className='cash-text'>Buying Power</div>
+              <div className='trade-panel-cash'>${user?.available_cash?.toFixed(2)}</div>
+            </div>
 
-          <div className='available-cash-by-trade-panel'>
-            <div className='cash-text'>Buying Power</div>
-            <div className='trade-panel-cash'>${user?.available_cash?.toFixed(2)}</div>
           </div>
 
 
           <div className='watchlist-container'>
             <div className='one-watchlist-title'>Watchlist</div>
-            <div className='watchlist-text'>
+            {Object.values(watchlists).length !== 0 ?<div className='watchlist-content'>
               <OpenModalButton
                 className='watchlist-button'
                 buttonText={oneList.name ? <i className="fas fa-check">{oneList.name}</i> : <i className="fa fa-plus">Add</i>}
                 modalComponent={<AddStockToListModal quoted_price_to_fixed={quoted_price_to_fixed} symbol={symbol}/>}
               />
-            </div>
+            </div>: <div className='no-watchlists'>No watchlist has been created yet</div>}
           </div>
 
         </div>
