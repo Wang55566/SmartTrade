@@ -39,10 +39,10 @@ function AddStockToListModal({symbol, quoted_price_to_fixed}) {
   return (
     <div className='watchlist-modal'>
       <div className='watchlist-form'>
-        <h3 className="watchlist-modal-title"> Select a watchlist</h3>
+        <h3 className="watchlist-modal-title"> Move it to a different list</h3>
         <form onSubmit={handleSubmit}>
         {Object.values(watchlists).map((watchlist) => (
-          <label key={watchlist.id}>
+          oneList.id !== watchlist.id ? <label key={watchlist.id}>
             <input
               type="radio"
               value={watchlist.id}
@@ -50,7 +50,7 @@ function AddStockToListModal({symbol, quoted_price_to_fixed}) {
               onChange={handleChange}
             />
             {watchlist.name}
-          </label>
+          </label>: ""
         ))}
           {Object.values(oneList).length !== 0 ?<label>
             <input
