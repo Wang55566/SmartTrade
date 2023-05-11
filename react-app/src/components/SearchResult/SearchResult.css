@@ -58,8 +58,9 @@
   padding-bottom: 5px;
 }
 
-.stock-info-left, .stock-info-right {
+.stock-info-left{
   width:343px;
+  margin-left: 5px;
 }
 
 .overview {
@@ -115,6 +116,11 @@
   background-color:rgb(243, 246, 248);
 }
 
+.right-panel {
+  position: fixed;
+  margin-left: 800px;
+}
+
 
 .trade-panel {
   grid-column-start: 2;
@@ -124,7 +130,7 @@
   border-radius: 4px;
   box-sizing: border-box;
   box-shadow: 0px -12px 24px rgb(0 0 0 0.02), 0px 12px 24px rgb(0 0 0 0.06);
-  margin:50px 50px 20px 0px;
+  margin:30px 50px 20px 0px;
   position: relative;
   font-family: "Mongolian Baiti",system-ui,"Segoe UI",sans-serif;
 }
