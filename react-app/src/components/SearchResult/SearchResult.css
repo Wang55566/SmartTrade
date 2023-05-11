@@ -13,6 +13,11 @@
   display: flex;
   justify-content: flex-start;
   font-family: "Capsule Sans Display",system-ui,"Segoe UI",sans-serif;
+  border: 1px solid rgba(187, 187, 230, 0.7);
+  border-radius:7px;
+  width:721px;
+  margin-top: 10px;
+  padding-bottom: 5px;
 }
 
 .asset-text {
@@ -27,13 +32,87 @@
 }
 
 .asset-left, .asset-right {
-  border: 1px solid rgba(187, 187, 230, 0.7);
-  width: 283px;
+  width: 343px;
   font-size: 17px;
 }
 
-.asset-right {
-  margin-left: 35px;
+.stock-info {
+  display:flex;
+  width:721px;
+  margin: 10px 0px;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  border: 1px solid rgba(187, 187, 230, 0.7);
+  border-radius:7px;
+}
+
+.stock-info-name-title, .stock-info-exchange-title, .stock-info-country-title, .stock-info-capital-title {
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.stock-info-name-content, .stock-info-exchange-content, .stock-info-country-content, .stock-info-capital-content {
+  font-size: 17px;
+  font-weight: 500;
+  color: rgb(230, 32, 32);
+  padding-bottom: 5px;
+}
+
+.stock-info-left, .stock-info-right {
+  width:343px;
+}
+
+.overview {
+  margin: 25px 0px;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+
+.overview-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.overview-content {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.show-more-buttons {
+  border:none;
+  background-color:transparent;
+  color:rgb(0, 200, 5);
+  padding:0px;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.news {
+  margin: 35px 0px;
+  font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+
+.news-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+
+
+.one-news-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.one-news {
+  margin:20px;
+}
+
+.one-news:hover {
+  background-color:rgb(243, 246, 248);
 }
 
 

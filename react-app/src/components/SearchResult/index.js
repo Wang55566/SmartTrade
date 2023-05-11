@@ -31,8 +31,12 @@ function SearchResult() {
 
   const [errors, setErrors] = useState('');
 
+  const [showMore, setShowMore] = useState(false);
+
   const assets = useSelector(state => state.asset.allAssets);
   const result = useSelector(state => state.search.resultdetails);
+  const overview = useSelector(state => state.search.overview);
+  const news = useSelector(state => state.search.news);
   const singleAsset = useSelector(state => state.asset.singleAsset);
   const user = useSelector(state => state.session.user);
   const watchlists = useSelector(state => state.watchlist.allLists);
@@ -43,10 +47,19 @@ function SearchResult() {
   let estimated = (quoted_price_to_fixed * inputShares).toFixed(2);
   let market_value = (shares * quoted_price_to_fixed).toFixed(2);
 
+  //Convert number to suffix
+  function convertNumberToSuffix(number) {
+    const suffixes = ["", "thousand", "million", "billion", "trillion"];
+    const suffixIndex = Math.floor((String(number).length - 1) / 3);
+    const suffix = suffixes[suffixIndex];
+    const scaledNumber = number / Math.pow(10, suffixIndex * 3);
+    const formattedNumber = scaledNumber.toLocaleString(undefined, {maximumFractionDigits: 2, minimumFractionDigits: 2});
+    return formattedNumber + " " + suffix;
+  }
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('------------first use effect------------')
     dispatch(watchlistActions.clearAList())
     dispatch(searchActions.clearSearch())
     dispatch(assetActions.getAll())
@@ -55,8 +68,9 @@ function SearchResult() {
   }, [dispatch])
 
   useEffect(() => {
-    console.log('------------second use effect------------')
     dispatch(searchActions.getResultDetails(symbol))
+    dispatch(searchActions.getOverviewDetails(symbol))
+    dispatch(searchActions.getNewsDetails(symbol))
     setErrors('')
     setAssetId('')
     setWatchlistId('')
@@ -78,9 +92,8 @@ function SearchResult() {
   }, [assets, symbol]);
 
   useEffect(() => {
-    console.log('------------third use effect------------')
     if(assetId) {
-      dispatch(assetActions?.getOne?.(assetId))
+      dispatch(assetActions.getOne(assetId))
     } else {
       setAverageCost('')
       setShares('')
@@ -188,7 +201,7 @@ function SearchResult() {
 
           <div className='result-detail'>
             <div>{result?.[Object.keys(result)[0]]?.['01. symbol']}</div>
-            <div>$ {quoted_price_to_fixed}</div>
+            <div>${quoted_price_to_fixed}</div>
           </div>
 
           <div>
@@ -205,16 +218,74 @@ function SearchResult() {
                 <div className='asset-right'>
                   <div className='asset-text'>Your average cost</div>
                   <div className='bold-price'>${average_cost}</div>
-                  <div className='asset-text'> shares</div>
+                  <div className='asset-text'>Your shares</div>
                   <div className='bold-price'>{shares}</div>
                 </div>
               </>
             :
               <>
-                <div className='asset-none'></div>
+                <div className='asset-left'>
+                  <div className='asset-text'>Your market value</div>
+                  <div className='bold-price'>$0.00</div>
+                </div>
+                <div className='asset-right'>
+                  <div className='asset-text'>Your average cost</div>
+                  <div className='bold-price'>$0.00</div>
+                  <div className='asset-text'> Your shares</div>
+                  <div className='bold-price'>0</div>
+                </div>
               </>
             }
           </div>
+
+          <div className='stock-info'>
+            <div className='stock-info-left'>
+              <div className='stock-info-name'>
+                <div className='stock-info-name-title'>Company</div>
+                <div className='stock-info-name-content'>{overview.Name}</div>
+              </div>
+              <div className='stock-info-country'>
+                <div className='stock-info-country-title'>Country</div>
+                <div className='stock-info-country-content'>{overview.Country}</div>
+              </div>
+            </div>
+            <div className='stock-info-right'>
+              <div className='stock-info-exchange'>
+                <div className='stock-info-exchange-title'>Exchange</div>
+                <div className='stock-info-exchange-content'>{overview.Exchange}</div>
+              </div>
+              <div className='stock-info-capital'>
+                <div className='stock-info-capital-title'>Capital</div>
+                <div className='stock-info-capital-content'>{convertNumberToSuffix(overview?.MarketCapitalization)}</div>
+              </div>
+            </div>
+          </div>
+
+
+          <div className='overview'>
+            <div className='overview-title'>About Me</div>
+            <div className='overview-content' style={{ height: showMore ? "auto" : "46px", overflow: "hidden" }}>{overview.Description}</div>
+            <div className='show-more'></div>
+            {!showMore? <button onClick={() => setShowMore(!showMore)} className='show-more-buttons'>Show More</button>
+            :
+            <button onClick={() => setShowMore(!showMore)} className='show-more-buttons'>Show Less</button>}
+          </div>
+
+          <div className='news'>
+            <div className='news-title'>News</div>
+            <div className='news-container'>
+              {news?.feed?.map((oneNews) => (
+                <div key={oneNews.url} className='one-news'>
+                  <a href={oneNews.url}>
+                  <div className='one-news-title'>{oneNews.title}</div>
+                  <div><img src={oneNews.banner_image} width='200px' alt=''/></div>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+
+
 
         </div>
 
@@ -268,7 +339,7 @@ function SearchResult() {
                 buttonText={oneList.name ? <i className="fas fa-check">{oneList.name}</i> : <i className="fa fa-plus">Add</i>}
                 modalComponent={<AddStockToListModal quoted_price_to_fixed={quoted_price_to_fixed} symbol={symbol}/>}
               />
-            </div>: <div className='no-watchlists'>No watchlist has been created yet</div>}
+            </div>: <div className='no-watchlists'>No watchlists have been created yet</div>}
           </div>
 
         </div>

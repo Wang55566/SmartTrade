@@ -31,3 +31,23 @@ def result_details(symbol):
   r = requests.get(url)
   data = r.json()
   return data
+
+# Company Overview
+@search_routes.route('/<string:symbol>/overview')
+@login_required
+def company_overview(symbol):
+
+  url = f'https://www.alphavantage.co/query?function=OVERVIEW&symbol={symbol}&apikey={api_key}'
+  r = requests.get(url)
+  data = r.json()
+  return data
+
+# Company News
+@search_routes.route('/<string:symbol>/news')
+@login_required
+def company_news(symbol):
+
+  url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers={symbol}&apikey={api_key}'
+  r = requests.get(url)
+  data = r.json()
+  return data

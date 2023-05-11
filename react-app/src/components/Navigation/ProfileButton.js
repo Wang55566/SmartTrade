@@ -53,7 +53,7 @@ function ProfileButton({ user }) {
   return (
     <>
       <button onClick={openMenu} className='open-drop-down-profile'>
-      <i class="fa fa-user" aria-hidden="true"></i>
+      <i className="fa fa-user" aria-hidden="true"></i>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
