@@ -1,5 +1,5 @@
 const GETSEARCHRESULTS  =  'search/GET_SEARCH_RESULTS';
-const ClEAR = 'search/CLEAR';
+const CLEAR = 'search/CLEAR';
 const GETRESULTDETAILS = 'search/GET_RESULT_DETAILS';
 const GETOVERVIEW = 'search/GET_OVERVIEW';
 const GETNEWS = 'search/GET_NEWS';
@@ -26,7 +26,7 @@ const getSearchResults = (results) => {
 }
 const clear = () => {
   return {
-    type: ClEAR,
+    type: CLEAR,
   }
 }
 
@@ -81,7 +81,7 @@ const searchReducer = (state = initialState, action) => {
       const state1 = { ...state };
       state1.results = action.payload;
       return state1
-    case ClEAR:
+    case CLEAR:
       const state2 = { ...state };
       state2.results = {};
       return state2;

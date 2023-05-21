@@ -10,10 +10,50 @@ import * as watchlistActions from '../../store/watchlist';
 import OpenModalButton from '../OpenModalButton';
 import AddStockToListModal from '../AddStockToListModal';
 
-import stock_chart from '../../stock chart.png'
 import not_real_chart from '../../statistic chart.jpeg'
-
 import './SearchResult.css'
+
+//Chart
+import { Line } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
+const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+export const data = {
+  labels,
+  datasets: [
+    {
+      label: 'Dataset 1',
+      data: labels.map(() => 1),
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    },
+    {
+      label: 'Dataset 2',
+      data: labels.map(() => 2),
+      borderColor: 'rgb(53, 162, 235)',
+      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+    },
+  ],
+};
+
 
 function SearchResult() {
 
@@ -34,7 +74,6 @@ function SearchResult() {
   const [showMore, setShowMore] = useState(false);
 
   const assets = useSelector(state => state.asset.allAssets);
-  const result = useSelector(state => state.search.resultdetails);
   const overview = useSelector(state => state.search.overview);
   const news = useSelector(state => state.search.news);
   const singleAsset = useSelector(state => state.asset.singleAsset);
@@ -42,7 +81,7 @@ function SearchResult() {
   const watchlists = useSelector(state => state.watchlist.allLists);
   const oneList = useSelector(state => state.watchlist.oneList);
 
-  let quoted_price = result?.[Object.keys(result)[0]]?.['05. price'];
+  let quoted_price = singleAsset?.market_price;
   let quoted_price_to_fixed = parseFloat(quoted_price).toFixed(2);
   let estimated = (quoted_price_to_fixed * inputShares).toFixed(2);
   let market_value = (shares * quoted_price_to_fixed).toFixed(2);
@@ -68,7 +107,6 @@ function SearchResult() {
   }, [dispatch])
 
   useEffect(() => {
-    dispatch(searchActions.getResultDetails(symbol))
     dispatch(searchActions.getOverviewDetails(symbol))
     dispatch(searchActions.getNewsDetails(symbol))
     setErrors('')
@@ -200,7 +238,7 @@ function SearchResult() {
         <div className='left-panel'>
 
           <div className='result-detail'>
-            <div>{result?.[Object.keys(result)[0]]?.['01. symbol']}</div>
+            <div>{symbol}</div>
             <div>${quoted_price_to_fixed}</div>
           </div>
 
@@ -345,6 +383,7 @@ function SearchResult() {
         </div>
 
       </div>
+      {/* <Line data={data} /> */}
     </>
   )
 }
