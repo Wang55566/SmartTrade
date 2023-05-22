@@ -3,6 +3,22 @@ const CLEAR = 'search/CLEAR';
 const GETRESULTDETAILS = 'search/GET_RESULT_DETAILS';
 const GETOVERVIEW = 'search/GET_OVERVIEW';
 const GETNEWS = 'search/GET_NEWS';
+const GETINTRADAYDATA = 'search/GET_INTRADAY_DATA';
+const GETDAILYDATA = 'search/GET_DAILY_DATA';
+
+const getIntradayData = (intradaydata) => {
+  return {
+    type: GETINTRADAYDATA,
+    payload: intradaydata
+  }
+}
+
+const getDailyData = (dailydata) => {
+  return {
+    type: GETDAILYDATA,
+    payload: dailydata
+  }
+}
 
 const getNews = (news) => {
   return {
@@ -73,7 +89,23 @@ export const getNewsDetails = (symbol) => async (dispatch) => {
   }
 }
 
-const initialState = { results: {}, resultDetails: {}, overview: {}, news: {} };
+export const getIntraday = (symbol) => async (dispatch) => {
+  const response = await fetch(`/api/search/${symbol}/intraday`);
+  if(response.ok) {
+    const data = await response.json();
+    dispatch(getIntradayData(data));
+  }
+}
+
+export const getDaily = (symbol) => async (dispatch) => {
+  const response = await fetch(`/api/search/${symbol}/daily`);
+  if(response.ok) {
+    const data = await response.json();
+    dispatch(getDailyData(data));
+  }
+}
+
+const initialState = { results: {}, resultDetails: {}, overview: {}, news: {}, intraday: {}, daily: {} };
 
 const searchReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -97,6 +129,14 @@ const searchReducer = (state = initialState, action) => {
       const state5 = { ...state };
       state5.news = action.payload;
       return state5;
+    case GETINTRADAYDATA:
+      const state6 = { ...state };
+      state6.intraday = action.payload;
+      return state6;
+    case GETDAILYDATA:
+      const state7 = { ...state };
+      state7.daily = action.payload;
+      return state7;
     default:
       return state;
   }
