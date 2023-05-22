@@ -73,7 +73,7 @@ export const getNewsDetails = (symbol) => async (dispatch) => {
   }
 }
 
-const initialState = { results: {}, resultdetails: {}, overview: {}, news: {} };
+const initialState = { results: {}, resultDetails: {}, overview: {}, news: {} };
 
 const searchReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -87,7 +87,7 @@ const searchReducer = (state = initialState, action) => {
       return state2;
     case GETRESULTDETAILS:
       const state3 = { ...state };
-      state3.resultdetails = action.payload;
+      state3.resultDetails = action.payload;
       return state3;
     case GETOVERVIEW:
       const state4 = { ...state };

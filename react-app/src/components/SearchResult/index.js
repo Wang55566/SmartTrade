@@ -76,14 +76,13 @@ function SearchResult() {
   const assets = useSelector(state => state.asset.allAssets);
   const overview = useSelector(state => state.search.overview);
   const news = useSelector(state => state.search.news);
-  const roundedMarketPrice = useSelector(state => state.search.resultDetails);
+  const resultDetails = useSelector(state => state.search.resultDetails);
   const singleAsset = useSelector(state => state.asset.singleAsset);
   const user = useSelector(state => state.session.user);
   const watchlists = useSelector(state => state.watchlist.allLists);
   const oneList = useSelector(state => state.watchlist.oneList);
 
-  let quoted_price = singleAsset?.market_price;
-  let quoted_price_to_fixed = parseFloat(quoted_price).toFixed(2);
+  let quoted_price_to_fixed = resultDetails?.roundedMarketPrice;
   let estimated = (quoted_price_to_fixed * inputShares).toFixed(2);
   let market_value = (shares * quoted_price_to_fixed).toFixed(2);
 
