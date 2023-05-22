@@ -60,7 +60,7 @@ def company_news(symbol):
 # Intraday Chart Data
 @search_routes.route('/<string:symbol>/intraday')
 @login_required
-def daily_chart_data(symbol):
+def intraday_chart_data(symbol):
 
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=1min&apikey={api_key}'
     r = requests.get(url)

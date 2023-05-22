@@ -77,6 +77,8 @@ function SearchResult() {
   const overview = useSelector(state => state.search.overview);
   const news = useSelector(state => state.search.news);
   const resultDetails = useSelector(state => state.search.resultDetails);
+  const intraday = useSelector(state => state.search.intraday);
+  const daily = useSelector(state => state.search.daily);
   const singleAsset = useSelector(state => state.asset.singleAsset);
   const user = useSelector(state => state.session.user);
   const watchlists = useSelector(state => state.watchlist.allLists);
@@ -110,6 +112,8 @@ function SearchResult() {
     dispatch(searchActions.getOverviewDetails(symbol))
     dispatch(searchActions.getNewsDetails(symbol))
     dispatch(searchActions.getResultDetails(symbol))
+    dispatch(searchActions.getIntraday(symbol))
+    dispatch(searchActions.getDaily(symbol))
     setErrors('')
     setAssetId('')
     setWatchlistId('')
