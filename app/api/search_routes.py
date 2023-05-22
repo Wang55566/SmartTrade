@@ -56,3 +56,9 @@ def company_news(symbol):
   r = requests.get(url)
   data = r.json()
   return data
+
+# Daily Chart Data
+
+# Weekly Chart Data
+
+# Monthly Chart Data

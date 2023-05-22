@@ -384,7 +384,9 @@ function SearchResult() {
         </div>
 
       </div>
-      {/* <Line data={data} /> */}
+      <div className='stock-chart'>
+        <Line data={data} />
+      </div>
     </>
   )
 }
