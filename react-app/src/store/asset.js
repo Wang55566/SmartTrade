@@ -124,7 +124,6 @@ const assetReducer = (state = initialState, action) => {
     case CREATEASSET:
       const state3 = { allAssets: {...state.allAssets}, singleAsset: {...state.singleAsset}};
       state3.allAssets[action.payload.id] = action.payload;
-      console.log('-----create action.payload-----', action.payload)
       state3.singleAsset = action.payload;
       return state3
     case UPDATEASSET:

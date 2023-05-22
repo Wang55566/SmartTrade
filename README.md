@@ -1,6 +1,6 @@
-# Flask React Project
+# Readme
 
-This is the starter for the Flask React project.
+Smart Trade is a stock Trading platform that provides friendly user interface and easy access for every person to the stock market.
 
 ## Getting started
 1. Clone this repository (only this branch)

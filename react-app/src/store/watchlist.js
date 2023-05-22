@@ -123,6 +123,7 @@ export const addStockToList = (symbol, quoted_price_to_fixed, selectedValue) => 
   if (response.ok) {
     const data = await response.json()
     dispatch(getAllLists())
+    dispatch(getOneList(selectedValue))
   }
 }
 
@@ -137,8 +138,8 @@ export const removeStockFromList = (symbol, listId) => async (dispatch) => {
   })
   if (response.ok) {
     const data = await response.json()
-    dispatch(getAllLists())
     dispatch(clearAList())
+    dispatch(getAllLists())
   }
 }
 
@@ -153,8 +154,8 @@ export const moveStockFromListToList = (symbol, listId, newListId) => async (dis
   })
   if (response.ok) {
     const data = await response.json()
-    dispatch(getAllLists())
     dispatch(getOneList(newListId))
+    dispatch(getAllLists())
   }
 }
 
@@ -180,6 +181,7 @@ const watchlistReducer = (state = initialState, action) => {
       return state4;
     case DELETEWATCHLIST:
       const state5 = { ...state };
+      state5.oneList = {};
       delete state5.allLists[action.payload.id];
       return state5;
     case CLEARONEWATCHLIST:

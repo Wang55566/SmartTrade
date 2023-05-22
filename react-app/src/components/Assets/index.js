@@ -70,7 +70,7 @@ function Assets() {
         <div className='left'>
 
           <div className="total-value">
-            $ {(totalValue+user?.available_cash)?.toFixed(2)}
+            ${(totalValue+user?.available_cash)?.toFixed(2)}
           </div>
 
           <div className="chart">

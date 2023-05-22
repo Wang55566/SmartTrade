@@ -22,17 +22,17 @@ function AddStockToListModal({symbol, quoted_price_to_fixed}) {
     setSelectedValue(e.target.value);
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if(Object.values(oneList).length === 0) {
       dispatch(watchlistActions.addStockToList(symbol, quoted_price_to_fixed, selectedValue))
-      dispatch(watchlistActions.getAllLists())
       dispatch(watchlistActions.getOneList(selectedValue))
     } else if(selectedValue === "") {
       dispatch(watchlistActions.removeStockFromList(symbol, oneList.id))
     } else if(selectedValue !== oneList.id) {
       dispatch(watchlistActions.moveStockFromListToList(symbol, oneList.id, selectedValue))
     }
+    await dispatch(watchlistActions.getAllLists())
     closeModal();
   }
 

@@ -22,12 +22,43 @@ def search_results(search):
 
   return data
 
-# Get Result Details
+# Get Result Details(market price)
 @search_routes.route('/<string:symbol>/details')
 @login_required
 def result_details(symbol):
 
-  url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={api_key}'
+  # url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={api_key}'
+  # r = requests.get(url)
+  # data = r.json()
+  url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=1min&apikey={api_key}'
+  r = requests.get(url)
+  data = r.json()
+  market_price = data["Time Series (1min)"][list(data["Time Series (1min)"].keys())[0]]["4. close"]
+  rounded_market_price = round(float(market_price), 2)
+  return {'roundedMarketPrice': rounded_market_price}
+
+# Company Overview
+@search_routes.route('/<string:symbol>/overview')
+@login_required
+def company_overview(symbol):
+
+  url = f'https://www.alphavantage.co/query?function=OVERVIEW&symbol={symbol}&apikey={api_key}'
   r = requests.get(url)
   data = r.json()
   return data
+
+# Company News
+@search_routes.route('/<string:symbol>/news')
+@login_required
+def company_news(symbol):
+
+  url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers={symbol}&apikey={api_key}'
+  r = requests.get(url)
+  data = r.json()
+  return data
+
+# Daily Chart Data
+
+# Weekly Chart Data
+
+# Monthly Chart Data
