@@ -76,6 +76,7 @@ function SearchResult() {
   const assets = useSelector(state => state.asset.allAssets);
   const overview = useSelector(state => state.search.overview);
   const news = useSelector(state => state.search.news);
+  const roundedMarketPrice = useSelector(state => state.search.resultDetails);
   const singleAsset = useSelector(state => state.asset.singleAsset);
   const user = useSelector(state => state.session.user);
   const watchlists = useSelector(state => state.watchlist.allLists);
@@ -109,6 +110,7 @@ function SearchResult() {
   useEffect(() => {
     dispatch(searchActions.getOverviewDetails(symbol))
     dispatch(searchActions.getNewsDetails(symbol))
+    dispatch(searchActions.getResultDetails(symbol))
     setErrors('')
     setAssetId('')
     setWatchlistId('')
