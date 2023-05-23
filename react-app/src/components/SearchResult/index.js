@@ -59,7 +59,6 @@ function SearchResult() {
   let estimated = (quoted_price_to_fixed * inputShares).toFixed(2);
   let market_value = (shares * quoted_price_to_fixed).toFixed(2);
 
-
   // Chart Data
   let dailyData = daily?.['Time Series (Daily)']
 
@@ -94,7 +93,7 @@ function SearchResult() {
     labels,
     datasets: [
       {
-        label: 'Data',
+        label: 'Weekly Price',
         data: labels.map((key) => lastSevenDaysData[key]['4. close']),
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
@@ -286,7 +285,7 @@ function SearchResult() {
             }
           </div>
 
-          <div className='stock-info'>
+          {Object.values(overview).length!==0 ? <div className='stock-info'>
             <div className='stock-info-left'>
               <div className='stock-info-name'>
                 <div className='stock-info-name-title'>Company</div>
@@ -308,9 +307,33 @@ function SearchResult() {
               </div>
             </div>
           </div>
+          :
+          <div className='stock-info'>
+            <div className='stock-info-left'>
+              <div className='stock-info-name'>
+                <div className='stock-info-name-title'>Company</div>
+                <div className='stock-info-name-content'>No information</div>
+              </div>
+              <div className='stock-info-country'>
+                <div className='stock-info-country-title'>Country</div>
+                <div className='stock-info-country-content'>No information</div>
+              </div>
+            </div>
+            <div className='stock-info-right'>
+              <div className='stock-info-exchange'>
+                <div className='stock-info-exchange-title'>Exchange</div>
+                <div className='stock-info-exchange-content'>No information</div>
+              </div>
+              <div className='stock-info-capital'>
+                <div className='stock-info-capital-title'>Capital</div>
+                <div className='stock-info-capital-content'>No information</div>
+              </div>
+            </div>
+          </div>
+          }
 
 
-          <div className='overview'>
+          {Object.values(overview).length!==0 ? <div className='overview'>
             <div className='overview-title'>About Me</div>
             <div className='overview-content' style={{ height: showMore ? "auto" : "46px", overflow: "hidden" }}>{overview.Description}</div>
             <div className='show-more'></div>
@@ -318,7 +341,14 @@ function SearchResult() {
             :
             <button onClick={() => setShowMore(!showMore)} className='show-more-buttons'>Show Less</button>}
           </div>
+          :
+          <div className='overview'>
+            <div className='overview-title'>About Me</div>
+            <div className='overview-content' style={{color: 'red', fontWeight: '600'}}>No information available</div>
+          </div>
+          }
 
+          {news?.['Information'] !== 'Invalid inputs. Please refer to the API documentation https://www.alphavantage.co/documentation#newsapi and try again.' ?
           <div className='news'>
             <div className='news-title'>News</div>
             <div className='news-container'>
@@ -332,6 +362,12 @@ function SearchResult() {
               ))}
             </div>
           </div>
+          :
+          <div className='news'>
+            <div className='news-title'>News</div>
+            <div className='news-container' style={{color: 'red', fontWeight: '600'}}>No news available</div>
+          </div>
+          }
 
 
 
