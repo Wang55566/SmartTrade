@@ -265,3 +265,8 @@
   font-size: 13px;
   color:rgb(250, 6, 6);
 }
+
+.stock-chart {
+  width: 721px;
+  height: 400px;
+}
