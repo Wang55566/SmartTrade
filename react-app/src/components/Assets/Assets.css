@@ -225,8 +225,38 @@ a.asset-link {
   font-weight: 700;
 }
 
+.social-contact {
+  height:8vh;
+  background-color: #add1b7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-icon {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e9e9e9;
+  text-align: center;
+  line-height: 40px;
+  font-size: 18px;
+  color: #000;
+  margin: 0px 10px;
+}
+
+.social-icon i {
+  vertical-align: middle;
+}
+
 
 .main-page-footer {
-  background: #b8d0b6;
-  height: 8vh;
+  background: #0f460a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4vh;
+  font-size: 18px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

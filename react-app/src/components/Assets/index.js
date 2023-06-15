@@ -178,6 +178,17 @@ function Assets() {
 
       </div>
       </div>
+      <div className='social-contact'>
+        <a href="https://www.linkedin.com/in/seng-wang-142a5a149/" className="social-icon">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://github.com/Wang55566" className="social-icon">
+        <i class="fab fa-github-square"></i>
+        </a>
+        <a href="https://www.instagram.com/sengkhooi/" className="social-icon">
+        <i class='fab fa-instagram'></i>
+        </a>
+      </div>
       <div className='main-page-footer'>
         <div className='footer-text'>© 2023 SmartTrade. All rights reserved.</div>
       </div>
