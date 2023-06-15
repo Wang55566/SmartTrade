@@ -14,6 +14,7 @@ import './Assets.css';
 
 import chart from '../../Chart.png'
 import not_real_chart from '../../statistic chart.jpeg'
+import graph from '../../graph.jpg'
 
 function Assets() {
 
@@ -71,15 +72,15 @@ function Assets() {
         <div className='left'>
 
           <div className="total-value">
-            ${(totalValue+user?.available_cash)?.toFixed(2)}
+            <div>Total Value of Your Account</div> <span>${(totalValue+user?.available_cash)?.toFixed(2)}</span>
           </div>
 
           <div className="chart">
-            <img src={not_real_chart} alt="chart" width='50%' height='25%'/>
+            <img src={graph} alt="chart" width='75%' height='25%'/>
           </div>
 
           <div className="cash-main">
-            <div className='cash-main-text'>Buying Power</div>
+            <div className='cash-main-text'>Avaible Cash</div>
             <div className='cash-main-number'>${(user?.available_cash)?.toFixed(2)}</div>
           </div>
 
@@ -176,6 +177,9 @@ function Assets() {
         </div>
 
       </div>
+      </div>
+      <div className='main-page-footer'>
+        <div className='footer-text'>© 2023 SmartTrade. All rights reserved.</div>
       </div>
     </>
   )
