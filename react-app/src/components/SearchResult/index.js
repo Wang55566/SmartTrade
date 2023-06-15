@@ -10,7 +10,6 @@ import * as watchlistActions from '../../store/watchlist';
 import OpenModalButton from '../OpenModalButton';
 import AddStockToListModal from '../AddStockToListModal';
 
-import not_real_chart from '../../statistic chart.jpeg'
 import './SearchResult.css'
 
 //Chart
@@ -242,6 +241,7 @@ function SearchResult() {
 
   return (
     <>
+      <div className='stock-details-whole-page'>
       <div className='single-stock-details'>
 
         <div className='left-panel'>
@@ -428,6 +428,7 @@ function SearchResult() {
 
         </div>
 
+      </div>
       </div>
     </>
   )

@@ -1,3 +1,10 @@
+.signup-whole-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .signup-page {
   display: flex;
   font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
@@ -6,6 +13,7 @@
   display:block;
   margin: 0px;
   width: 450px;
+  height: 720px;
   padding: 40px 56px;
   border: 1px solid #ccc;
   border-radius: 10px;

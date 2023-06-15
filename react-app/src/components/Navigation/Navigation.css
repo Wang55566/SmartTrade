@@ -2,7 +2,8 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
-  height: 120px;
+  height: 100px;
+  border-bottom: 2.5px groove rgb(12, 224, 12);
 }
 
 .nav2 {
@@ -11,6 +12,8 @@
   justify-content: space-between;
   align-items: center;
   height: 64px;
+  margin:0px;
+  border-bottom: 2.5px solid rgb(1, 3, 1);
 }
 
 .dropdown {
@@ -24,10 +27,9 @@
 .open-drop-down-profile {
   border:none;
   border-radius: 4px;
-  width:40px;
-  height:25px;
+  width:80px;
+  height:30px;
   background-color: #a9ead5;
-  margin-left: 25px;
 }
 
 .open-drop-down-profile:hover {
@@ -112,12 +114,25 @@
   padding: 0px 28px;
   width: 102px;
   font-family: "Comic Sans MS", sans-serif;
+  margin-right: 5px;
 }
 
 .signup-button:hover {
   background-color: rgb(255, 199, 87);
   color: black;
   border:1px solid rgb(0, 0, 0);
+}
+
+@keyframes change-size {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .title {
@@ -127,12 +142,14 @@
   color: rgb(16, 219, 26);
   margin-left: 130px;
   text-shadow: -1px -1px 0 #350f0f, 1px -1px 0 #38ce72, -1px 1px 0 #fff, 1px 1px 0 #fff;
+  animation: change-size 2s linear infinite;
 }
+
 
 .search-bar {
   position: relative;
-  width: 350px;
-  height: 30px;
+  width: 300px;
+  height: 40px;
   margin: 20px 0px 3px 0px;
 }
 
@@ -142,22 +159,25 @@
 
 .fa-search {
   position: absolute;
-  top: 3px;
-  left: 7px;
+  top: 12px;
+  left: 8px;
 }
 
 .search-input {
-  padding-left:23px
+  padding-left:30px;
+  margin:0px;
 }
 
 .search-results {
   display: flex;
   text-decoration: none;
   background-color: whitesmoke;
-  font-size: 13px;
+  font-size: 17px;
   font-weight: 500;
   font-family: "Capsule Sans Display",system-ui,"Segoe UI",sans-serif;
   z-index:5;
+  min-width: 535px;
+  justify-content: space-between;
 }
 
 .search-results:hover {

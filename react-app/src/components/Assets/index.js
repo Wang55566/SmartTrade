@@ -65,6 +65,7 @@ function Assets() {
 
   return (
     <>
+    <div className='main-page-whole-page'>
       <div className="main-page">
 
         <div className='left'>
@@ -74,7 +75,7 @@ function Assets() {
           </div>
 
           <div className="chart">
-            <img src={not_real_chart} alt="chart" width='1038px' height='400px'/>
+            <img src={not_real_chart} alt="chart" width='50%' height='25%'/>
           </div>
 
           <div className="cash-main">
@@ -174,6 +175,7 @@ function Assets() {
 
         </div>
 
+      </div>
       </div>
     </>
   )

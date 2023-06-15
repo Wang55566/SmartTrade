@@ -1,7 +1,19 @@
 
+.main-page-whole-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-image: url('../../coins.webp');
+}
+
 .main-page {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  width:1000px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color:white;
 }
 
 .left {
@@ -9,7 +21,7 @@
 }
 
 .total-value {
-  width:1058px;
+  width:50%;
   height: 50px;
   padding: 0px 0px 20px;
   font-size: 32px;
@@ -32,12 +44,12 @@
 }
 
 .right {
-  width:222px;
+  width:330px;
 }
 
 .all-asset {
   display: block;
-  width:220px;
+  width:330px;
   border: 1px solid rgb(227, 233, 237);
   grid-column-start:2;
 }
@@ -59,7 +71,7 @@ a.asset-link {
 
 .one-asset {
   display: flex;
-  width: 220px;
+  width: 330px;
   justify-content: space-between;
   font-size: 13px;
   font-family: "Capsule Sans Display",system-ui,"Segoe UI",sans-serif;
@@ -134,7 +146,7 @@ a.asset-link {
 
 .all-watchlist {
   display: block;
-  width:220px;
+  width:330px;
   border: 1px solid rgb(227, 233, 237);
   font-size: 16px;
   font-family: "Mongolian Baiti",system-ui,"Segoe UI",sans-serif;

@@ -1,3 +1,10 @@
+.login-whole-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .login-page {
   display: flex;
   font-family: "Capsule Sans Display",system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
@@ -6,6 +13,7 @@
 .login-form {
   display:block;
   width: 450px;
+  height: 718px;
   padding: 40px 56px;
   border: 2px solid #ccc;
   border-radius: 10px;

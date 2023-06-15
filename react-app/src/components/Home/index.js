@@ -1,8 +1,10 @@
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 
 
-import image from '../../Home Page.png'
+import image from '../../statistic chart.jpeg'
+import money from '../../money.jpg'
+import './home.css'
 
 function Home(){
 
@@ -14,8 +16,16 @@ function Home(){
 
 	return (
         <>
-            <div>
-                <img src={image} alt="logo" />
+            <div className='home-page'>
+                <div className='money'>
+                    <img src={money} width='400px' height='400px' alt="logo" />
+                </div>
+                <div className="click-me">"Start building your profolio with just $1"</div>
+            </div>
+            <div className='footer'>
+                <div className='footer-text'>
+                    <p>&copy; 2023 SmartTrade. All rights reserved.</p>
+                </div>
             </div>
         </>
 	)

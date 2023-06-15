@@ -30,10 +30,11 @@ function Login() {
 
   return (
     <>
+      <div className='login-whole-page'>
       <div className="login-page">
 
         <div>
-          <img src={login_picture} alt="login_picture" width='800px' height='800px'/>
+          <img src={login_picture} alt="login_picture" width='800px' height='800px' style={{ borderRadius: '10px', border:'1px solid lightgrey' }}/>
         </div>
 
         <div className="login-form">
@@ -79,6 +80,7 @@ function Login() {
           </form>
         </div>
 
+      </div>
       </div>
     </>
   );
