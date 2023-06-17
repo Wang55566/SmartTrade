@@ -72,7 +72,7 @@ function Assets() {
         <div className='left'>
 
           <div className="total-value">
-            <div>Total Value of Your Account</div> <span>${(totalValue+user?.available_cash)?.toFixed(2)}</span>
+            <div>Total Value of My Account</div> <span>${(totalValue+user?.available_cash)?.toFixed(2)}</span>
           </div>
 
           <div className="chart">
@@ -80,7 +80,7 @@ function Assets() {
           </div>
 
           <div className="cash-main">
-            <div className='cash-main-text'>Avaible Cash</div>
+            <div className='cash-main-text'>My Available Cash</div>
             <div className='cash-main-number'>${(user?.available_cash)?.toFixed(2)}</div>
           </div>
 
@@ -89,7 +89,7 @@ function Assets() {
         <div className='right'>
 
           <div className="all-asset">
-            <h3>Assets</h3>
+            <h3>My Assets</h3>
             {Object.values(assets).map(asset => (
               <NavLink
               to={`/search/${asset.symbol}`}
@@ -111,7 +111,7 @@ function Assets() {
           <div className="all-watchlist">
 
             <div className='create-header'>
-              <h3>Watchlists</h3>
+              <h3>My Watchlists</h3>
               <div className='create-watchlist'>
                 <button onClick={() => setCreateList(!createList)} className='create-watchlist-button'><i className="fas fa-plus"></i></button>
               </div>

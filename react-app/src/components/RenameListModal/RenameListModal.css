@@ -8,12 +8,12 @@
   margin: 18px;
   display: flex;
   justify-content: center;
-  color:red
+  color:rgb(57, 58, 147)
 }
 
 .rename-watchlist input {
   display: flex;
-  margin-left: 85px;
+  margin-left: 102px;
   font-weight: 600;
   width:fit-content
 }
@@ -31,8 +31,9 @@
   cursor: pointer;
   font-family: cursive;
   font-weight: 600;
+  margin-right: 20px;
 }
 
 .rename-save:hover, .rename-cancel:hover {
-  background-color: rgb(247, 199, 199);
+  background-color: rgb(120, 152, 241);
 }

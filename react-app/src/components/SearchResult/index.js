@@ -242,193 +242,193 @@ function SearchResult() {
   return (
     <>
       <div className='stock-details-whole-page'>
-      <div className='single-stock-details'>
+        <div className='single-stock-details'>
 
-        <div className='left-panel'>
+          <div className='left-panel'>
 
-          <div className='result-detail'>
-            <div>{symbol}</div>
-            <div>${quoted_price_to_fixed}</div>
-          </div>
+            <div className='result-detail'>
+              <div>{symbol}</div>
+              <div>${quoted_price_to_fixed}</div>
+            </div>
 
-          <div className='stock-chart'>
-            <Line data={data}/>
-          </div>
+            <div className='stock-chart'>
+              <Line data={data}/>
+            </div>
 
-          <div className='asset-stock-details'>
-            {Object.values(singleAsset).length !== 0 ?
-              <>
-                <div className='asset-left'>
-                  <div className='asset-text'>Your market value</div>
-                  <div className='bold-price'>${market_value}</div>
+            <div className='asset-stock-details'>
+              {Object.values(singleAsset).length !== 0 ?
+                <>
+                  <div className='asset-left'>
+                    <div className='asset-text'>Your market value</div>
+                    <div className='bold-price'>${market_value}</div>
+                  </div>
+                  <div className='asset-right'>
+                    <div className='asset-text'>Your average cost</div>
+                    <div className='bold-price'>${average_cost}</div>
+                    <div className='asset-text'>Your shares</div>
+                    <div className='bold-price'>{shares}</div>
+                  </div>
+                </>
+              :
+                <>
+                  <div className='asset-left'>
+                    <div className='asset-text'>Your market value</div>
+                    <div className='bold-price'>$0.00</div>
+                  </div>
+                  <div className='asset-right'>
+                    <div className='asset-text'>Your average cost</div>
+                    <div className='bold-price'>$0.00</div>
+                    <div className='asset-text'> Your shares</div>
+                    <div className='bold-price'>0</div>
+                  </div>
+                </>
+              }
+            </div>
+
+            {Object.values(overview).length!==0 ? <div className='stock-info'>
+              <div className='stock-info-left'>
+                <div className='stock-info-name'>
+                  <div className='stock-info-name-title'>Company</div>
+                  <div className='stock-info-name-content'>{overview.Name}</div>
                 </div>
-                <div className='asset-right'>
-                  <div className='asset-text'>Your average cost</div>
-                  <div className='bold-price'>${average_cost}</div>
-                  <div className='asset-text'>Your shares</div>
-                  <div className='bold-price'>{shares}</div>
+                <div className='stock-info-country'>
+                  <div className='stock-info-country-title'>Country</div>
+                  <div className='stock-info-country-content'>{overview.Country}</div>
                 </div>
-              </>
+              </div>
+              <div className='stock-info-right'>
+                <div className='stock-info-exchange'>
+                  <div className='stock-info-exchange-title'>Exchange</div>
+                  <div className='stock-info-exchange-content'>{overview.Exchange}</div>
+                </div>
+                <div className='stock-info-capital'>
+                  <div className='stock-info-capital-title'>Capital</div>
+                  <div className='stock-info-capital-content'>{convertNumberToSuffix(overview?.MarketCapitalization)}</div>
+                </div>
+              </div>
+            </div>
             :
-              <>
-                <div className='asset-left'>
-                  <div className='asset-text'>Your market value</div>
-                  <div className='bold-price'>$0.00</div>
+            <div className='stock-info'>
+              <div className='stock-info-left'>
+                <div className='stock-info-name'>
+                  <div className='stock-info-name-title'>Company</div>
+                  <div className='stock-info-name-content'>No information</div>
                 </div>
-                <div className='asset-right'>
-                  <div className='asset-text'>Your average cost</div>
-                  <div className='bold-price'>$0.00</div>
-                  <div className='asset-text'> Your shares</div>
-                  <div className='bold-price'>0</div>
+                <div className='stock-info-country'>
+                  <div className='stock-info-country-title'>Country</div>
+                  <div className='stock-info-country-content'>No information</div>
                 </div>
-              </>
+              </div>
+              <div className='stock-info-right'>
+                <div className='stock-info-exchange'>
+                  <div className='stock-info-exchange-title'>Exchange</div>
+                  <div className='stock-info-exchange-content'>No information</div>
+                </div>
+                <div className='stock-info-capital'>
+                  <div className='stock-info-capital-title'>Capital</div>
+                  <div className='stock-info-capital-content'>No information</div>
+                </div>
+              </div>
+            </div>
             }
-          </div>
-
-          {Object.values(overview).length!==0 ? <div className='stock-info'>
-            <div className='stock-info-left'>
-              <div className='stock-info-name'>
-                <div className='stock-info-name-title'>Company</div>
-                <div className='stock-info-name-content'>{overview.Name}</div>
-              </div>
-              <div className='stock-info-country'>
-                <div className='stock-info-country-title'>Country</div>
-                <div className='stock-info-country-content'>{overview.Country}</div>
-              </div>
-            </div>
-            <div className='stock-info-right'>
-              <div className='stock-info-exchange'>
-                <div className='stock-info-exchange-title'>Exchange</div>
-                <div className='stock-info-exchange-content'>{overview.Exchange}</div>
-              </div>
-              <div className='stock-info-capital'>
-                <div className='stock-info-capital-title'>Capital</div>
-                <div className='stock-info-capital-content'>{convertNumberToSuffix(overview?.MarketCapitalization)}</div>
-              </div>
-            </div>
-          </div>
-          :
-          <div className='stock-info'>
-            <div className='stock-info-left'>
-              <div className='stock-info-name'>
-                <div className='stock-info-name-title'>Company</div>
-                <div className='stock-info-name-content'>No information</div>
-              </div>
-              <div className='stock-info-country'>
-                <div className='stock-info-country-title'>Country</div>
-                <div className='stock-info-country-content'>No information</div>
-              </div>
-            </div>
-            <div className='stock-info-right'>
-              <div className='stock-info-exchange'>
-                <div className='stock-info-exchange-title'>Exchange</div>
-                <div className='stock-info-exchange-content'>No information</div>
-              </div>
-              <div className='stock-info-capital'>
-                <div className='stock-info-capital-title'>Capital</div>
-                <div className='stock-info-capital-content'>No information</div>
-              </div>
-            </div>
-          </div>
-          }
 
 
-          {Object.values(overview).length!==0 ? <div className='overview'>
-            <div className='overview-title'>About Me</div>
-            <div className='overview-content' style={{ height: showMore ? "auto" : "46px", overflow: "hidden" }}>{overview.Description}</div>
-            <div className='show-more'></div>
-            {!showMore? <button onClick={() => setShowMore(!showMore)} className='show-more-buttons'>Show More</button>
+            {Object.values(overview).length!==0 ? <div className='overview'>
+              <div className='overview-title'>About Me</div>
+              <div className='overview-content' style={{ height: showMore ? "auto" : "46px", overflow: "hidden" }}>{overview.Description}</div>
+              <div className='show-more'></div>
+              {!showMore? <button onClick={() => setShowMore(!showMore)} className='show-more-buttons'>Show More</button>
+              :
+              <button onClick={() => setShowMore(!showMore)} className='show-more-buttons'>Show Less</button>}
+            </div>
             :
-            <button onClick={() => setShowMore(!showMore)} className='show-more-buttons'>Show Less</button>}
-          </div>
-          :
-          <div className='overview'>
-            <div className='overview-title'>About Me</div>
-            <div className='overview-content' style={{color: 'red', fontWeight: '600'}}>No information available</div>
-          </div>
-          }
-
-          {news?.['Information'] !== 'Invalid inputs. Please refer to the API documentation https://www.alphavantage.co/documentation#newsapi and try again.' ?
-          <div className='news'>
-            <div className='news-title'>News</div>
-            <div className='news-container'>
-              {news?.feed?.map((oneNews) => (
-                <div key={oneNews.url} className='one-news'>
-                  <a href={oneNews.url}>
-                  <div className='one-news-title'>{oneNews.title}</div>
-                  <div><img src={oneNews.banner_image} width='200px' alt=''/></div>
-                  </a>
-                </div>
-              ))}
+            <div className='overview'>
+              <div className='overview-title'>About Me</div>
+              <div className='overview-content' style={{color: 'red', fontWeight: '600'}}>No information available</div>
             </div>
-          </div>
-          :
-          <div className='news'>
-            <div className='news-title'>News</div>
-            <div className='news-container' style={{color: 'red', fontWeight: '600'}}>No news available</div>
-          </div>
-          }
+            }
+
+            {news?.['Information'] !== 'Invalid inputs. Please refer to the API documentation https://www.alphavantage.co/documentation#newsapi and try again.' ?
+            <div className='news'>
+              <div className='news-title'>News</div>
+              <div className='news-container'>
+                {news?.feed?.map((oneNews) => (
+                  <div key={oneNews.url} className='one-news'>
+                    <a href={oneNews.url}>
+                    <div className='one-news-title'>{oneNews.title}</div>
+                    <div><img src={oneNews.banner_image} width='200px' alt=''/></div>
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+            :
+            <div className='news'>
+              <div className='news-title'>News</div>
+              <div className='news-container' style={{color: 'red', fontWeight: '600'}}>No news available</div>
+            </div>
+            }
 
 
+
+          </div>
+
+          <div className='right-panel'>
+
+            <div className='trade-panel'>
+
+              <div className='transaction-switch'>
+                <button onClick={(e) => setTransactionBuy(!transaction_buy)} className='switch-button'>{transaction_buy === true ? "Switch to sell" : "Switch to Buy"}</button>
+              </div>
+
+              <div className='errors'>{errors}</div>
+
+              <div className='transaction-form'>
+                <form onSubmit={handleSubmit}>
+                  <div className='transaction-current-price'>
+                    <div className='current-price-text'>Current Price:</div>
+                    <div className='current-price-number'>${quoted_price_to_fixed}</div>
+                  </div>
+                  <div className='share-input'>
+                    <label className='transaction-label'>Shares</label>
+                    <input
+                      type="number"
+                      value={inputShares}
+                      onChange={(e) => setInputShares(e.target.value)}
+                      required
+                      className='transaction-input-box'
+                    />
+                  </div>
+                  <div className='transaction-estimated-cost'>
+                    <div className='estimated-cost-text'>Estimated Cost: </div>
+                    <div className='estimated-cost-number'>${estimated}</div>
+                  </div>
+                  <button type="submit" className='transaction-button'>{transaction_buy === true ? "Buy" : "Sell"}</button>
+                </form>
+              </div>
+
+              <div className='available-cash-in-trade-panel'>
+                <div className='cash-text'>Buying Power</div>
+                <div className='trade-panel-cash'>${user?.available_cash?.toFixed(2)}</div>
+              </div>
+
+            </div>
+
+
+            <div className='watchlist-container'>
+              <div className='one-watchlist-title'>Watchlist</div>
+              {Object.values(watchlists).length !== 0 ?<div className='watchlist-content'>
+                <OpenModalButton
+                  className='watchlist-button'
+                  buttonText={oneList.name ? <i className="fas fa-check">{oneList.name}</i> : <i className="fa fa-plus">Add</i>}
+                  modalComponent={<AddStockToListModal quoted_price_to_fixed={quoted_price_to_fixed} symbol={symbol}/>}
+                />
+              </div>: <div className='no-watchlists'>No watchlists have been created yet</div>}
+            </div>
+
+          </div>
 
         </div>
-
-        <div className='right-panel'>
-
-          <div className='trade-panel'>
-
-            <div className='transaction-switch'>
-              <button onClick={(e) => setTransactionBuy(!transaction_buy)} className='switch-button'>{transaction_buy === true ? "Switch to sell" : "Switch to Buy"}</button>
-            </div>
-
-            <div className='errors'>{errors}</div>
-
-            <div className='transaction-form'>
-              <form onSubmit={handleSubmit}>
-                <div className='transaction-current-price'>
-                  <div className='current-price-text'>Current Price:</div>
-                  <div className='current-price-number'>${quoted_price_to_fixed}</div>
-                </div>
-                <div className='share-input'>
-                  <label className='transaction-label'>Shares</label>
-                  <input
-                    type="number"
-                    value={inputShares}
-                    onChange={(e) => setInputShares(e.target.value)}
-                    required
-                    className='transaction-input-box'
-                  />
-                </div>
-                <div className='transaction-estimated-cost'>
-                  <div className='estimated-cost-text'>Estimated Cost: </div>
-                  <div className='estimated-cost-number'>${estimated}</div>
-                </div>
-                <button type="submit" className='transaction-button'>{transaction_buy === true ? "Buy" : "Sell"}</button>
-              </form>
-            </div>
-
-            <div className='available-cash-in-trade-panel'>
-              <div className='cash-text'>Buying Power</div>
-              <div className='trade-panel-cash'>${user?.available_cash?.toFixed(2)}</div>
-            </div>
-
-          </div>
-
-
-          <div className='watchlist-container'>
-            <div className='one-watchlist-title'>Watchlist</div>
-            {Object.values(watchlists).length !== 0 ?<div className='watchlist-content'>
-              <OpenModalButton
-                className='watchlist-button'
-                buttonText={oneList.name ? <i className="fas fa-check">{oneList.name}</i> : <i className="fa fa-plus">Add</i>}
-                modalComponent={<AddStockToListModal quoted_price_to_fixed={quoted_price_to_fixed} symbol={symbol}/>}
-              />
-            </div>: <div className='no-watchlists'>No watchlists have been created yet</div>}
-          </div>
-
-        </div>
-
-      </div>
       </div>
     </>
   )

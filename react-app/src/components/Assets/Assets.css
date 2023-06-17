@@ -176,7 +176,7 @@ a.asset-link {
 .one-watchlist {
   height:35px;
   font-weight: 700;
-  color: #e56262;
+  color: #11c38b;
   cursor: pointer;
   padding: 3px 24px;
 }
@@ -192,7 +192,7 @@ a.asset-link {
 .one-watchlist button {
   border: none;
   background-color: transparent;
-  color: #e56262;
+  color: #11c38b;
 }
 
 .one-watchlist button:hover {

@@ -29,12 +29,9 @@
   cursor: pointer;
   font-family: cursive;
   font-weight: 600;
+  margin-right: 23px;
 }
 
 .delete-watchlist button:hover {
   background-color: rgb(247, 199, 199);
-}
-
-.delete-yes {
-  color: red;
 }

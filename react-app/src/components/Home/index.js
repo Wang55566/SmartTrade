@@ -20,7 +20,7 @@ function Home(){
                 <div className='money'>
                     <img src={money} width='400px' height='400px' alt="logo" />
                 </div>
-                <div className="click-me">"Start building your profolio with just $1"</div>
+                <div className="click-me">"Start building your profolio with just a dollor $$"</div>
             </div>
             <div className='footer'>
                 <div className='footer-text'>

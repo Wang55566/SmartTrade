@@ -11,8 +11,13 @@
   background-color: white;
 }
 
+.left-panel {
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
 .result-detail {
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 700;
   font-family: "Capsule Sans Display",system-ui,"Segoe UI",sans-serif;
 }
