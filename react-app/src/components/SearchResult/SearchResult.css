@@ -17,9 +17,13 @@
 }
 
 .result-detail {
-  font-size: 34px;
+  font-size: 32px;
   font-weight: 700;
   font-family: "Capsule Sans Display",system-ui,"Segoe UI",sans-serif;
+}
+
+.result-detail-price {
+  font-size: 33px;
 }
 
 .asset-stock-details {
@@ -35,7 +39,8 @@
 
 .asset-text {
   color:blue;
-  margin-left:5px
+  margin-left:5px;
+  font-weight: 600;
 }
 
 .bold-price {
@@ -82,7 +87,7 @@
 }
 
 .overview-title {
-  font-size: 22px;
+  font-size: 25px;
   font-weight: 700;
   margin-bottom: 10px;
 }
@@ -108,7 +113,7 @@
 }
 
 .news-title {
-  font-size: 22px;
+  font-size: 25px;
   font-weight: 700;
   margin-bottom: 10px;
   text-decoration: none;
@@ -116,7 +121,7 @@
 
 
 .one-news-title {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 700;
   margin-bottom: 10px;
 }

@@ -67,6 +67,11 @@ function SearchResult() {
     return result;
   }, {});
 
+  const lastKey = Object.keys(lastSevenDaysData)?.[Object.keys(lastSevenDaysData).length - 1];
+  const lastValue = lastSevenDaysData?.[lastKey];
+  const lastClose = lastValue?.['4. close'];
+  const lastCloseToFixed = Number(lastClose)?.toFixed(2);
+
   //Convert number to suffix
   function convertNumberToSuffix(number) {
     const suffixes = ["", "thousand", "million", "billion", "trillion"];
@@ -248,7 +253,8 @@ function SearchResult() {
 
             <div className='result-detail'>
               <div>{symbol}</div>
-              <div>${quoted_price_to_fixed}</div>
+                {intraday['Error Message']? <div className='result-detail-price'>${lastCloseToFixed}</div>:
+                <div className='result-detail-price'>${quoted_price_to_fixed}</div>}
             </div>
 
             <div className='stock-chart'>
@@ -259,26 +265,26 @@ function SearchResult() {
               {Object.values(singleAsset).length !== 0 ?
                 <>
                   <div className='asset-left'>
-                    <div className='asset-text'>Your market value</div>
+                    <div className='asset-text'>My Value in <span>{symbol}</span></div>
                     <div className='bold-price'>${market_value}</div>
                   </div>
                   <div className='asset-right'>
-                    <div className='asset-text'>Your average cost</div>
+                    <div className='asset-text'>My Average Cost</div>
                     <div className='bold-price'>${average_cost}</div>
-                    <div className='asset-text'>Your shares</div>
+                    <div className='asset-text'>My shares</div>
                     <div className='bold-price'>{shares}</div>
                   </div>
                 </>
               :
                 <>
                   <div className='asset-left'>
-                    <div className='asset-text'>Your market value</div>
+                    <div className='asset-text'>My Value in <span>{symbol}</span></div>
                     <div className='bold-price'>$0.00</div>
                   </div>
                   <div className='asset-right'>
-                    <div className='asset-text'>Your average cost</div>
+                    <div className='asset-text'>My Average Cost</div>
                     <div className='bold-price'>$0.00</div>
-                    <div className='asset-text'> Your shares</div>
+                    <div className='asset-text'>My shares</div>
                     <div className='bold-price'>0</div>
                   </div>
                 </>
@@ -387,7 +393,8 @@ function SearchResult() {
                 <form onSubmit={handleSubmit}>
                   <div className='transaction-current-price'>
                     <div className='current-price-text'>Current Price:</div>
-                    <div className='current-price-number'>${quoted_price_to_fixed}</div>
+                    {intraday['Error Message']? <div className='current-price-number'>${lastCloseToFixed}</div>:
+                    <div className='current-price-number'>${quoted_price_to_fixed}</div>}
                   </div>
                   <div className='share-input'>
                     <label className='transaction-label'>Shares</label>
