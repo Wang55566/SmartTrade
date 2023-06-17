@@ -1,0 +1,55 @@
+.home-page {
+  display: flex;
+  justify-content: center;
+  background-color: lightgreen;
+  min-height: 90vh;
+}
+
+.money {
+  display: block;
+  margin-top: 150px;
+}
+
+.click-me {
+  background-color: transparent;
+  color: rgb(4, 4, 46);
+  font-size: 38px;
+  font-weight: 550;
+  border: none;
+  font-family: "Comic Sans MS", sans-serif;
+  margin-top: 150px;
+  margin-left: 50px;
+  flex-wrap: wrap;
+  width: 400px;
+  height: fit-content;
+  display: flex;
+}
+
+/* .click-me:hover {
+  animation: blink 2.5s infinite;
+} */
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.footer {
+  background-color: lightgreen;
+  display: flex;
+  justify-content: center;
+  padding:10px 0px;
+}
+
+.footer-text > p {
+  margin:0px;
+  font-size: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

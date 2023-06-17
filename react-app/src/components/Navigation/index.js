@@ -8,7 +8,8 @@ import * as searchActions from '../../store/search';
 import * as assetActions from '../../store/asset';
 import * as watchlistActions from '../../store/watchlist';
 
-import logo from'../../Logo.png';
+import logo from '../../Logo.png';
+import dollar from '../../dollar-sign.png';
 
 function Navigation(){
 
@@ -77,7 +78,7 @@ function Navigation(){
 						exact to="/main"
 						onClick={clickHome}
 						>
-							<img src={logo} alt="logo" width='60px' height='60px'/>
+							<img src={dollar} alt="logo" width='60px' height='60px'/>
 						</NavLink>
 					</div>
 
@@ -90,8 +91,8 @@ function Navigation(){
 								value={query}
 								onChange={handleOnChange}
 								className='search-input'
-								style={{ width: '300px'}}
-								placeholder='Search for a stock'
+								style={{ width: '500px', height: '35px', fontSize: '17px', fontWeight: '500', fontFamily: 'sans-serif'}}
+								placeholder='Search for a stock or a company'
 							/>
 							</form>
 
@@ -127,7 +128,7 @@ function Navigation(){
 						<NavLink
 						exact to="/"
 						>
-							<img src={logo} alt="logo" width='50px' height='50px'/>
+							<img src={dollar} alt="logo" width='55px' height='55px'/>
 						</NavLink>
 					</div>
 

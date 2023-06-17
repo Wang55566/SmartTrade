@@ -1,21 +1,13 @@
 /* TODO Add site wide styles */
 
+body {
+  margin: 10px 0px 0px 0px;
+  padding: 0;
+}
+
 li {
   list-style: none;
 }
-
-/* button {
-  background-color: transparent;
-  padding: 0.5rem;
-  font-size: inherit;
-  font-family: inherit;
-  cursor: pointer;
-  border: none;
-}
-
-button:hover {
-  background-color: #eee;
-} */
 
 label, input {
   display: block;

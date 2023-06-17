@@ -35,10 +35,11 @@ function SignUp() {
 
   return (
     <>
+      <div className='signup-whole-page'>
       <div className='signup-page'>
 
         <div>
-          <img src={signup_picture} alt="signup_picture" width='800px' height='800px'/>
+          <img src={signup_picture} alt="signup_picture" width='800px' height='800px' style={{ borderRadius: '10px', border:'1px solid lightgrey' }}/>
         </div>
 
         <div className='signup-form'>
@@ -105,6 +106,7 @@ function SignUp() {
           </form>
         </div>
 
+      </div>
       </div>
     </>
   );

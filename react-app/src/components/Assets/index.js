@@ -14,6 +14,7 @@ import './Assets.css';
 
 import chart from '../../Chart.png'
 import not_real_chart from '../../statistic chart.jpeg'
+import graph from '../../graph.jpg'
 
 function Assets() {
 
@@ -65,20 +66,21 @@ function Assets() {
 
   return (
     <>
+    <div className='main-page-whole-page'>
       <div className="main-page">
 
         <div className='left'>
 
           <div className="total-value">
-            ${(totalValue+user?.available_cash)?.toFixed(2)}
+            <div>Total Value of My Account</div> <span>${(totalValue+user?.available_cash)?.toFixed(2)}</span>
           </div>
 
           <div className="chart">
-            <img src={not_real_chart} alt="chart" width='1038px' height='400px'/>
+            <img src={graph} alt="chart" width='75%' height='25%'/>
           </div>
 
           <div className="cash-main">
-            <div className='cash-main-text'>Buying Power</div>
+            <div className='cash-main-text'>My Available Cash</div>
             <div className='cash-main-number'>${(user?.available_cash)?.toFixed(2)}</div>
           </div>
 
@@ -87,7 +89,7 @@ function Assets() {
         <div className='right'>
 
           <div className="all-asset">
-            <h3>Assets</h3>
+            <h3>My Assets</h3>
             {Object.values(assets).map(asset => (
               <NavLink
               to={`/search/${asset.symbol}`}
@@ -109,7 +111,7 @@ function Assets() {
           <div className="all-watchlist">
 
             <div className='create-header'>
-              <h3>Watchlists</h3>
+              <h3>My Watchlists</h3>
               <div className='create-watchlist'>
                 <button onClick={() => setCreateList(!createList)} className='create-watchlist-button'><i className="fas fa-plus"></i></button>
               </div>
@@ -174,6 +176,21 @@ function Assets() {
 
         </div>
 
+      </div>
+      </div>
+      <div className='social-contact'>
+        <a href="https://www.linkedin.com/in/seng-wang-142a5a149/" className="social-icon">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://github.com/Wang55566" className="social-icon">
+        <i class="fab fa-github-square"></i>
+        </a>
+        <a href="https://www.instagram.com/sengkhooi/" className="social-icon">
+        <i class='fab fa-instagram'></i>
+        </a>
+      </div>
+      <div className='main-page-footer'>
+        <div className='footer-text'>© 2023 SmartTrade. All rights reserved.</div>
       </div>
     </>
   )

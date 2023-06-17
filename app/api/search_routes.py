@@ -57,8 +57,22 @@ def company_news(symbol):
   data = r.json()
   return data
 
+# Intraday Chart Data
+@search_routes.route('/<string:symbol>/intraday')
+@login_required
+def intraday_chart_data(symbol):
+
+    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=1min&apikey={api_key}'
+    r = requests.get(url)
+    data = r.json()
+    return data
+
 # Daily Chart Data
+@search_routes.route('/<string:symbol>/daily')
+@login_required
+def daily_chart_data(symbol):
 
-# Weekly Chart Data
-
-# Monthly Chart Data
+      url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={api_key}'
+      r = requests.get(url)
+      data = r.json()
+      return data
