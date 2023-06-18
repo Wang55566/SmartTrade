@@ -11,11 +11,9 @@
   color:rgb(57, 58, 147)
 }
 
-.rename-watchlist input {
-  display: flex;
-  margin-left: 102px;
+.rename-watchlist-input {
+  margin-left: 80px;
   font-weight: 600;
-  width:fit-content
 }
 
 .rename-watchlist-buttons {
