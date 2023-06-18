@@ -39,7 +39,7 @@ function AddStockToListModal({symbol, quoted_price_to_fixed}) {
   return (
     <div className='watchlist-modal'>
       <div className='watchlist-form'>
-        <h3 className="watchlist-modal-title"> Move it to a different list</h3>
+        <h3 className="watchlist-modal-title"> Choose a watchlist or remove the stock from the watchlist</h3>
         <form onSubmit={handleSubmit}>
         {Object.values(watchlists).map((watchlist) => (
           oneList.id !== watchlist.id ? (<label key={watchlist.id}>

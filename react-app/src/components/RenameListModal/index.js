@@ -41,7 +41,7 @@ function RenameListModal({ watchlist }) {
       <input
         type="text"
         placeholder="List Name"
-        className="rename-list-input"
+        className="rename-watchlist-input"
         value={listName}
         onChange={(e) => setListName(e.target.value)}
         required

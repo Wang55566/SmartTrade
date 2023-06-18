@@ -382,9 +382,9 @@ function SearchResult() {
           <div className='right-panel'>
 
             <div className='trade-panel'>
-
+              <div className='trade-panel-title'>{transaction_buy?<div>Trade: Buying</div>:<div>Trade: Selling</div>}</div>
               <div className='transaction-switch'>
-                <button onClick={(e) => setTransactionBuy(!transaction_buy)} className='switch-button'>{transaction_buy === true ? "Switch to sell" : "Switch to Buy"}</button>
+                <button onClick={(e) => setTransactionBuy(!transaction_buy)} className='switch-button'>{transaction_buy === true ? "I want to sell" : "I want to buy"}</button>
               </div>
 
               <div className='errors'>{errors}</div>
@@ -392,7 +392,7 @@ function SearchResult() {
               <div className='transaction-form'>
                 <form onSubmit={handleSubmit}>
                   <div className='transaction-current-price'>
-                    <div className='current-price-text'>Current Price:</div>
+                    <div className='current-price-text'>Market Price:</div>
                     {intraday['Error Message']? <div className='current-price-number'>${lastCloseToFixed}</div>:
                     <div className='current-price-number'>${quoted_price_to_fixed}</div>}
                   </div>
@@ -415,7 +415,7 @@ function SearchResult() {
               </div>
 
               <div className='available-cash-in-trade-panel'>
-                <div className='cash-text'>Buying Power</div>
+                <div className='cash-text'>My Available Cash</div>
                 <div className='trade-panel-cash'>${user?.available_cash?.toFixed(2)}</div>
               </div>
 
