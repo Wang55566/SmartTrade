@@ -8,26 +8,23 @@
 .money {
   display: block;
   margin-top: 150px;
+  margin-right: 150px;
 }
 
 .click-me {
-  background-color: transparent;
-  color: rgb(4, 4, 46);
+  background-color:transparent;
+  color: rgb(255, 255, 255);
   font-size: 38px;
   font-weight: 550;
   border: none;
   font-family: "Comic Sans MS", sans-serif;
   margin-top: 150px;
-  margin-left: 50px;
+  margin-left: 30px;
   flex-wrap: wrap;
   width: 400px;
   height: fit-content;
   display: flex;
 }
-
-/* .click-me:hover {
-  animation: blink 2.5s infinite;
-} */
 
 @keyframes blink {
   0% {
@@ -43,9 +40,14 @@
 
 .footer {
   background-color: lightgreen;
+  padding:10px 0px;
   display: flex;
   justify-content: center;
-  padding:10px 0px;
+}
+
+.footer-text {
+  display: flex;
+  align-items: center;
 }
 
 .footer-text > p {
