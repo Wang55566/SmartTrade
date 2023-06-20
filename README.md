@@ -1,3 +1,5 @@
+![Alt Text](react-app/src/website-screen-shot.png)
+
 ## Introduction
 
 Smart Trade is a stock Trading platform that provides friendly user interface and easy access for every person to the stock market.
@@ -9,9 +11,7 @@ Smart Trade is a stock Trading platform that provides friendly user interface an
 - SQLAlchemy - A library that facilitates the communication between Python programs and databases
 - Database: Development: SQLite3
 
-![Alt Text](react-app/src/website-screen-shot.png)
-
-## Getting started
+## Setup
 
 1. Clone this repository (only this branch)
 
