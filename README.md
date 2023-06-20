@@ -2,6 +2,8 @@
 
 Smart Trade is a stock Trading platform that provides friendly user interface and easy access for every person to the stock market.
 
+![Alt Text](react-app/src/website-screen-shot.png)
+
 ## Getting started
 1. Clone this repository (only this branch)
 
