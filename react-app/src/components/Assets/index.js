@@ -12,8 +12,6 @@ import DeleteListModal from '../DeleteListModal';
 
 import './Assets.css';
 
-import chart from '../../Chart.png'
-import not_real_chart from '../../statistic chart.jpeg'
 import graph from '../../graph.jpg'
 
 function Assets() {

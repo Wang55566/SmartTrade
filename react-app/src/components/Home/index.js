@@ -1,8 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Redirect, NavLink } from 'react-router-dom';
 
-
-import image from '../../statistic chart.jpeg'
 import money from '../../money.jpg'
 import './home.css'
 

@@ -8,7 +8,6 @@ import * as searchActions from '../../store/search';
 import * as assetActions from '../../store/asset';
 import * as watchlistActions from '../../store/watchlist';
 
-import logo from '../../Logo.png';
 import dollar from '../../dollar-sign.png';
 
 function Navigation(){
