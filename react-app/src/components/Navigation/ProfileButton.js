@@ -58,9 +58,9 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            {/* <li className='dropdown-profile'>
+            <li className='dropdown-profile'>
               <button onClick={handleProfile} className='dropdown-profile-button'>Profile</button>
-            </li> */}
+            </li>
             <li className='dropdown-logout'>
               <button onClick={handleLogout} className='dropdown-logout-button'>Log Out</button>
             </li>
