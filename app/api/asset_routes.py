@@ -79,6 +79,8 @@ def create_asset():
 
   form = BuyForm()
 
+  # Need to fetch data from a new API
+
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
 
