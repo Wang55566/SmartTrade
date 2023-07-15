@@ -114,6 +114,9 @@ def create_asset():
 @asset_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def update_asset(id):
+
+  # Need to fetch data from a new API
+  
   asset = Asset.query.get(id)
   form = UpdateForm()
   form['csrf_token'].data = request.cookies['csrf_token']
