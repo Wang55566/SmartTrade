@@ -17,6 +17,8 @@ api_key = os.environ.get('API_KEY')
 @login_required
 def all_assets():
 
+  # Need to fetch data from a new API
+
   assets = Asset.query.filter(Asset.user_id == current_user.id).all()
 
   asset_dict = {}
