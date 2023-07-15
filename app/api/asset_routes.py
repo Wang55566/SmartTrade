@@ -17,6 +17,9 @@ api_key = os.environ.get('API_KEY')
 @login_required
 def all_assets():
 
+  # Need to fetch data from a new API
+  # yahoo finance api?
+
   assets = Asset.query.filter(Asset.user_id == current_user.id).all()
 
   asset_dict = {}
@@ -50,6 +53,9 @@ def one_asset(id):
 
   assetDict = asset.to_dict()
 
+  # Need to fetch data from a new API
+  # yahoo finance api?
+
   url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={assetDict["symbol"]}&interval=1min&apikey={api_key}'
   r = requests.get(url)
   data = r.json()
@@ -74,6 +80,9 @@ def one_asset(id):
 def create_asset():
 
   form = BuyForm()
+
+  # Need to fetch data from a new API
+  # yahoo finance api?
 
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
@@ -108,6 +117,10 @@ def create_asset():
 @asset_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def update_asset(id):
+
+  # Need to fetch data from a new API
+  # yahoo finance api?
+
   asset = Asset.query.get(id)
   form = UpdateForm()
   form['csrf_token'].data = request.cookies['csrf_token']
