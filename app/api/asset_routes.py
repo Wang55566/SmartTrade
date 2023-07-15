@@ -52,6 +52,8 @@ def one_asset(id):
 
   assetDict = asset.to_dict()
 
+  # Need to fetch data from a new API
+
   url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={assetDict["symbol"]}&interval=1min&apikey={api_key}'
   r = requests.get(url)
   data = r.json()
