@@ -140,6 +140,7 @@ def update_asset(id):
     # r = requests.get(url)
     # data = r.json()
     # market_price = data["Global Quote"]["05. price"]
+    # websocket api?
 
 
     rounded_market_price = round(float(market_price), 2)
