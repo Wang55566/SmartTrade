@@ -119,7 +119,7 @@ def create_asset():
 def update_asset(id):
 
   # Need to fetch data from a new API
-  # yahoo finance api?
+  # websocket api?
 
   asset = Asset.query.get(id)
   form = UpdateForm()
