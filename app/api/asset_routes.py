@@ -8,6 +8,15 @@ from app.forms import BuyForm, UpdateForm
 import requests
 import os
 
+# polygon api
+# from polygon import RESTClient
+# polygon = os.environ.get('POLYGON')
+# client = RESTClient(api_key=polygon)
+# ticker = "AAPL"
+# trade = client.get_last_trade(ticker=ticker)
+#
+
+
 asset_routes = Blueprint('assets', __name__)
 
 api_key = os.environ.get('API_KEY')
