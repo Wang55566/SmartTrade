@@ -18,7 +18,7 @@ api_key = os.environ.get('API_KEY')
 def all_assets():
 
   # Need to fetch data from a new API
-  # yahoo finance api?
+  # websocket api?
 
   assets = Asset.query.filter(Asset.user_id == current_user.id).all()
 
@@ -54,7 +54,7 @@ def one_asset(id):
   assetDict = asset.to_dict()
 
   # Need to fetch data from a new API
-  # yahoo finance api?
+  # websocket api?
 
   url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={assetDict["symbol"]}&interval=1min&apikey={api_key}'
   r = requests.get(url)
@@ -82,7 +82,7 @@ def create_asset():
   form = BuyForm()
 
   # Need to fetch data from a new API
-  # yahoo finance api?
+  # websocket api?
 
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
@@ -119,7 +119,7 @@ def create_asset():
 def update_asset(id):
 
   # Need to fetch data from a new API
-  # yahoo finance api?
+  # websocket api?
 
   asset = Asset.query.get(id)
   form = UpdateForm()
@@ -140,6 +140,7 @@ def update_asset(id):
     # r = requests.get(url)
     # data = r.json()
     # market_price = data["Global Quote"]["05. price"]
+    # websocket api?
 
 
     rounded_market_price = round(float(market_price), 2)
