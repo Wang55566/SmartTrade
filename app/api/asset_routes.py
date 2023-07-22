@@ -18,7 +18,7 @@ api_key = os.environ.get('API_KEY')
 def all_assets():
 
   # Need to fetch data from a new API
-  # yahoo finance api?
+  # websocket api?
 
   assets = Asset.query.filter(Asset.user_id == current_user.id).all()
 
